@@ -1,0 +1,86 @@
+Created At: 2026-05-28T20:25:02Z
+Completed At: 2026-05-28T20:25:02Z
+File Path: `file:///Users/alial-khazali/Documents/ARES/templates/dashboard.html`
+Total Lines: 896
+Total Bytes: 49985
+Showing lines 1 to 800
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+<!DOCTYPE html>
+<html lang="en" class="dark bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-slate-950">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARES | Rescue Operations Monitor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#05070c',
+                            card: 'rgba(10, 15, 30, 0.75)',
+                            border: 'rgba(16, 185, 129, 0.15)',
+                            accent: '#10b981',
+                            alert: '#f43f5e',
+                            warn: '#f59e0b',
+                            blue: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Orbitron', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .glow-green {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+            bo
+<truncated 45282 bytes>
+LETHAL CHEMICAL SPILL!";
+                mapHazardText.className = "font-bold text-rose-400 animate-pulse text-xs";
+
+                let alarmText = "";
+                if (fireActive && maxGasVal > 55.0) alarmText = "CRITICAL: Multiple synchronized hazards! Chemical gas spill and fire detected.";
+                else if (fireActive) alarmText = "FIRE ANOMALY: Active thermal fire identified in Zone B.";
+                else alarmText = "CHEMICAL SPILL: Gas array sequencing threshold warning.";
+                document.getElementById('alarm-description').textContent = alarmText;
+
+                if (!audioAlarmInterval) {
+                    audioSfx.play().catch(e => {});
+                    audioAlarmInterval = setInterval(() => {
+                        audioSfx.play().catch(e => {});
+                    }, 1400);
+                }
+            } else {
+                alarmBanner.classList.add('hidden');
+                alarmBanner.classList.remove('flex');
+                
+                visionCard.className = "glass-panel rounded-lg overflow-hidden border border-emerald-500/20 flex flex-col";
+                streamGlow.className = "absolute inset-0 border border-emerald-500/30 glow-green pointer-events-none transition-all duration-200";
+
+                mapHazardText.textContent = "ENVIRONMENT SECURE";
+                mapHazardText.className = "font-bold text-emerald-400";
+
+                if (audioAlarmInterval) {
+                    clearInterval(audioAlarmInterval);
+                    audioAlarmInterval = null;
+                }
+            }
+
+            drawMap(payload);
+        }
+
+        // Draw Map
+        function drawMap(payload) {
+            ctx.clearRect(0, 0, ra
+<truncated 1791 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.

@@ -1,0 +1,88 @@
+Created At: 2026-05-28T21:50:24Z
+Completed At: 2026-05-28T21:50:24Z
+File Path: `file:///Users/alial-khazali/Documents/ARES/templates/dashboard.html`
+Total Lines: 914
+Total Bytes: 51109
+Showing lines 1 to 80
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+<!DOCTYPE html>
+<html lang="en" class="dark bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-slate-950">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARES | Rescue Operations Monitor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#05070c',
+                            card: 'rgba(10, 15, 30, 0.75)',
+                            border: 'rgba(16, 185, 129, 0.15)',
+                            accent: '#10b981',
+                            alert: '#f43f5e',
+                            warn: '#f59e0b',
+                            blue: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Orbitron', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .glow-green {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        .glow-red {
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
+            border-color: rgba(244, 63, 94, 0.65);
+        }
+        .glow-amber {
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+            border-color: rgba(245, 158, 11, 0.65);
+        }
+        .glow-orange {
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+            border-color: rgba(249, 115, 22, 0.65);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+            border-color: rgba(6, 182, 212, 0.65);
+        }
+        .glass-panel {
+            background: rgba(8, 12, 24, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-neon-green {
+            color: #10b981;
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+        }
+        @keyframes pulse-fast {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .pulse-fast {
+            animation: pulse-fast 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020408;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 3px;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

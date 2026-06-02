@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" class="dark bg-slate-950 text-slate-100 selection:bg-indigo-500 selection:text-slate-950">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARES CYBER-TACTICAL SECURE IAM CENTER</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#05070c',
+                            card: 'rgba(10, 15, 30, 0.75)',
+                            border: 'rgba(99, 102, 241, 0.15)',
+                            accent: '#6366f1',
+                            alert: '#f43f5e',
+                            warn: '#f59e0b',
+                            blue: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Orbitron', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .glow-indigo {
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.35);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+        .glow-red {
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
+            border-color: rgba(244, 63, 94, 0.65);
+        }
+        .glass-panel {
+            background: rgba(8, 12, 24, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .text-neon-indigo {
+            color: #6366f1;
+            text-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020408;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6366f1;
+            border-radius: 3px;
+        }
+        
+        /* Dedicated Light Mode CSS Overrides targeting html:not(.dark) with !important */
+        html:not(.dark) {
+            --cyber-bg: #f8fafc;
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+        }
+        html:not(.dark) body {
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+        }
+        html:not(.dark) .glass-panel {
+            background: rgba(255, 255, 255, 0.9) !important;
+            border-color: rgba(226, 232, 240, 0.8) !important;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+        }
+        html:not(.dark) .text-slate-400 { color: #475569 !important; }
+        html:not(.dark) .text-slate-300 { color: #334155 !important; }
+        html:not(.dark) .text-slate-200 { color: #1e293b !important; }
+        html:not(.dark) .text-slate-100 { color: #0f172a !important; }
+        html:not(.dark) .text-slate-350 { color: #334155 !important; }
+        html:not(.dark) .bg-slate-900\/60 { background-color: #f1f5f9 !important; }
+        html:not(.dark) .bg-slate-900\/40 { background-color: #f8fafc !important; }
+        html:not(.dark) .bg-slate-950 { background-color: #e2e8f0 !important; }
+        html:not(.dark) .bg-slate-950\/40 { background-color: rgba(241, 245, 249, 0.5) !important; }
+        html:not(.dark) .border-white\/5 { border-color: rgba(226, 232, 240, 0.8) !important; }
+        html:not(.dark) ::-webkit-scrollbar-track {
+            background: #f1f5f9 !important;
+        }
+        html:not(.dark) ::-webkit-scrollbar-thumb {
+            background: #cbd5e1 !important;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-cyber-bg min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Futuristic Header -->
+    <header class="w-full py-4 px-6 glass-panel border-b border-indigo-500/10 flex justify-between items-center z-10 shrink-0">
+        <div class="flex items-center gap-4">
+            <div class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+            </div>
+            <div>
+                <h1 class="font-hud font-bold text-lg tracking-wider text-slate-100 flex items-center gap-2">
+                    ARES <span class="text-indigo-400 font-light">SECURE IAM CENTER</span>
+                </h1>
+                <p class="text-xs text-slate-400 font-mono">Cyber-Tactical Identity & Access Management Control Matrix</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <!-- Theme Toggle -->
+            <button onclick="toggleTheme()" class="p-2 bg-slate-900 border border-white/10 hover:border-indigo-500/30 text-slate-300 hover:text-slate-100 rounded transition flex items-center justify-center shadow-sm" title="Toggle Light/Dark Theme">
+                <svg id="theme-icon-sun" class="w-4 h-4 hidden text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
+                </svg>
+                <svg id="theme-icon-moon" class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
+
+            <!-- Dynamic User Identity -->
+            <div class="px-3 py-1.5 bg-slate-950 border border-cyan-500/40 rounded flex items-center gap-2 shadow-[0_0_15px_rgba(6,182,212,0.25)] select-none transition-all duration-300">
+                <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]"></span>
+                <span class="text-xs font-hud font-bold tracking-wider text-slate-200">{{ current_user.username }}</span>
+                <span class="px-2 py-0.5 border border-cyan-500/30 hover:border-cyan-500/50 bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 font-mono text-[9px] font-bold rounded tracking-widest uppercase transition-colors shadow-[0_0_6px_rgba(6,182,212,0.15)]">
+                    ROOT ADMIN
+                </span>
+            </div>
+
+            <!-- Operations HUD Navigation -->
+            <a href="/dashboard" class="px-3 py-2 bg-slate-900 border border-white/10 hover:border-emerald-500/30 text-xs font-hud tracking-wider rounded text-slate-350 hover:text-slate-100 transition">
+                ← OPERATIONS HUD
+            </a>
+
+            <!-- Logout -->
+            <a href="/logout" class="border border-red-500/30 hover:bg-red-500/20 text-red-400 text-xs px-3 py-1.5 rounded transition-all duration-200 flex items-center gap-1.5 shadow-[0_0_10px_rgba(239,68,68,0.15)] hover:shadow-[0_0_15px_rgba(239,68,68,0.3)] select-none uppercase font-hud font-bold">
+                <svg class="w-3.5 h-3.5 inline-block text-red-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0M12 2v10"/>
+                </svg>
+                <span>LOGOUT</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="flex-grow p-6 flex flex-col justify-start max-w-[1600px] w-full mx-auto">
+        <!-- Secure IAM Center Panel -->
+        <section class="w-full">
+            <div id="iam-center-card" class="glass-panel rounded-lg border border-indigo-500/25 overflow-hidden shadow-[0_0_30px_rgba(99,102,241,0.05)]">
+                <div class="px-5 py-4 bg-slate-900/80 border-b border-indigo-500/30 flex justify-between items-center select-none">
+                    <div class="flex items-center gap-3">
+                        <span class="text-indigo-400 text-sm flex items-center animate-pulse">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </span>
+                        <div>
+                            <h3 class="font-hud font-extrabold text-sm tracking-widest text-indigo-300 uppercase">ARES SECURE IAM CONTROL MATRIX</h3>
+                            <p class="text-[9px] font-mono text-indigo-500/80 mt-0.5" id="iam-user-count">Securing Access Control Matrix...</p>
+                        </div>
+                    </div>
+                    <span class="text-[9px] font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded uppercase tracking-wider">SECURE SESSION</span>
+                </div>
+                
+                <div id="iam-center-body" class="bg-slate-950/40 p-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        
+                        <!-- LEFT COLUMN: Users Management (7 Cols) -->
+                        <div class="lg:col-span-7 flex flex-col gap-4 border-r border-white/5 pr-0 lg:pr-6">
+                            <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                                <span class="text-[10px] font-hud font-bold text-slate-300 tracking-wider uppercase">Active Operators & Personnel</span>
+                                <span class="text-[8px] font-mono text-slate-500">SECURE SHELL PROTOCOL</span>
+                            </div>
+                            
+                            <!-- AJAX Spawn User Form -->
+                            <form id="spawn-user-form" onsubmit="spawnUser(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 bg-slate-900/60 rounded border border-white/5">
+                                <div>
+                                    <label class="block text-[8px] font-hud text-slate-500 uppercase tracking-widest mb-1">Username</label>
+                                    <input type="text" id="spawn-username" required placeholder="e.g. operator_beta" class="w-full bg-slate-950 border border-white/10 focus:border-indigo-500 rounded px-2 py-1 text-xs text-slate-200 font-mono focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-[8px] font-hud text-slate-500 uppercase tracking-widest mb-1">Password</label>
+                                    <input type="password" id="spawn-password" required placeholder="••••••••" class="w-full bg-slate-950 border border-white/10 focus:border-indigo-500 rounded px-2 py-1 text-xs text-slate-200 font-mono focus:outline-none">
+                                </div>
+                                <div class="flex flex-col justify-end">
+                                    <label class="block text-[8px] font-hud text-slate-500 uppercase tracking-widest mb-1">Assign Role</label>
+                                    <div class="flex gap-2">
+                                        <select id="spawn-role-select" required class="flex-grow bg-slate-950 border border-white/10 focus:border-indigo-500 rounded px-1.5 py-1 text-xs text-slate-200 font-mono focus:outline-none">
+                                            <!-- Dynamically loaded -->
+                                        </select>
+                                        <button type="submit" class="px-3 bg-indigo-600 hover:bg-indigo-500 text-slate-950 font-hud font-black text-[10px] tracking-wider rounded uppercase transition">SPAWN</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- Users AJAX Table -->
+                            <div class="overflow-x-auto border border-white/5 rounded">
+                                <table class="w-full border-collapse text-left text-[11px] font-mono">
+                                    <thead>
+                                        <tr class="bg-slate-950 border-b border-white/10 text-[8px] font-hud font-bold text-slate-500 uppercase tracking-widest">
+                                            <th class="p-2.5">Username</th>
+                                            <th class="p-2.5">Current Role</th>
+                                            <th class="p-2.5 text-right">Modify Rank / Command</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="iam-users-tbody" class="divide-y divide-white/5">
+                                        <!-- Dynamic Rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT COLUMN: Roles & Permissions definitions (5 Cols) -->
+                        <div class="lg:col-span-5 flex flex-col gap-4">
+                            <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                                <span class="text-[10px] font-hud font-bold text-slate-300 tracking-wider uppercase">Fine-Grained Custom Roles</span>
+                                <span class="text-[8px] font-mono text-slate-500">ACCESS CONTROL MATRIX</span>
+                            </div>
+
+                            <!-- AJAX Create Role Form -->
+                            <form id="create-role-form" onsubmit="createDynamicRole(event)" class="p-3 bg-slate-900/60 rounded border border-white/5 flex flex-col gap-3">
+                                <div class="flex gap-2 items-end">
+                                    <div class="flex-grow">
+                                        <label class="block text-[8px] font-hud text-slate-500 uppercase tracking-widest mb-1">Custom Role Name</label>
+                                        <input type="text" id="role-name-input" required placeholder="e.g. fire_commander" class="w-full bg-slate-950 border border-white/10 focus:border-indigo-500 rounded px-2.5 py-1 text-xs text-slate-200 font-mono focus:outline-none">
+                                    </div>
+                                    <button type="submit" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-hud font-black text-[10px] tracking-wider rounded uppercase transition">CREATE ROLE</button>
+                                </div>
+
+                                <!-- Permission Flags Toggles -->
+                                <div>
+                                    <span class="block text-[8px] font-hud text-slate-500 uppercase tracking-widest mb-2 border-b border-white/5 pb-1">Role Permissions Toggle Matrix:</span>
+                                    <div class="grid grid-cols-2 gap-2 text-[9px] font-mono">
+                                        <label class="flex items-center gap-2 cursor-pointer select-none">
+                                            <input type="checkbox" id="perm-view_live_telemetry" checked class="accent-indigo-500">
+                                            <span class="text-slate-400">View Telemetry</span>
+                                        </label>
+                                        <label class="flex items-center gap-2 cursor-pointer select-none">
+                                            <input type="checkbox" id="perm-run_simulations" class="accent-indigo-500">
+                                            <span class="text-slate-400">Run Simulation</span>
+                                        </label>
+                                        <label class="flex items-center gap-2 cursor-pointer select-none">
+                                            <input type="checkbox" id="perm-export_reports" class="accent-indigo-500">
+                                            <span class="text-slate-400">Export Reports</span>
+                                        </label>
+                                        <label class="flex items-center gap-2 cursor-pointer select-none">
+                                            <input type="checkbox" id="perm-delete_logs" class="accent-indigo-500">
+                                            <span class="text-slate-400">Delete Logs</span>
+                                        </label>
+                                        <label class="flex items-center gap-2 cursor-pointer select-none">
+                                            <input type="checkbox" id="perm-power_toggle_robot" class="accent-indigo-500">
+                                            <span class="text-slate-400">Power Toggle Robot</span>
+                                        </label>
+                                        <label class="flex items-center gap-2 cursor-pointer select-none">
+                                            <input type="checkbox" id="perm-toggle_navigation_mode" class="accent-indigo-500">
+                                            <span class="text-slate-400">Toggle Nav Mode</span>
+                                        </label>
+                                        <label class="flex items-center gap-2 cursor-pointer select-none">
+                                            <input type="checkbox" id="perm-manual_robot_control" class="accent-indigo-500">
+                                            <span class="text-slate-400">Manual Control</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- Roles AJAX List -->
+                            <div id="roles-display-list" class="flex flex-col gap-2 overflow-y-auto max-h-[300px] border border-white/5 rounded p-2">
+                                <!-- Dynamic Cards -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-3 px-6 glass-panel border-t border-indigo-500/10 text-center font-mono text-[9px] text-slate-500 shrink-0">
+        ARES COMMAND CONTROL PANEL // POWERED BY CENTRAL PC MULTI-SPECTRAL PROCESSING ENGINE
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        const currentUsername = "admin";
+
+        // --- 1. DYNAMIC THEME SWITCHER LOGIC ---
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                document.getElementById('theme-icon-sun').classList.remove('hidden');
+                document.getElementById('theme-icon-moon').classList.add('hidden');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                document.getElementById('theme-icon-sun').classList.add('hidden');
+                document.getElementById('theme-icon-moon').classList.remove('hidden');
+            }
+        }
+
+        // Initial Theme sync
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.getElementById('theme-icon-sun').classList.remove('hidden');
+            document.getElementById('theme-icon-moon').classList.add('hidden');
+        } else {
+            document.documentElement.classList.add('dark');
+            document.getElementById('theme-icon-sun').classList.add('hidden');
+            document.getElementById('theme-icon-moon').classList.remove('hidden');
+        }
+
+        // === SECURE IAM CENTER INTERACTIVE SCRIPTS ===
+        async function loadIamData() {
+            try {
+                // Fetch roles and users concurrently
+                const [rolesRes, usersRes] = await Promise.all([
+                    fetch('/api/admin/roles'),
+                    fetch('/api/admin/users')
+                ]);
+                
+                if (!rolesRes.ok || !usersRes.ok) {
+                    console.error("Failed to load secure IAM parameters.");
+                    return;
+                }
+                
+                const roles = await rolesRes.json();
+                const users = await usersRes.json();
+                
+                // Populate Spawn user dropdown
+                const select = document.getElementById('spawn-role-select');
+                if (select) {
+                    select.innerHTML = "";
+                    roles.forEach(role => {
+                        if (role.id !== 1) { // Never allow root selection
+                            const opt = document.createElement('option');
+                            opt.value = role.id;
+                            opt.textContent = `${role.name.toUpperCase()} (ID: ${role.id})`;
+                            select.appendChild(opt);
+                        }
+                    });
+                }
+                
+                // Render Users Table
+                const tbody = document.getElementById('iam-users-tbody');
+                if (tbody) {
+                    tbody.innerHTML = "";
+                    users.forEach(u => {
+                        const tr = document.createElement('tr');
+                        tr.className = "hover:bg-white/5 transition-all duration-150 border-b border-white/5";
+                        
+                        // Dropdown options to modify rank
+                        let selectRankHtml = "";
+                        if (u.username === 'admin') {
+                            selectRankHtml = `<span class="text-[9px] text-slate-500 font-hud font-bold uppercase tracking-wider">ROOT ADMIN SECURE</span>`;
+                        } else {
+                            let optionsHtml = "";
+                            roles.forEach(r => {
+                                if (r.id !== 1) { // Exclude root role elevation
+                                    const selected = r.id === u.role_id ? 'selected' : '';
+                                    optionsHtml += `<option value="${r.id}" ${selected}>${r.name.toUpperCase()}</option>`;
+                                }
+                            });
+                            selectRankHtml = `
+                                <select onchange="modifyRank('${u.username}', this.value)" class="bg-slate-950 border border-white/10 focus:border-indigo-500 rounded px-1.5 py-0.5 text-[10px] text-slate-355 font-mono focus:outline-none">
+                                    ${optionsHtml}
+                                </select>
+                            `;
+                        }
+                        
+                        tr.innerHTML = `
+                            <td class="p-2.5 text-slate-200 font-bold">${u.username}</td>
+                            <td class="p-2.5">
+                                <span class="px-2 py-0.5 rounded text-[9px] font-hud font-semibold ${
+                                    u.role_id === 1 ? 'bg-red-950/60 border border-red-500/35 text-red-400' :
+                                    u.role_id === 2 ? 'bg-indigo-950/60 border border-indigo-500/35 text-indigo-400' :
+                                    'bg-slate-900 border border-white/10 text-slate-400'
+                                }">${u.role_name.toUpperCase()}</span>
+                            </td>
+                            <td class="p-2.5 text-right flex items-center justify-end gap-2">${selectRankHtml}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }
+
+                // Render Roles Dynamic Cards
+                const rolesList = document.getElementById('roles-display-list');
+                if (rolesList) {
+                    rolesList.innerHTML = "";
+                    roles.forEach(r => {
+                        const div = document.createElement('div');
+                        div.className = "p-2.5 bg-slate-900/60 rounded border border-white/5 flex flex-col gap-1.5";
+                        
+                        // Compose list of true permissions flags
+                        let permsList = [];
+                        if (r.view_live_telemetry) permsList.push('view_telemetry');
+                        if (r.run_simulations) permsList.push('run_simulations');
+                        if (r.export_reports) permsList.push('export_reports');
+                        if (r.delete_logs) permsList.push('delete_logs');
+                        if (r.power_toggle_robot) permsList.push('power_toggle');
+                        if (r.toggle_navigation_mode) permsList.push('toggle_nav');
+                        if (r.manual_robot_control) permsList.push('manual_control');
+                        
+                        const badges = permsList.map(p => `
+                            <span class="px-1.5 py-[1px] bg-slate-950 text-indigo-400 border border-indigo-500/20 rounded text-[8px] uppercase">${p}</span>
+                        `).join('');
+                        
+                        div.innerHTML = `
+                            <div class="flex justify-between items-center">
+                                <span class="font-hud font-extrabold text-[10px] text-indigo-300 tracking-wider">${r.name.toUpperCase()} (ID: ${r.id})</span>
+                                <span class="text-[8px] font-mono text-slate-500">${permsList.length} permissions active</span>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mt-1">${badges || '<span class="text-[8px] text-slate-600 italic">No permissions mapped</span>'}</div>
+                        `;
+                        rolesList.appendChild(div);
+                    });
+                }
+                
+                document.getElementById('iam-user-count').textContent = `${users.length} Active System Accounts`;
+                
+            } catch (e) {
+                console.error("Failed to load IAM Control Matrix data:", e);
+            }
+        }
+
+        async function spawnUser(event) {
+            event.preventDefault();
+            const usernameInput = document.getElementById('spawn-username');
+            const passwordInput = document.getElementById('spawn-password');
+            const roleSelect = document.getElementById('spawn-role-select');
+            
+            const payload = {
+                username: usernameInput.value.trim(),
+                password: passwordInput.value,
+                role_id: parseInt(roleSelect.value)
+            };
+            
+            try {
+                const response = await fetch('/api/admin/users/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) {
+                    const err = await response.json();
+                    alert("Spawn failed: " + err.error);
+                } else {
+                    usernameInput.value = "";
+                    passwordInput.value = "";
+                    loadIamData(); // Reload AJAX tables
+                }
+            } catch (e) {
+                console.error("Spawn user network error:", e);
+            }
+        }
+
+        async function createDynamicRole(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('role-name-input');
+            const payload = {
+                name: nameInput.value.trim(),
+                view_live_telemetry: document.getElementById('perm-view_live_telemetry').checked,
+                run_simulations: document.getElementById('perm-run_simulations').checked,
+                export_reports: document.getElementById('perm-export_reports').checked,
+                delete_logs: document.getElementById('perm-delete_logs').checked,
+                power_toggle_robot: document.getElementById('perm-power_toggle_robot').checked,
+                toggle_navigation_mode: document.getElementById('perm-toggle_navigation_mode').checked,
+                manual_robot_control: document.getElementById('perm-manual_robot_control').checked
+            };
+            
+            try {
+                const response = await fetch('/api/admin/roles/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) {
+                    const err = await response.json();
+                    alert("Role creation failed: " + err.error);
+                } else {
+                    nameInput.value = "";
+                    // Reset matrix
+                    document.getElementById('perm-view_live_telemetry').checked = true;
+                    document.getElementById('perm-run_simulations').checked = false;
+                    document.getElementById('perm-export_reports').checked = false;
+                    document.getElementById('perm-delete_logs').checked = false;
+                    document.getElementById('perm-power_toggle_robot').checked = false;
+                    document.getElementById('perm-toggle_navigation_mode').checked = false;
+                    document.getElementById('perm-manual_robot_control').checked = false;
+                    
+                    loadIamData(); // Reload matrix
+                }
+            } catch (e) {
+                console.error("Role creation network error:", e);
+            }
+        }
+
+        async function modifyRank(username, roleId) {
+            try {
+                const response = await fetch('/api/admin/users/modify_rank', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: username, role_id: parseInt(roleId) })
+                });
+                
+                if (!response.ok) {
+                    const err = await response.json();
+                    alert("Rank update failed: " + err.error);
+                    loadIamData(); // Revert
+                } else {
+                    loadIamData(); // Refresh UI
+                }
+            } catch (e) {
+                console.error("Rank update network error:", e);
+            }
+        }
+
+        // Initialize on DOM load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadIamData();
+        });
+    </script>
+</body>
+</html>

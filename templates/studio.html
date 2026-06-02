@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" class="dark bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-slate-950">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARES | Simulation Studio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#05070c',
+                            card: 'rgba(10, 15, 30, 0.75)',
+                            border: 'rgba(16, 185, 129, 0.15)',
+                            accent: '#10b981',
+                            alert: '#f43f5e',
+                            warn: '#f59e0b',
+                            blue: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Orbitron', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .glow-green {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        .glass-panel {
+            background: rgba(8, 12, 24, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020408;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-cyber-bg min-h-screen flex flex-col">
+
+    <!-- Loading Compile Overlay -->
+    <div id="compile-overlay" class="fixed inset-0 bg-slate-950/90 z-50 flex flex-col items-center justify-center gap-6 hidden pointer-events-none transition-all duration-300 opacity-0">
+        <div class="relative flex h-16 w-16 items-center justify-center">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <div class="h-10 w-10 rounded-full border-t-2 border-r-2 border-emerald-500 animate-spin"></div>
+        </div>
+        <div class="text-center">
+            <h2 class="font-hud font-bold text-lg text-emerald-400 tracking-wider">COMPILING SCENARIO PROFILE</h2>
+            <p class="text-xs text-slate-400 font-mono mt-1" id="compile-status">Securing walkthrough video and building multi-spectral timeline arrays...</p>
+        </div>
+        <div class="w-64 bg-slate-900 h-1.5 rounded-full overflow-hidden border border-white/5">
+            <div class="bg-emerald-500 h-1.5 w-0 transition-all duration-500" id="compile-progress"></div>
+        </div>
+    </div>
+
+    <!-- Futuristic Header -->
+    <header class="w-full py-4 px-6 glass-panel border-b border-emerald-500/10 flex justify-between items-center z-10 shrink-0">
+        <div class="flex items-center gap-4">
+            <div class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </div>
+            <div>
+                <h1 class="font-hud font-bold text-lg tracking-wider text-slate-100 flex items-center gap-2">
+                    ARES <span class="text-emerald-500 font-light">SIMULATION STUDIO</span>
+                </h1>
+                <p class="text-xs text-slate-400 font-mono">Sequence custom hazard keyframes over walking-tour recordings</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="/dashboard" class="px-3 py-1.5 bg-slate-900 border border-white/10 hover:border-emerald-500/30 text-xs font-hud tracking-wider rounded text-slate-300 hover:text-slate-100 transition">
+                DIRECT TO OPERATOR BOARD →
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="flex-grow p-6 grid grid-cols-1 xl:grid-cols-12 gap-6 max-w-[1600px] w-full mx-auto">
+        
+        <!-- LEFT: VIDEO UPLOAD HUB (5 Cols) -->
+        <section class="xl:col-span-5 flex flex-col gap-6">
+            
+            <!-- Video File Input Dropzone -->
+            <div class="glass-panel rounded-lg p-5 border border-emerald-500/10 flex flex-col gap-4">
+                <h3 class="font-hud font-bold text-xs tracking-wider text-slate-300">1. INPUT UGV MISSION VIDEO RECORDING</h3>
+                
+                <div id="dropzone" class="border-2 border-dashed border-emerald-500/20 rounded-lg p-8 flex flex-col items-center justify-center gap-4 hover:border-emerald-500/50 cursor-pointer bg-slate-900/20 transition duration-200">
+                    <input type="file" id="video-file-input" accept=".mp4,.avi,.mov,.mkv" class="hidden">
+                    
+                    <div class="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="font-hud text-xs text-slate-200 font-semibold" id="upload-title">DRAG & DROP WALK RECORDING</div>
+                        <div class="text-[10px] text-slate-400 font-mono mt-1 uppercase">Supports MP4, AVI, MOV up to 100MB</div>
+                    </div>
+                </div>
+
+                <!-- File info panel -->
+                <div id="file-info-panel" class="hidden p-3 bg-slate-900/40 border border-white/5 rounded flex justify-between items-center text-xs">
+                    <div class="flex items-center gap-3">
+                        <span class="text-emerald-500 text-lg flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        </span>
+                        <div>
+                            <div class="font-bold text-slate-200 font-mono" id="lbl-filename">recording.mp4</div>
+                            <div class="text-[10px] text-slate-400 font-mono" id="lbl-filesize">0.0 MB</div>
+                        </div>
+                    </div>
+                    <button onclick="clearSelectedVideo()" class="text-rose-400 hover:text-rose-300 text-[10px] font-hud uppercase">Remove</button>
+                </div>
+                
+                <div class="bg-emerald-950/20 border border-emerald-500/10 p-3 rounded text-[10px] text-emerald-400/80 font-mono flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <div><span class="font-hud font-bold text-[9px] tracking-wider mr-1 text-emerald-400">INFO // FALLBACK ACTIVE:</span>If you do not choose a walking tour video, the Simulation Dashboard automatically runs on a high-fidelity synthetic Sci-Fi radar scanning camera feed so your demonstration is always operational.</div>
+                </div>
+            </div>
+
+            <!-- Scenario Presets Panel -->
+            <div class="glass-panel rounded-lg p-5 border border-emerald-500/10 flex flex-col gap-4">
+                <h3 class="font-hud font-bold text-xs tracking-wider text-slate-300">LOAD SPECTRAL PRESETS</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <button onclick="loadScenarioPreset('level1')" class="p-3 bg-slate-900/60 hover:bg-slate-900 border border-white/5 hover:border-emerald-500/30 rounded text-left transition flex flex-col justify-between min-h-[90px]">
+                        <div class="font-hud font-bold text-[10px] text-emerald-450 dark:text-emerald-400 tracking-wider flex items-center">
+                            <svg class="w-4 h-4 text-emerald-400 inline-block mr-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 11 13 15 9"/></svg>
+                            LEVEL 1: ROUTINE PATROL
+                        </div>
+                        <div class="text-[9px] text-slate-400 leading-tight mt-1.5">Standard gas arrays (MQ9=35, MQ135=42, MiCS=50), stable 24.5°C temp, flame 0, 3.2m LiDAR. Nominal patrol.</div>
+                    </button>
+                    
+                    <button onclick="loadScenarioPreset('level2')" class="p-3 bg-slate-900/60 hover:bg-slate-900 border border-white/5 hover:border-amber-500/30 rounded text-left transition flex flex-col justify-between min-h-[90px]">
+                        <div class="font-hud font-bold text-[10px] text-amber-400 tracking-wider flex items-center">
+                            <svg class="w-4 h-4 text-amber-400 inline-block mr-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.586a1 1 0 0 1-.293.707l-5.414 5.414A2 2 0 0 0 7 19h10a2 2 0 0 0 1.414-3.414l-5.414-5.414A1 1 0 0 1 14 9.586V2h-4z"/><line x1="8.5" y1="2" x2="15.5" y2="2"/></svg>
+                            LEVEL 2: CHEMICAL LEAK
+                        </div>
+                        <div class="text-[9px] text-slate-400 leading-tight mt-1.5">Toxicity spikes at 3.0s (MQ135=280, MiCS=390), stable temp (<30°C), flame 0. Recommends Night Vision.</div>
+                    </button>
+
+                    <button onclick="loadScenarioPreset('level3')" class="p-3 bg-slate-900/60 hover:bg-slate-900 border border-white/5 hover:border-rose-500/30 rounded text-left transition flex flex-col justify-between min-h-[90px]">
+                        <div class="font-hud font-bold text-[10px] text-rose-450 dark:text-rose-500 tracking-wider flex items-center">
+                            <svg class="w-4 h-4 text-rose-500 inline-block mr-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>
+                            LEVEL 3: STRUCTURE FIRE
+                        </div>
+                        <div class="text-[9px] text-slate-400 leading-tight mt-1.5">Ignition at 2.5s, heat spikes to 68°C, MQ9 spikes to 195, stable 2.5m LiDAR. Recommends Thermal FLIR.</div>
+                    </button>
+
+                    <button onclick="loadScenarioPreset('level4')" class="p-3 bg-slate-900/60 hover:bg-slate-900 border border-white/5 hover:border-red-500/30 rounded text-left transition flex flex-col justify-between min-h-[90px]">
+                        <div class="font-hud font-bold text-[10px] text-red-450 dark:text-red-500 tracking-wider flex items-center">
+                            <svg class="w-4 h-4 text-red-500 inline-block mr-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            LEVEL 4: FLASHOVER COLLAPSE
+                        </div>
+                        <div class="text-[9px] text-slate-400 leading-tight mt-1.5">Starts with fire. At 4.5s, LiDAR collapses to 0.4m, absolute gas saturation. Triggers Evacuation.</div>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- RIGHT: KEYFRAME TIMELINE SEQUENCER (7 Cols) -->
+        <section class="xl:col-span-7 flex flex-col gap-6">
+
+            <!-- Keyframe event builder -->
+            <div class="glass-panel rounded-lg p-5 border border-emerald-500/10 flex flex-col gap-4">
+                <h3 class="font-hud font-bold text-xs tracking-wider text-slate-300">2. MULTI-SPECTRAL KEYFRAME BUILDER</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Second -->
+                    <div class="flex flex-col">
+                        <label class="text-[10px] text-slate-400 font-hud mb-1">TRIGGER TIME (SECONDS)</label>
+                        <input type="number" id="input-sec" min="0" value="5" class="bg-slate-900 border border-white/10 rounded px-3 py-2 text-xs font-mono focus:border-emerald-500 focus:outline-none">
+                    </div>
+                    
+                    <!-- Gas ppm -->
+                    <div class="flex flex-col">
+                        <label class="text-[10px] text-slate-400 font-hud mb-1">GAS SPIKE LEVEL (PPM)</label>
+                        <input type="number" id="input-gas" min="0" max="1000" placeholder="e.g. 450" class="bg-slate-900 border border-white/10 rounded px-3 py-2 text-xs font-mono focus:border-emerald-500 focus:outline-none">
+                    </div>
+                    
+                    <!-- Temp -->
+                    <div class="flex flex-col">
+                        <label class="text-[10px] text-slate-400 font-hud mb-1">TEMPERATURE SPIKE (°C)</label>
+                        <input type="number" id="input-temp" min="15" max="100" placeholder="e.g. 75" class="bg-slate-900 border border-white/10 rounded px-3 py-2 text-xs font-mono focus:border-emerald-500 focus:outline-none">
+                    </div>
+                </div>
+
+                <!-- Custom dropdown camera selector -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex flex-col">
+                        <label class="text-[10px] text-slate-400 font-hud mb-1">RECOMMENDED VISION SPECTRUM</label>
+                        <select id="input-camera" class="bg-slate-900 border border-white/10 rounded px-3 py-2 text-xs font-hud focus:border-emerald-500 focus:outline-none text-slate-300">
+                            <option value="">No Override Recommendation</option>
+                            <option value="RGB">Standard RGB Channel</option>
+                            <option value="THERMAL">Thermal FLIR 3.5</option>
+                            <option value="INFRARED">Infrared NoIR Night Vision</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex flex-col justify-end">
+                        <div class="flex justify-between items-center bg-slate-900/40 p-2.5 rounded border border-white/5 h-[34px]">
+                            <span class="text-[10px] font-hud text-slate-300 uppercase">FLAME SENSOR ALERT</span>
+                            <label class="relative inline-flex items-center cursor-pointer select-none">
+                                <input type="checkbox" id="input-flame" class="sr-only peer">
+                                <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-rose-600 peer-checked:after:bg-slate-100"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="addKeyframeEvent()" class="w-full py-2 bg-slate-900 border border-emerald-500/20 hover:border-emerald-500/50 hover:bg-emerald-950/20 text-emerald-400 font-hud font-bold text-xs tracking-widest rounded transition">
+                    + APPEND KEYFRAME TO SCENARIO
+                </button>
+            </div>
+
+            <!-- Logger keyframe table -->
+            <div class="glass-panel rounded-lg p-5 border border-emerald-500/10 flex flex-col gap-4 flex-grow">
+                <h3 class="font-hud font-bold text-xs tracking-wider text-slate-300">SCENARIO KEYFRAME SEQUENCE LIST</h3>
+                
+                <div class="flex-grow overflow-y-auto max-h-[200px] border border-white/5 rounded bg-slate-900/25">
+                    <table class="w-full font-mono text-[11px] text-left">
+                        <thead class="bg-slate-900/80 text-[10px] font-hud uppercase tracking-wider text-slate-400 border-b border-white/5">
+                            <tr>
+                                <th class="p-3">Time</th>
+                                <th class="p-3">Gas (ppm)</th>
+                                <th class="p-3">Temp (°C)</th>
+                                <th class="p-3">Flame</th>
+                                <th class="p-3">Rec camera override</th>
+                                <th class="p-3 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timeline-body">
+                            <tr>
+                                <td colspan="6" class="p-6 text-center text-slate-500 select-none">No custom keyframe events configured yet. Appending presets or events maps them here.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-3 border-t border-white/5">
+                    <div class="text-[10px] text-slate-500 font-mono uppercase">
+                        Timeline Profile: <span class="font-bold text-slate-300" id="kf-counter">0 events</span>
+                    </div>
+                    
+                    {% if current_user.role and current_user.role.run_simulations %}
+                    <button onclick="compileAndLaunch()" class="w-full sm:w-auto px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-hud font-black text-xs tracking-widest rounded select-none transition duration-200 glow-green uppercase">
+                        COMPILE & LAUNCH DEMO
+                    </button>
+                    {% else %}
+                    <div class="px-6 py-3 bg-slate-900/60 border border-white/5 text-slate-500 font-hud text-xs rounded text-center select-none uppercase tracking-wider font-semibold">
+                        ARES SECURE LOCK: Simulation Launch Locked
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-3 px-6 glass-panel border-t border-emerald-500/10 text-center font-mono text-[10px] text-slate-500 shrink-0">
+        ARES COMMAND CONTROL SYSTEM // POWERED BY CENTRAL PC MULTI-SPECTRAL ENGINE
+    </footer>
+
+    <script>
+        let timelineData = [];
+        let selectedVideoFile = null;
+
+        // drag-and-drop binds
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('video-file-input');
+        const infoPanel = document.getElementById('file-info-panel');
+
+        dropzone.addEventListener('click', () => fileInput.click());
+
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.className = "border-2 border-dashed border-emerald-500 rounded-lg p-8 flex flex-col items-center justify-center gap-4 bg-emerald-950/10 cursor-pointer transition duration-200";
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.className = "border-2 border-dashed border-emerald-500/20 rounded-lg p-8 flex flex-col items-center justify-center gap-4 hover:border-emerald-500/50 cursor-pointer bg-slate-900/20 transition duration-200";
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.className = "border-2 border-dashed border-emerald-500/20 rounded-lg p-8 flex flex-col items-center justify-center gap-4 hover:border-emerald-500/50 cursor-pointer bg-slate-900/20 transition duration-200";
+            if (e.dataTransfer.files.length > 0) {
+                handleFileSelection(e.dataTransfer.files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                handleFileSelection(fileInput.files[0]);
+            }
+        });
+
+        function handleFileSelection(file) {
+            selectedVideoFile = file;
+            document.getElementById('lbl-filename').textContent = file.name;
+            document.getElementById('lbl-filesize').textContent = (file.size / (1024 * 1024)).toFixed(1) + " MB";
+            infoPanel.classList.remove('hidden');
+            dropzone.classList.add('hidden');
+        }
+
+        function clearSelectedVideo() {
+            selectedVideoFile = null;
+            fileInput.value = "";
+            infoPanel.classList.add('hidden');
+            dropzone.classList.remove('hidden');
+        }
+
+        // Add event
+        function addKeyframeEvent() {
+            const secVal = document.getElementById('input-sec').value;
+            const gasVal = document.getElementById('input-gas').value;
+            const tempVal = document.getElementById('input-temp').value;
+            const flameVal = document.getElementById('input-flame').checked;
+            const camVal = document.getElementById('input-camera').value;
+
+            if (secVal === "" || secVal < 0) {
+                alert("Trigger Time must be 0 or higher.");
+                return;
+            }
+
+            const second = parseFloat(secVal);
+            const existingIdx = timelineData.findIndex(k => k.second === second);
+            
+            const eventPayload = {
+                second: second,
+                gas_ppm: gasVal !== "" ? parseFloat(gasVal) : null,
+                temperature: tempVal !== "" ? parseFloat(tempVal) : null,
+                flame_alert: flameVal,
+                camera_recommendation: camVal !== "" ? camVal : null
+            };
+
+            if (existingIdx > -1) {
+                timelineData[existingIdx] = eventPayload;
+            } else {
+                timelineData.push(eventPayload);
+            }
+
+            timelineData.sort((a, b) => a.second - b.second);
+
+            // Reset
+            document.getElementById('input-gas').value = "";
+            document.getElementById('input-temp').value = "";
+            document.getElementById('input-flame').checked = false;
+            document.getElementById('input-camera').value = "";
+
+            renderTimelineTable();
+        }
+
+        function renderTimelineTable() {
+            const tbody = document.getElementById('timeline-body');
+            const kfCounter = document.getElementById('kf-counter');
+
+            if (timelineData.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="p-6 text-center text-slate-500 select-none">No custom keyframe events configured yet. Appending presets or events maps them here.</td>
+                    </tr>
+                `;
+                kfCounter.textContent = "0 events";
+                return;
+            }
+
+            tbody.innerHTML = "";
+            timelineData.forEach((kf, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-white/5 hover:bg-slate-900/40 transition";
+                
+                let camBadge = '<span class="text-slate-600">--</span>';
+                if (kf.camera_recommendation === 'RGB') {
+                    camBadge = '<span class="text-emerald-400 font-bold text-[9px] bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded">RGB</span>';
+                } else if (kf.camera_recommendation === 'THERMAL') {
+                    camBadge = '<span class="text-amber-500 font-bold text-[9px] bg-amber-500/10 border border-amber-500/20 px-1.5 py-0.5 rounded">THERMAL</span>';
+                } else if (kf.camera_recommendation === 'INFRARED') {
+                    camBadge = '<span class="text-cyan-400 font-bold text-[9px] bg-cyan-500/10 border border-cyan-500/20 px-1.5 py-0.5 rounded">INFRARED</span>';
+                }
+
+                let gasText = '<span class="text-slate-600">--</span>';
+                if (kf.gas_ppm !== null && kf.gas_ppm !== undefined) {
+                    gasText = `${kf.gas_ppm.toFixed(0)} ppm`;
+                } else if ((kf.gas_mq9 !== null && kf.gas_mq9 !== undefined) || 
+                           (kf.gas_mq135 !== null && kf.gas_mq135 !== undefined) || 
+                           (kf.mics6814 !== null && kf.mics6814 !== undefined)) {
+                    let parts = [];
+                    if (kf.gas_mq9 !== null && kf.gas_mq9 !== undefined) parts.push(`MQ9: ${kf.gas_mq9}`);
+                    if (kf.gas_mq135 !== null && kf.gas_mq135 !== undefined) parts.push(`MQ135: ${kf.gas_mq135}`);
+                    if (kf.mics6814 !== null && kf.mics6814 !== undefined) parts.push(`MiCS: ${kf.mics6814}`);
+                    gasText = `<div class="text-[9px] text-slate-300 leading-tight">${parts.join('<br>')}</div>`;
+                }
+
+                let tempText = kf.temperature !== null && kf.temperature !== undefined ? `${kf.temperature.toFixed(1)}°C` : '<span class="text-slate-600">--</span>';
+                if (kf.lidar_distance !== null && kf.lidar_distance !== undefined) {
+                    tempText += `<div class="text-[9px] text-cyan-400 font-bold mt-0.5">LiDAR: ${kf.lidar_distance.toFixed(1)}m</div>`;
+                }
+
+                tr.innerHTML = `
+                    <td class="p-3 text-emerald-400 font-bold">${kf.second.toFixed(1)}s</td>
+                    <td class="p-3">${gasText}</td>
+                    <td class="p-3">${tempText}</td>
+                    <td class="p-3">${kf.flame_alert ? '<span class="text-rose-500 font-bold">YES</span>' : '<span class="text-slate-500">CLEAN</span>'}</td>
+                    <td class="p-3">${camBadge}</td>
+                    <td class="p-3 text-right">
+                        <button onclick="removeKeyframe(${idx})" class="text-rose-400 hover:text-rose-300 font-hud text-[9px] uppercase">DELETE</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            kfCounter.textContent = `${timelineData.length} event${timelineData.length > 1 ? 's' : ''}`;
+        }
+
+        function removeKeyframe(idx) {
+            timelineData.splice(idx, 1);
+            renderTimelineTable();
+        }
+
+        // Preset Scenario Sequence Loaders
+        function loadScenarioPreset(type) {
+            timelineData = [];
+            if (type === 'level1') {
+                timelineData = [
+                    { second: 0.0, gas_ppm: null, gas_mq9: 35.0, gas_mq135: 42.0, mics6814: 50.0, temperature: 24.5, flame_alert: false, lidar_distance: 3.2, camera_recommendation: "RGB" }
+                ];
+            } else if (type === 'level2') {
+                timelineData = [
+                    { second: 0.0, gas_ppm: null, gas_mq9: 35.0, gas_mq135: 42.0, mics6814: 50.0, temperature: 24.5, flame_alert: false, lidar_distance: 3.2, camera_recommendation: "RGB" },
+                    { second: 3.0, gas_ppm: null, gas_mq9: null, gas_mq135: 280.0, mics6814: 390.0, temperature: 25.0, flame_alert: false, lidar_distance: 3.2, camera_recommendation: null },
+                    { second: 4.0, gas_ppm: null, gas_mq9: null, gas_mq135: null, mics6814: null, temperature: null, flame_alert: null, lidar_distance: null, camera_recommendation: "INFRARED" }
+                ];
+            } else if (type === 'level3') {
+                timelineData = [
+                    { second: 0.0, gas_ppm: null, gas_mq9: 35.0, gas_mq135: 42.0, mics6814: 50.0, temperature: 24.5, flame_alert: false, lidar_distance: 3.2, camera_recommendation: "RGB" },
+                    { second: 2.5, gas_ppm: null, gas_mq9: 195.0, gas_mq135: null, mics6814: null, temperature: 68.0, flame_alert: true, lidar_distance: 2.5, camera_recommendation: null },
+                    { second: 3.5, gas_ppm: null, gas_mq9: null, gas_mq135: null, mics6814: null, temperature: null, flame_alert: null, lidar_distance: null, camera_recommendation: "THERMAL" }
+                ];
+            } else if (type === 'level4') {
+                timelineData = [
+                    { second: 0.0, gas_ppm: null, gas_mq9: 195.0, gas_mq135: 42.0, mics6814: 50.0, temperature: 68.0, flame_alert: true, lidar_distance: 2.5, camera_recommendation: "THERMAL" },
+                    { second: 4.5, gas_ppm: null, gas_mq9: 450.0, gas_mq135: 999.0, mics6814: 999.0, temperature: 80.0, flame_alert: true, lidar_distance: 0.4, camera_recommendation: null }
+                ];
+            }
+            renderTimelineTable();
+        }
+
+        function compileAndLaunch() {
+            if (!selectedVideoFile) {
+                if (confirm("No custom walk-tour video was selected. Would you like to compile this telemetry timeline sequence using the dynamic synthetic HUD sandbox feed?")) {
+                    const content = "empty";
+                    const blob = new Blob([content], { type: "video/mp4" });
+                    selectedVideoFile = new File([blob], "synthetic_sandbox.mp4", { type: "video/mp4" });
+                } else {
+                    return;
+                }
+            }
+
+            const overlay = document.getElementById('compile-overlay');
+            const progress = document.getElementById('compile-progress');
+            
+            overlay.classList.remove('hidden');
+            overlay.classList.remove('opacity-0');
+            overlay.classList.add('opacity-100');
+
+            let p = 0;
+            const pInterval = setInterval(() => {
+                p = Math.min(92, p + Math.floor(Math.random() * 15) + 5);
+                progress.style.width = p + "%";
+            }, 150);
+
+            const formData = new FormData();
+            formData.append('video', selectedVideoFile);
+            formData.append('timeline', JSON.stringify(timelineData));
+
+            fetch('/api/studio/launch', {
+                method: 'POST',
+                body: formData
+            })
+            .then(r => r.json())
+            .then(res => {
+                clearInterval(pInterval);
+                if (res.error) {
+                    overlay.classList.add('hidden');
+                    alert(res.error);
+                } else {
+                    progress.style.width = "100%";
+                    document.getElementById('compile-status').textContent = "Scenario compiled successfully! Directing to Operations Dashboard...";
+                    setTimeout(() => {
+                        window.location.href = res.redirect;
+                    }, 500);
+                }
+            })
+            .catch(err => {
+                clearInterval(pInterval);
+                overlay.classList.add('hidden');
+                console.error("Compile error", err);
+                alert("System error compiling the scenario.");
+            });
+        }
+    </script>
+</body>
+</html>

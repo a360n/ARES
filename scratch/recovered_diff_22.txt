@@ -1,0 +1,65 @@
+Created At: 2026-05-28T21:50:54Z
+Completed At: 2026-05-28T21:50:54Z
+The following changes were made by the multi_replace_file_content tool to: /Users/alial-khazali/Documents/ARES/templates/dashboard.html. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -1,8 +1,19 @@
+ <!DOCTYPE html>
+-<html lang="en" class="dark bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-slate-950">
++<html lang="en" class="dark bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-emerald-500 selection:text-slate-950 transition-colors duration-300">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <script>
++        // Immediate theme initialization to prevent UI flashing
++        (function() {
++            const savedTheme = localStorage.getItem('theme');
++            if (savedTheme === 'light') {
++                document.documentElement.classList.remove('dark');
++            } else {
++                document.documentElement.classList.add('dark');
++            }
++        })();
++    </script>
+     <title>ARES | Rescue Operations Monitor</title>
+     <!-- Tailwind CSS CDN -->
+     <script src="https://cdn.tailwindcss.com"></script>
+@@ -32,35 +32,79 @@
+     <!-- Google Fonts -->
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+     <style>
++        /* Smooth transitions for theme switches */
++        html, body, header, main, footer, .glass-panel, button, a {
++            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
++        }
++
++        /* Light/Dark Mode Glass Panel Styling */
++        .glass-panel {
++            background: rgba(255, 255, 255, 0.85);
++            backdrop-filter: blur(12px);
++            border: 1px solid rgba(148, 163, 184, 0.2); /* border-slate-200 */
++        }
++        .dar
+<truncated 45283 bytes>
+ block">5-CHANNEL FLAME ALARM</span>
+-                                <span class="font-bold text-sm text-slate-200">Thermal Infrared Array</span>
++                <div class="glass-panel rounded-lg p-5 border border-slate-200 dark:border-emerald-500/10 flex flex-col justify-between min-h-[220px]">
++                    <div class="flex flex-col gap-3">
++                        <div class="flex justify-between items-start">
++                            <div>
++                                <span class="text-[10px] tracking-wider text-slate-500 dark:text-slate-400 font-hud block">5-CHANNEL FLAME ALARM</span>
++                                <span class="font-bold text-sm text-slate-700 dark:text-slate-200">Thermal Infrared Array</span>
+                             </div>
+                             <span class="font-hud text-xs text-rose-500 hidden pulse-fast font-bold" id="flame-master-badge">🔥 FIRE ALERT</span>
+                         </div>
+@@ -323,22 +323,22 @@
+                         <div class="grid grid-cols-5 gap-2 my-1 text-center">
+                             <div class="flex flex-col items-center">
+-                                <div class="w-8 h-8 rounded border border-white/10 flex items-center justify-center font-hud text-xs bg-slate-900/60" id="flame-0">0</div>
++                                <div class="w-8 h-8 rounded border border-slate-200 dark:border-white/10 flex items-center justify-center font-hud text-xs bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-100" id="flame-0">0</div>
+                                 <span class="text-[8px] text-slate-500 mt-1 select-none">L-OUT</span>
+                             </div>
+                             <div class="flex flex-col items-center">
+-                                <div class="w-8 h-8 rounded border border-white/10 flex items-center justify-center font-hud tex
+<truncated 39318 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.

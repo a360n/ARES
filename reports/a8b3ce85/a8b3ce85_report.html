@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARES Safety Report — A8B3CE85</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #0a0e1a; color: #e2e8f0; }
+        .font-hud { font-family: 'Orbitron', monospace; }
+    </style>
+</head>
+<body style="margin:0; padding:0; min-height:100vh;">
+
+    <!-- HEADER BAND -->
+    <div style="background:linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); border-bottom:2px solid rgba(16,185,129,0.3); padding:32px 40px;">
+        <div style="max-width:1100px; margin:0 auto;">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+                <div style="width:10px;height:10px;border-radius:50%;background:#10b981;box-shadow:0 0 12px rgba(16,185,129,0.6);"></div>
+                <span class="font-hud" style="font-size:10px;color:#10b981;letter-spacing:4px;">CLASSIFIED // INTERNAL USE ONLY</span>
+            </div>
+            <h1 class="font-hud" style="font-size:22px; font-weight:900; color:white; letter-spacing:3px; margin:0;">
+                ARES DISASTER RESPONSE &amp; INDUSTRIAL SAFETY AUDIT REPORT
+            </h1>
+            <p style="font-size:12px; color:#64748b; margin-top:8px; font-family:monospace;">
+                Session: A8B3CE85 &nbsp;|&nbsp; Generated: 2026-06-02 14:20:33 UTC
+            </p>
+        </div>
+    </div>
+
+    <div style="max-width:1100px; margin:0 auto; padding:32px 40px;">
+
+        <!-- METADATA GRID -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-bottom:32px;">
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;" class="font-hud">Session ID</div>
+                <div style="font-size:16px; font-weight:bold; color:#22d3ee; font-family:monospace;">A8B3CE85</div>
+            </div>
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;" class="font-hud">Duration</div>
+                <div style="font-size:16px; font-weight:bold; color:#e2e8f0;">0m 12s</div>
+            </div>
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;" class="font-hud">Operational Mode</div>
+                <div style="font-size:16px; font-weight:bold; color:#e2e8f0;">Autonomous</div>
+            </div>
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;" class="font-hud">Video Source</div>
+                <div style="font-size:13px; font-weight:bold; color:#e2e8f0; word-break:break-all;">First_Simulator_Video.mov</div>
+            </div>
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;" class="font-hud">Start Time</div>
+                <div style="font-size:13px; font-weight:bold; color:#e2e8f0; font-family:monospace;">2026-06-02T14:19:50</div>
+            </div>
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;" class="font-hud">End Time</div>
+                <div style="font-size:13px; font-weight:bold; color:#e2e8f0; font-family:monospace;">2026-06-02T14:20:31</div>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE POST-MISSION ANALYTICS PLAYER DASHBOARD -->
+        <h2 class="font-hud" style="font-size:13px; font-weight:700; color:#10b981; letter-spacing:3px; margin-bottom:16px; border-bottom:1px solid rgba(16,185,129,0.2); padding-bottom:8px;">
+            POST-MISSION MULTI-STREAM ANALYTICS PLAYER
+        </h2>
+
+        <!-- Interactive Sub-Dashboard Grid -->
+        <div style="display:grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px;" class="lg:grid-cols-3">
+            
+            <!-- VIEWPORT PANEL (Left - Col Span 2) -->
+            <div class="lg:col-span-2" style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:16px;">
+                
+                <!-- Viewport tab buttons -->
+                <div style="display:flex; gap:10px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:12px;">
+                    <button id="tab-normal" onclick="switchStream('normal')" class="tab-btn font-hud" style="flex:1; padding:10px; border-radius:4px; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; text-align:center; transition:all 0.2s; border:1px solid #10b981; color:#fff; background:rgba(16,185,129,0.15); cursor:pointer;">
+                        STANDARD RGB LINK
+                    </button>
+                    <button id="tab-thermal" onclick="switchStream('thermal')" class="tab-btn font-hud" style="flex:1; padding:10px; border-radius:4px; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; text-align:center; transition:all 0.2s; border:1px solid rgba(255,255,255,0.1); color:#94a3b8; background:rgba(15,23,42,0.6); cursor:pointer;">
+                        INFRARED THERMAL LINK
+                    </button>
+                    <button id="tab-noir" onclick="switchStream('noir')" class="tab-btn font-hud" style="flex:1; padding:10px; border-radius:4px; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; text-align:center; transition:all 0.2s; border:1px solid rgba(255,255,255,0.1); color:#94a3b8; background:rgba(15,23,42,0.6); cursor:pointer;">
+                        NOIR NIGHT-VISION LINK
+                    </button>
+                    <button id="tab-fused" onclick="switchStream('fused')" class="tab-btn font-hud" style="flex:1; padding:10px; border-radius:4px; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; text-align:center; transition:all 0.2s; border:1px solid rgba(255,255,255,0.1); color:#94a3b8; background:rgba(15,23,42,0.6); cursor:pointer;">
+                        SENSOR FUSION LINK
+                    </button>
+                </div>
+
+                <!-- Video Viewports -->
+                <div style="position:relative; width:100%; aspect-ratio:4/3; background:#000; border-radius:6px; overflow:hidden;" class="border border-slate-800 shadow-2xl">
+                    <video id="video-normal" controls preload="auto" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain;" class="video-stream">
+                        <source src="cam_normal.mp4" type="video/mp4">
+                    </video>
+                    <video id="video-thermal" controls preload="auto" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain; display:none;" class="video-stream">
+                        <source src="cam_thermal.mp4" type="video/mp4">
+                    </video>
+                    <video id="video-noir" controls preload="auto" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain; display:none;" class="video-stream">
+                        <source src="cam_noir.mp4" type="video/mp4">
+                    </video>
+                    <video id="video-fused" controls preload="auto" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:contain; display:none;" class="video-stream">
+                        <source src="fused_mission.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <!-- Download Stream Items with Direct SVGs -->
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px;">
+                    <a href="cam_normal.mp4" download style="text-decoration:none; display:flex; align-items:center; gap:8px; justify-content:center; padding:8px 12px; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.06); border-radius:4px; font-family:monospace; font-size:10px; color:#e2e8f0; transition:all 0.2s;" onmouseover="this.style.background='rgba(34,211,238,0.1)'" onmouseout="this.style.background='rgba(15,23,42,0.9)'">
+                        <svg style="width:14px;height:14px;" fill="none" stroke="#22d3ee" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        DOWNLOAD RGB BUNDLE
+                    </a>
+                    <a href="cam_thermal.mp4" download style="text-decoration:none; display:flex; align-items:center; gap:8px; justify-content:center; padding:8px 12px; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.06); border-radius:4px; font-family:monospace; font-size:10px; color:#e2e8f0; transition:all 0.2s;" onmouseover="this.style.background='rgba(244,63,94,0.1)'" onmouseout="this.style.background='rgba(15,23,42,0.9)'">
+                        <svg style="width:14px;height:14px;" fill="none" stroke="#f43f5e" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        DOWNLOAD THERMAL BUNDLE
+                    </a>
+                    <a href="cam_noir.mp4" download style="text-decoration:none; display:flex; align-items:center; gap:8px; justify-content:center; padding:8px 12px; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.06); border-radius:4px; font-family:monospace; font-size:10px; color:#e2e8f0; transition:all 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)'" onmouseout="this.style.background='rgba(15,23,42,0.9)'">
+                        <svg style="width:14px;height:14px;" fill="none" stroke="#a855f7" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        DOWNLOAD NOIR BUNDLE
+                    </a>
+                    <a href="fused_mission.mp4" download style="text-decoration:none; display:flex; align-items:center; gap:8px; justify-content:center; padding:8px 12px; background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.06); border-radius:4px; font-family:monospace; font-size:10px; color:#e2e8f0; transition:all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.1)'" onmouseout="this.style.background='rgba(15,23,42,0.9)'">
+                        <svg style="width:14px;height:14px;" fill="none" stroke="#10b981" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        DOWNLOAD FUSED BUNDLE
+                    </a>
+                </div>
+            </div>
+
+            <!-- ANALYTICS PANEL (Right - Col Span 1) -->
+            <div style="display:flex; flex-direction:column; gap:20px;">
+                
+                <!-- MINI 2D CANVAS TRACKING MAP -->
+                <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px; display:flex; flex-direction:column; align-items:center; gap:12px;">
+                    <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+                        <span class="font-hud text-xs text-slate-400" style="letter-spacing:1px;">TACTICAL 2D PATH MAP</span>
+                        <span id="player-grid-coords" class="font-mono text-xs text-cyan-400">X: ---.0 Y: ---.0</span>
+                    </div>
+                    <canvas id="tactical-map" width="220" height="220" style="background:#0b0f19; border:1px solid rgba(255,255,255,0.06); border-radius:6px;"></canvas>
+                </div>
+
+                <!-- DYNAMIC UGV SENSORS GRID -->
+                <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:16px;">
+                    <span class="font-hud text-xs text-slate-400" style="letter-spacing:1px;">UGV TELEMETRY SENSOR GRID</span>
+                    
+                    <!-- Gas Sensors Progress Bars -->
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        <!-- MQ-9 -->
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-size:10px; font-family:monospace; margin-bottom:4px;">
+                                <span class="text-slate-400">GAS MQ-9 (Combustibles)</span>
+                                <span id="val-gas-mq9" class="text-cyan-400 font-bold">--- PPM</span>
+                            </div>
+                            <div style="width:100%; height:8px; background:rgba(255,255,255,0.05); border-radius:4px; overflow:hidden;">
+                                <div id="bar-gas-mq9" style="width:0%; height:100%; background:#22d3ee; border-radius:4px; transition:width 0.2s;"></div>
+                            </div>
+                        </div>
+
+                        <!-- MQ-135 -->
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-size:10px; font-family:monospace; margin-bottom:4px;">
+                                <span class="text-slate-400">GAS MQ-135 (Toxic Gases)</span>
+                                <span id="val-gas-mq135" class="text-amber-400 font-bold">--- PPM</span>
+                            </div>
+                            <div style="width:100%; height:8px; background:rgba(255,255,255,0.05); border-radius:4px; overflow:hidden;">
+                                <div id="bar-gas-mq135" style="width:0%; height:100%; background:#fbbf24; border-radius:4px; transition:width 0.2s;"></div>
+                            </div>
+                        </div>
+
+                        <!-- MiCS-6814 -->
+                        <div>
+                            <div style="display:flex; justify-content:space-between; font-size:10px; font-family:monospace; margin-bottom:4px;">
+                                <span class="text-slate-400">MiCS-6814 (Carbon Monoxide)</span>
+                                <span id="val-gas-mics" class="text-purple-400 font-bold">--- PPM</span>
+                            </div>
+                            <div style="width:100%; height:8px; background:rgba(255,255,255,0.05); border-radius:4px; overflow:hidden;">
+                                <div id="bar-gas-mics" style="width:0%; height:100%; background:#c084fc; border-radius:4px; transition:width 0.2s;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atmospheric & Lidar counters -->
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; border-top:1px solid rgba(255,255,255,0.06); padding-top:12px;">
+                        <div style="background:rgba(255,255,255,0.02); border-radius:4px; padding:10px; border:1px solid rgba(255,255,255,0.04); text-align:center;">
+                            <div style="font-size:9px; color:#64748b;" class="font-hud">TEMPERATURE</div>
+                            <div id="val-temp" style="font-size:16px; font-weight:bold; color:#e2e8f0;" class="font-hud">--- °C</div>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.02); border-radius:4px; padding:10px; border:1px solid rgba(255,255,255,0.04); text-align:center;">
+                            <div style="font-size:9px; color:#64748b;" class="font-hud">HUMIDITY</div>
+                            <div id="val-humidity" style="font-size:16px; font-weight:bold; color:#e2e8f0;" class="font-hud">--- %</div>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.02); border-radius:4px; padding:10px; border:1px solid rgba(255,255,255,0.04); text-align:center;">
+                            <div style="font-size:9px; color:#64748b;" class="font-hud">LIDAR DISTANCE</div>
+                            <div id="val-lidar" style="font-size:16px; font-weight:bold; color:#e2e8f0;" class="font-hud">--- cm</div>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.02); border-radius:4px; padding:10px; border:1px solid rgba(255,255,255,0.04); text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                            <div style="font-size:9px; color:#64748b;" class="font-hud">VICTIMS ACTIVE</div>
+                            <div id="badge-victims" style="font-size:12px; font-weight:bold; color:#10b981; padding:2px 6px; border-radius:3px; background:rgba(16,185,129,0.1); margin-top:2px;">0</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Detections HUD Logger -->
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); border-radius:4px; padding:10px; font-family:monospace; font-size:10px; display:flex; flex-direction:column; gap:4px;">
+                        <span style="color:#64748b;">AI AUDIT FEEDBACK LOG:</span>
+                        <div id="val-ai-log" style="color:#22d3ee; max-height:36px; overflow-y:auto; line-height:1.2;">NOMINAL // NO DETECTIONS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CORE ANALYTICS MATRIX -->
+        <h2 class="font-hud" style="font-size:13px; font-weight:700; color:#94a3b8; letter-spacing:3px; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:8px;">
+            CORE ANALYTICS MATRIX
+        </h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:16px; margin-bottom:40px;">
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(244,63,94,0.15); border-radius:8px; padding:24px; text-align:center;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:10px;" class="font-hud">Peak Gas Concentration</div>
+                <div style="font-size:28px; font-weight:900; color:#10b981; font-family:monospace;">7.7 PPM</div>
+            </div>
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(245,158,11,0.15); border-radius:8px; padding:24px; text-align:center;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:10px;" class="font-hud">Peak Temperature</div>
+                <div style="font-size:28px; font-weight:900; color:#10b981; font-family:monospace;">22.6 °C</div>
+            </div>
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(168,85,247,0.15); border-radius:8px; padding:24px; text-align:center;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:10px;" class="font-hud">Unconscious Victims</div>
+                <div style="font-size:28px; font-weight:900; color:#10b981; font-family:monospace;">0</div>
+            </div>
+            <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(244,63,94,0.15); border-radius:8px; padding:24px; text-align:center;">
+                <div style="font-size:9px; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:10px;" class="font-hud">Fire Incident</div>
+                <div><span style="color:#f43f5e;font-weight:bold;font-size:18px;display:inline-flex;align-items:center;gap:6px;"><svg style="width:20px;height:20px;" fill="none" stroke="#f43f5e" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>YES — FIRE INCIDENT CONFIRMED</span></div>
+            </div>
+        </div>
+
+        <!-- HAZARD TIMELINE TABLE -->
+        <h2 class="font-hud" style="font-size:13px; font-weight:700; color:#94a3b8; letter-spacing:3px; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:8px;">
+            HAZARD TIMELINE EVENTS
+        </h2>
+        <div style="overflow-x:auto; border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+            <table style="width:100%; border-collapse:collapse; background:rgba(15,23,42,0.6);">
+                <thead>
+                    <tr style="background:rgba(15,23,42,0.95); border-bottom:2px solid rgba(16,185,129,0.2);">
+                        <th style="padding:12px; text-align:left; font-size:9px; color:#64748b; letter-spacing:2px; text-transform:uppercase;" class="font-hud">Timestamp</th>
+                        <th style="padding:12px; text-align:left; font-size:9px; color:#64748b; letter-spacing:2px; text-transform:uppercase;" class="font-hud">Gas MQ-9</th>
+                        <th style="padding:12px; text-align:left; font-size:9px; color:#64748b; letter-spacing:2px; text-transform:uppercase;" class="font-hud">Temperature</th>
+                        <th style="padding:12px; text-align:left; font-size:9px; color:#64748b; letter-spacing:2px; text-transform:uppercase;" class="font-hud">Flame</th>
+                        <th style="padding:12px; text-align:left; font-size:9px; color:#64748b; letter-spacing:2px; text-transform:uppercase;" class="font-hud">LiDAR</th>
+                        <th style="padding:12px; text-align:left; font-size:9px; color:#64748b; letter-spacing:2px; text-transform:uppercase;" class="font-hud">Victims</th>
+                        <th style="padding:12px; text-align:left; font-size:9px; color:#64748b; letter-spacing:2px; text-transform:uppercase;" class="font-hud">AI Detections</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="7" style="padding:24px;text-align:center;color:#64748b;font-size:13px;">No hazard events detected during this session.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06); text-align:center;">
+            <p style="font-size:10px; color:#475569; font-family:monospace;">
+                ARES AUTONOMOUS RESCUE &amp; EMERGENCY SYSTEM // SAFETY REPORT AUTO-GENERATED // 2026-06-02 14:20 UTC
+            </p>
+        </div>
+    </div>
+
+    <!-- Time-Synchronization and Canvas Map Scripting -->
+    <script>
+        const missionTelemetry = [{"id": 1297, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:19:53.269770+00:00", "gas_mq9": 7.56, "temperature": 22.41, "flame_state": 0, "lidar_distance": 239.1, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.65]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 2.53, "position_x": 301.9, "position_y": 263.3, "gas_mq135": 14.21, "gas_mics6814": 0.105, "humidity": 47.99}, {"id": 1298, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:19:54.920835+00:00", "gas_mq9": 7.62, "temperature": 22.42, "flame_state": 0, "lidar_distance": 235.6, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.87]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 4.18, "position_x": 272.8, "position_y": 295.4, "gas_mq135": 14.33, "gas_mics6814": 0.106, "humidity": 47.98}, {"id": 1299, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:19:56.627537+00:00", "gas_mq9": 7.67, "temperature": 22.43, "flame_state": 0, "lidar_distance": 229.4, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.63]; OCCLUDED/NON-HUMAN // HUMAN [0.28]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 5.89, "position_x": 232.7, "position_y": 315.5, "gas_mq135": 14.42, "gas_mics6814": 0.107, "humidity": 47.98}, {"id": 1300, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:19:58.176585+00:00", "gas_mq9": 7.69, "temperature": 22.43, "flame_state": 0, "lidar_distance": 221.1, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.38]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 7.43, "position_x": 192.2, "position_y": 319.7, "gas_mq135": 14.46, "gas_mics6814": 0.107, "humidity": 47.98}, {"id": 1301, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:19:59.882776+00:00", "gas_mq9": 7.7, "temperature": 22.44, "flame_state": 0, "lidar_distance": 210.9, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.90]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 9.14, "position_x": 148.9, "position_y": 308.6, "gas_mq135": 14.48, "gas_mics6814": 0.107, "humidity": 47.97}, {"id": 1302, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:01.414773+00:00", "gas_mq9": 7.68, "temperature": 22.45, "flame_state": 0, "lidar_distance": 199.4, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.61]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 10.67, "position_x": 115.9, "position_y": 285.6, "gas_mq135": 14.44, "gas_mics6814": 0.107, "humidity": 47.96}, {"id": 1303, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:03.085855+00:00", "gas_mq9": 7.64, "temperature": 22.46, "flame_state": 0, "lidar_distance": 187.2, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.79]; CONFIRMED_LIFE_SIGN // HUMAN [0.74]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 12.34, "position_x": 90.7, "position_y": 249.6, "gas_mq135": 14.36, "gas_mics6814": 0.106, "humidity": 47.95}, {"id": 1304, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:04.680447+00:00", "gas_mq9": 7.58, "temperature": 22.47, "flame_state": 0, "lidar_distance": 174.9, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.85]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 13.94, "position_x": 80.3, "position_y": 209.0, "gas_mq135": 14.25, "gas_mics6814": 0.105, "humidity": 47.95}, {"id": 1305, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:06.346446+00:00", "gas_mq9": 7.51, "temperature": 22.48, "flame_state": 0, "lidar_distance": 163.1, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.87]", "unconscious_victims": 0, "elapsed_seconds": 15.6, "position_x": 85.1, "position_y": 165.5, "gas_mq135": 14.12, "gas_mics6814": 0.104, "humidity": 47.94}, {"id": 1306, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:07.898661+00:00", "gas_mq9": 7.44, "temperature": 22.48, "flame_state": 0, "lidar_distance": 152.4, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.85]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 17.16, "position_x": 103.2, "position_y": 129.0, "gas_mq135": 13.99, "gas_mics6814": 0.103, "humidity": 47.94}, {"id": 1307, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:09.495403+00:00", "gas_mq9": 7.38, "temperature": 22.49, "flame_state": 0, "lidar_distance": 143.3, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.75]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 18.75, "position_x": 133.6, "position_y": 100.1, "gas_mq135": 13.87, "gas_mics6814": 0.102, "humidity": 47.93}, {"id": 1308, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:11.087797+00:00", "gas_mq9": 7.33, "temperature": 22.5, "flame_state": 0, "lidar_distance": 136.4, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.83]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 20.35, "position_x": 171.9, "position_y": 83.3, "gas_mq135": 13.78, "gas_mics6814": 0.102, "humidity": 47.92}, {"id": 1309, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:12.765580+00:00", "gas_mq9": 7.31, "temperature": 22.5, "flame_state": 0, "lidar_distance": 131.9, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.66]; CONFIRMED_LIFE_SIGN // HUMAN [0.25]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 22.02, "position_x": 215.9, "position_y": 81.1, "gas_mq135": 13.74, "gas_mics6814": 0.102, "humidity": 47.92}, {"id": 1310, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:14.327487+00:00", "gas_mq9": 7.3, "temperature": 22.51, "flame_state": 0, "lidar_distance": 130.0, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.53]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 23.59, "position_x": 255.0, "position_y": 93.4, "gas_mq135": 13.72, "gas_mics6814": 0.101, "humidity": 47.92}, {"id": 1311, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:15.972534+00:00", "gas_mq9": 7.32, "temperature": 22.52, "flame_state": 0, "lidar_distance": 131.0, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.40]; OCCLUDED/NON-HUMAN // HUMAN [0.33]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 25.23, "position_x": 289.2, "position_y": 119.7, "gas_mq135": 13.76, "gas_mics6814": 0.102, "humidity": 47.91}, {"id": 1312, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:17.548172+00:00", "gas_mq9": 7.36, "temperature": 22.52, "flame_state": 0, "lidar_distance": 134.6, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.82]; OCCLUDED/NON-HUMAN // HUMAN [0.62]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 26.81, "position_x": 311.2, "position_y": 154.8, "gas_mq135": 13.84, "gas_mics6814": 0.102, "humidity": 47.91}, {"id": 1313, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:19.168858+00:00", "gas_mq9": 7.42, "temperature": 22.53, "flame_state": 0, "lidar_distance": 140.8, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.83]; OCCLUDED/NON-HUMAN // HUMAN [0.54]; AI INTERACTION: FIRE HOTSPOT; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 28.43, "position_x": 319.9, "position_y": 196.5, "gas_mq135": 13.95, "gas_mics6814": 0.103, "humidity": 47.9}, {"id": 1314, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:20.746503+00:00", "gas_mq9": 7.49, "temperature": 22.53, "flame_state": 0, "lidar_distance": 149.3, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.65]; OCCLUDED/NON-HUMAN // HUMAN [0.45]; OCCLUDED/NON-HUMAN // HUMAN [0.43]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 30.0, "position_x": 314.0, "position_y": 237.5, "gas_mq135": 14.08, "gas_mics6814": 0.104, "humidity": 47.9}, {"id": 1315, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:22.358535+00:00", "gas_mq9": 7.56, "temperature": 22.54, "flame_state": 0, "lidar_distance": 159.5, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.40]; OCCLUDED/NON-HUMAN // HUMAN [0.36]; CONFIRMED_LIFE_SIGN // HUMAN [0.29]; CONFIRMED_LIFE_SIGN // HUMAN [0.25]; FIRE SOURCE", "unconscious_victims": 0, "elapsed_seconds": 31.62, "position_x": 293.9, "position_y": 274.7, "gas_mq135": 14.21, "gas_mics6814": 0.105, "humidity": 47.89}, {"id": 1316, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:23.930508+00:00", "gas_mq9": 7.62, "temperature": 22.54, "flame_state": 0, "lidar_distance": 171.0, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.79]; OCCLUDED/NON-HUMAN // HUMAN [0.54]; OCCLUDED/NON-HUMAN // HUMAN [0.33]; FIRE SOURCE", "unconscious_victims": 0, "elapsed_seconds": 33.19, "position_x": 263.0, "position_y": 302.1, "gas_mq135": 14.33, "gas_mics6814": 0.106, "humidity": 47.89}, {"id": 1317, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:25.731864+00:00", "gas_mq9": 7.67, "temperature": 22.54, "flame_state": 0, "lidar_distance": 183.2, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.51]; CONFIRMED_LIFE_SIGN // HUMAN [0.49]; CONFIRMED_LIFE_SIGN // HUMAN [0.35]; CONFIRMED_LIFE_SIGN // HUMAN [0.26]; CONFIRMED_LIFE_SIGN // HUMAN [0.26]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 34.99, "position_x": 218.7, "position_y": 318.5, "gas_mq135": 14.42, "gas_mics6814": 0.107, "humidity": 47.89}, {"id": 1318, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:27.319829+00:00", "gas_mq9": 7.7, "temperature": 22.54, "flame_state": 0, "lidar_distance": 195.5, "ai_detections_summary": "OCCLUDED/NON-HUMAN // HUMAN [0.73]; OCCLUDED/NON-HUMAN // HUMAN [0.47]; OCCLUDED/NON-HUMAN // HUMAN [0.38]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 36.58, "position_x": 177.0, "position_y": 317.8, "gas_mq135": 14.48, "gas_mics6814": 0.107, "humidity": 47.89}, {"id": 1319, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:29.099984+00:00", "gas_mq9": 7.7, "temperature": 22.55, "flame_state": 0, "lidar_distance": 207.3, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.83]; OCCLUDED/NON-HUMAN // HUMAN [0.69]; OCCLUDED/NON-HUMAN // HUMAN [0.43]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 38.36, "position_x": 133.8, "position_y": 300.1, "gas_mq135": 14.48, "gas_mics6814": 0.107, "humidity": 47.89}, {"id": 1320, "session_id": "a8b3ce85", "timestamp": "2026-06-02T14:20:30.711782+00:00", "gas_mq9": 7.68, "temperature": 22.55, "flame_state": 0, "lidar_distance": 218.0, "ai_detections_summary": "CONFIRMED_LIFE_SIGN // HUMAN [0.82]; OCCLUDED/NON-HUMAN // HUMAN [0.76]; AI INTERACTION: FIRE HOTSPOT", "unconscious_victims": 0, "elapsed_seconds": 39.97, "position_x": 103.1, "position_y": 270.8, "gas_mq135": 14.44, "gas_mics6814": 0.107, "humidity": 47.89}];
+        
+        const videos = {
+            normal: document.getElementById('video-normal'),
+            thermal: document.getElementById('video-thermal'),
+            noir: document.getElementById('video-noir'),
+            fused: document.getElementById('video-fused')
+        };
+        
+        let activeMode = 'normal';
+        
+        function switchStream(newMode) {
+            if (newMode === activeMode) return;
+            
+            const currentVideo = videos[activeMode];
+            const nextVideo = videos[newMode];
+            
+            const isPlaying = !currentVideo.paused;
+            const currentTime = currentVideo.currentTime;
+            
+            currentVideo.pause();
+            currentVideo.style.display = 'none';
+            
+            nextVideo.currentTime = currentTime;
+            nextVideo.style.display = 'block';
+            
+            if (isPlaying) {
+                nextVideo.play().catch(err => console.log("Auto-play failed: ", err));
+            } else {
+                nextVideo.pause();
+            }
+            
+            activeMode = newMode;
+            
+            // Update Tab active styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.style.borderColor = 'rgba(255,255,255,0.1)';
+                btn.style.color = '#94a3b8';
+                btn.style.background = 'rgba(15,23,42,0.6)';
+            });
+            
+            const activeBtn = document.getElementById(`tab-${newMode}`);
+            activeBtn.style.borderColor = '#10b981';
+            activeBtn.style.color = '#fff';
+            activeBtn.style.background = 'rgba(16,185,129,0.15)';
+        }
+
+        // Time updates synchronization logic
+        Object.values(videos).forEach(video => {
+            video.addEventListener('timeupdate', () => {
+                if (video.id !== `video-${activeMode}`) return;
+                updateTelemetryForTime(video.currentTime);
+            });
+        });
+
+        const canvas = document.getElementById('tactical-map');
+        const ctx = canvas.getContext('2d');
+
+        function updateTelemetryForTime(time) {
+            if (!missionTelemetry || missionTelemetry.length === 0) return;
+            
+            // Find closest row
+            let closest = missionTelemetry[0];
+            let minDiff = Math.abs(closest.elapsed_seconds - time);
+            
+            for (let i = 1; i < missionTelemetry.length; i++) {
+                const diff = Math.abs(missionTelemetry[i].elapsed_seconds - time);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closest = missionTelemetry[i];
+                }
+            }
+            
+            // Update sensor numbers and bars
+            document.getElementById('val-gas-mq9').textContent = closest.gas_mq9.toFixed(1) + ' PPM';
+            document.getElementById('bar-gas-mq9').style.width = Math.min(100, (closest.gas_mq9 / 600) * 100) + '%';
+            
+            document.getElementById('val-gas-mq135').textContent = closest.gas_mq135.toFixed(1) + ' PPM';
+            document.getElementById('bar-gas-mq135').style.width = Math.min(100, (closest.gas_mq135 / 1200) * 100) + '%';
+            
+            document.getElementById('val-gas-mics').textContent = closest.gas_mics6814.toFixed(3) + ' PPM';
+            document.getElementById('bar-gas-mics').style.width = Math.min(100, (closest.gas_mics6814 / 10) * 100) + '%';
+            
+            document.getElementById('val-temp').textContent = closest.temperature.toFixed(2) + ' °C';
+            // Adjust temperature HUD color based on hazard thresholds
+            if (closest.temperature > 50) {
+                document.getElementById('val-temp').style.color = '#f43f5e';
+            } else if (closest.temperature > 35) {
+                document.getElementById('val-temp').style.color = '#fbbf24';
+            } else {
+                document.getElementById('val-temp').style.color = '#10b981';
+            }
+            
+            document.getElementById('val-humidity').textContent = closest.humidity.toFixed(2) + ' %';
+            document.getElementById('val-lidar').textContent = closest.lidar_distance.toFixed(1) + ' cm';
+            if (closest.lidar_distance < 60.0) {
+                document.getElementById('val-lidar').style.color = '#f43f5e';
+            } else {
+                document.getElementById('val-lidar').style.color = '#e2e8f0';
+            }
+            
+            // Victim Badge
+            const badge = document.getElementById('badge-victims');
+            badge.textContent = closest.unconscious_victims;
+            if (closest.unconscious_victims > 0) {
+                badge.style.color = '#fff';
+                badge.style.background = '#a855f7';
+                badge.style.boxShadow = '0 0 10px rgba(168,85,247,0.5)';
+            } else {
+                badge.style.color = '#10b981';
+                badge.style.background = 'rgba(16,185,129,0.1)';
+                badge.style.boxShadow = 'none';
+            }
+            
+            // AI feedback log
+            const logDiv = document.getElementById('val-ai-log');
+            if (closest.ai_detections_summary && closest.ai_detections_summary !== "CLEAR") {
+                logDiv.textContent = closest.ai_detections_summary;
+                logDiv.style.color = '#f59e0b';
+            } else {
+                logDiv.textContent = "NOMINAL // MULTI-SPECTRAL PATROL SECURE";
+                logDiv.style.color = '#10b981';
+            }
+
+            // Update coordinate displays and canvas map
+            document.getElementById('player-grid-coords').textContent = `X: ${closest.position_x.toFixed(1)} Y: ${closest.position_y.toFixed(1)}`;
+            drawTacticalMap(closest);
+        }
+
+        function drawTacticalMap(activeRow) {
+            const W = canvas.width;
+            const H = canvas.height;
+            const padding = 20;
+            
+            ctx.clearRect(0, 0, W, H);
+            
+            // Grid Lines
+            ctx.strokeStyle = 'rgba(16, 185, 129, 0.08)';
+            ctx.lineWidth = 1;
+            for (let x = 0; x < W; x += 30) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, H);
+                ctx.stroke();
+            }
+            for (let y = 0; y < H; y += 30) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(W, y);
+                ctx.stroke();
+            }
+            
+            function scaleX(val) {
+                return padding + (val - 80) / 240 * (W - 2 * padding);
+            }
+            function scaleY(val) {
+                return padding + (val - 80) / 240 * (H - 2 * padding);
+            }
+            
+            // Complete Dotted Path
+            ctx.strokeStyle = 'rgba(16, 185, 129, 0.35)';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            for (let i = 0; i < missionTelemetry.length; i++) {
+                const tx = scaleX(missionTelemetry[i].position_x);
+                const ty = scaleY(missionTelemetry[i].position_y);
+                if (i === 0) {
+                    ctx.moveTo(tx, ty);
+                } else {
+                    ctx.lineTo(tx, ty);
+                }
+            }
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Pulse active coordinates dot
+            if (activeRow) {
+                const ax = scaleX(activeRow.position_x);
+                const ay = scaleY(activeRow.position_y);
+                
+                const pulse = 6 + 4 * Math.sin(Date.now() * 0.008);
+                ctx.fillStyle = 'rgba(34, 211, 238, 0.22)';
+                ctx.beginPath();
+                ctx.arc(ax, ay, pulse + 6, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                ctx.fillStyle = 'rgba(34, 211, 238, 0.4)';
+                ctx.beginPath();
+                ctx.arc(ax, ay, pulse, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                ctx.fillStyle = '#22d3ee';
+                ctx.beginPath();
+                ctx.arc(ax, ay, 4, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        }
+        
+        // Initial drawing
+        if (missionTelemetry && missionTelemetry.length > 0) {
+            updateTelemetryForTime(0);
+        }
+    </script>
+</body>
+</html>

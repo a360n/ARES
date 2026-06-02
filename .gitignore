@@ -1,0 +1,7 @@
+static/certs/
+cert.pem
+key.pem
+*.db-shm
+*.db-wal
+__pycache__/
+*.pyc
