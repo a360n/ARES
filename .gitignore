@@ -5,3 +5,5 @@ key.pem
 *.db-wal
 __pycache__/
 *.pyc
+uploads/*.mov
+uploads/*.mp4
