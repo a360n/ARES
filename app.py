@@ -59,6 +59,8 @@ sim_config = {
     "video_path": None,                 # Path to uploaded walk-tour video
     "video_filename": "Default Sandbox Feed",
     "is_simulating": False,             # Active play state
+    "launch_pending": False,            # True while a new simulation is being prepared
+    "mission_aborted": False,           # True only after explicit stop/end-of-stream
     "is_playing": False,                # Active video playing state
     "current_vision_mode": "RGB",       # Camera modes: "RGB", "THERMAL", "INFRARED"
     "telemetry_timeline": [],           # List of events: [{"second": 5, "gas_ppm": 450, "flame_alert": True, "temperature": 68, "camera_recommendation": "THERMAL"}]
@@ -137,6 +139,49 @@ global_telemetry_cache = {
     "current_live_telemetry": startup_baseline.copy(),
     "trajectory": []
 }
+
+
+def reset_frame_cache():
+    """Clear the shared MJPEG cache so old clients cannot reuse a stale/finished frame."""
+    with video_buffer_lock:
+        _latest_frame_data["session_id"] = None
+        _latest_frame_data["frame_idx"] = -1
+        _latest_frame_data["playback_sec"] = -1.0
+        _latest_frame_data["jpeg_bytes"] = None
+        _latest_frame_data["timestamp"] = 0.0
+
+
+def close_all_video_resources():
+    """Release all OpenCV captures/writers safely before a new run or on stop."""
+    global active_video_writer_normal, active_video_writer_thermal, active_video_writer_noir, active_video_writer_fused
+    with video_buffer_lock:
+        for cap_instance in list(_active_captures):
+            if cap_instance is not None:
+                try:
+                    cap_instance.release()
+                except Exception as ce:
+                    print(f"[Resource Cleanup] VideoCapture release error: {ce}")
+        _active_captures.clear()
+
+        for path, w in list(_active_writers.items()):
+            if w is not None:
+                try:
+                    w.release()
+                except Exception as we:
+                    print(f"[Resource Cleanup] VideoWriter release error for {path}: {we}")
+        _active_writers.clear()
+
+        for w in [active_video_writer_normal, active_video_writer_thermal, active_video_writer_noir, active_video_writer_fused]:
+            if w is not None:
+                try:
+                    w.release()
+                except Exception as we:
+                    print(f"[Resource Cleanup] Global VideoWriter release error: {we}")
+        active_video_writer_normal = None
+        active_video_writer_thermal = None
+        active_video_writer_noir = None
+        active_video_writer_fused = None
+
 
 active_video_writer_normal = None   # Global OpenCV VideoWriter instance for Normal RGB
 active_video_writer_thermal = None  # Global OpenCV VideoWriter instance for FLIR Thermal
@@ -497,11 +542,31 @@ FIRE_MODEL_LOADED = False
 yolo_error_msg = ""
 
 try:
-    from ultralytics import YOLO
+    from ultralytics import YOLO, settings
+    
+    # Configure Ultralytics settings for offline operation
+    try:
+        settings.update({
+            'sync': False,
+            'hub': False,
+            'clearml': False,
+            'comet': False,
+            'dvc': False,
+            'mlflow': False,
+            'neptune': False,
+            'raytune': False,
+            'tensorboard': False,
+            'wandb': False,
+            'vscode_msg': False,
+            'openvino_msg': False
+        })
+        print("[AI Inference] Ultralytics settings configured for offline execution.")
+    except Exception as settings_err:
+        print(f"[AI Inference WARNING] Failed to configure Ultralytics settings: {settings_err}")
     
     # 1. Load Standard yolov8n.pt model specifically for Person detection
     try:
-        YOLO_PERSON_MODEL = YOLO("yolov8n.pt")
+        YOLO_PERSON_MODEL = YOLO(os.path.abspath("yolov8n.pt"))
         PERSON_MODEL_LOADED = True
         print("[AI Inference] Standard YOLOv8-nano (Person detector) loaded successfully.")
     except Exception as e:
@@ -509,7 +574,7 @@ try:
         print(f"[AI Inference WARNING] Standard YOLOv8 failed to load: {e}")
         
     # 2. Load Specialized YOLO Fire/Smoke model
-    FIRE_WEIGHTS_PATH = "yolov8n_fire.pt"
+    FIRE_WEIGHTS_PATH = os.path.abspath("yolov8n_fire.pt")
     
     # Try downloading public verified fire weights if not present locally
     if not os.path.exists(FIRE_WEIGHTS_PATH):
@@ -541,7 +606,7 @@ try:
             print(f"[AI Inference] Specialized YOLOv8 Fire detector loaded successfully from {FIRE_WEIGHTS_PATH}.")
         else:
             # Fallback to direct Hub string
-            YOLO_FIRE_MODEL = YOLO("yolov8n_fire.pt")
+            YOLO_FIRE_MODEL = YOLO(os.path.abspath("yolov8n_fire.pt"))
             FIRE_MODEL_LOADED = True
             print("[AI Inference] Specialized YOLOv8 Fire detector loaded via Ultralytics Hub string.")
     except Exception as e:
@@ -867,6 +932,7 @@ def simulation_pipeline_loop(saved_path, filename, formatted_timeline, username)
             sim_config["video_filename"] = filename
             sim_config["telemetry_timeline"] = formatted_timeline
             sim_config["is_simulating"] = True
+            sim_config["launch_pending"] = False
             sim_config["mission_aborted"] = False
             sim_config["duration"] = duration
             sim_config["current_second"] = 0.0
@@ -924,6 +990,12 @@ def simulation_pipeline_loop(saved_path, filename, formatted_timeline, username)
         log_security_event(username, f"LAUNCH_SIMULATION:{filename}", "SUCCESS", f"Session: {new_session_id} | Duration: {duration:.1f}s")
 
     except Exception as e:
+        with sim_lock:
+            sim_config["launch_pending"] = False
+            sim_config["is_simulating"] = False
+            sim_config["mission_aborted"] = True
+        reset_frame_cache()
+        close_all_video_resources()
         print(f"[Background Launch Error] {e}")
         log_security_event(username, "LAUNCH_SIMULATION_BACKGROUND", "FAILURE", f"Background launch failed: {e}")
 
@@ -957,49 +1029,23 @@ def launch_simulation():
         # ----------------------------------------------------
         # ABSOLUTE RESOURCE RELEASE SEQUENCE (RESET ROUTINE)
         # ----------------------------------------------------
-        # 1. Stop current simulation state immediately to signal the frame generator loop to release its files
+        # 1. Stop the previous run, but mark the system as PREPARING instead of ABORTED.
+        #    This prevents the dashboard/SSE from disconnecting during the short gap before
+        #    the background launch thread sets is_simulating=True.
         with sim_lock:
             sim_config["is_simulating"] = False
-            sim_config["mission_aborted"] = True
+            sim_config["launch_pending"] = True
+            sim_config["mission_aborted"] = False
+            should_finalize_previous = bool(sim_config.get("session_logging_active") and sim_config.get("active_session_id"))
 
-        # 2. Log stale video_buffer_lock status (RLock can only be released by its owner)
-        _lock_probe = video_buffer_lock.acquire(blocking=False)
-        if _lock_probe:
-            video_buffer_lock.release()
-        else:
-            print("[Reset Sweep] video_buffer_lock is still held. Owner thread will release on next iteration.")
+        # Finalize any previous session outside sim_lock to avoid sim_lock <->
+        # video_buffer_lock deadlocks when a stream from the old dashboard is closing.
+        if should_finalize_previous:
+            _finalize_active_session_manually()
 
-        # 3. Release all active cv2.VideoCapture objects
-        with video_buffer_lock:
-            for cap_instance in list(_active_captures):
-                if cap_instance is not None:
-                    try:
-                        cap_instance.release()
-                    except Exception as ce:
-                        print(f"[Reset Sweep] VideoCapture release error: {ce}")
-            _active_captures.clear()
-
-            # 4. Release and close all active VideoWriters
-            for path, w in list(_active_writers.items()):
-                if w is not None:
-                    try:
-                        w.release()
-                    except Exception as we:
-                        print(f"[Reset Sweep] VideoWriter release error: {we}")
-            _active_writers.clear()
-
-            # Release global writers explicitly
-            global active_video_writer_normal, active_video_writer_thermal, active_video_writer_noir, active_video_writer_fused
-            for w in [active_video_writer_normal, active_video_writer_thermal, active_video_writer_noir, active_video_writer_fused]:
-                if w is not None:
-                    try:
-                        w.release()
-                    except Exception as we:
-                        print(f"[Reset Sweep] Global VideoWriter release error: {we}")
-            active_video_writer_normal = None
-            active_video_writer_thermal = None
-            active_video_writer_noir = None
-            active_video_writer_fused = None
+        # 2. Close all OpenCV resources and clear the old MJPEG cache.
+        reset_frame_cache()
+        close_all_video_resources()
 
         # 5. Join lingering background threads from the previous session
         global _launch_thread
@@ -1116,9 +1162,20 @@ def telemetry_stream():
                 
                 with sim_lock:
                     is_simulating = sim_config.get("is_simulating", False)
+                    launch_pending = sim_config.get("launch_pending", False)
                     mission_aborted = sim_config.get("mission_aborted", False)
                 
-                if not is_simulating or mission_aborted:
+                if launch_pending:
+                    pending_payload = startup_baseline.copy()
+                    pending_payload["status"] = pending_payload.get("status", {}).copy()
+                    pending_payload["status"]["is_simulating"] = False
+                    pending_payload["status"]["launch_pending"] = True
+                    pending_payload["status"]["mission_aborted"] = False
+                    pending_payload["status"]["ai_status_banner"] = "Preparing mission stream // please wait"
+                    yield f"data: {json.dumps(pending_payload)}\n\n"
+                    continue
+
+                if (not is_simulating) or mission_aborted:
                     stop_payload = {
                         "status": {
                             "is_simulating": False,
@@ -1356,6 +1413,7 @@ def _generate_video_frames_impl(username=None):
         with sim_lock:
             v_path = sim_config["video_path"]
             is_sim = sim_config["is_simulating"]
+            launch_pending = sim_config.get("launch_pending", False)
         
         # 1. Open walkthrough recording
         if is_sim and v_path and os.path.exists(v_path):
@@ -1471,16 +1529,29 @@ def _generate_video_frames_impl(username=None):
                             pass
                         cap = None
                         video_active = False
+                        # IMPORTANT: never call _finalize_active_session_manually() while sim_lock
+                        # is held. That function releases VideoWriters under video_buffer_lock.
+                        # Calling it inside sim_lock can deadlock with another dashboard/video
+                        # client that holds video_buffer_lock and is about to read sim_config.
+                        should_finalize_session = False
                         with sim_lock:
                             sim_config["is_playing"] = False
                             sim_config["is_simulating"] = False
-                            if sim_config.get("session_logging_active") and sim_config.get("active_session_id"):
-                                _finalize_active_session_manually()
+                            sim_config["launch_pending"] = False
+                            sim_config["mission_aborted"] = True
+                            should_finalize_session = bool(
+                                sim_config.get("session_logging_active") and sim_config.get("active_session_id")
+                            )
+
+                        if should_finalize_session:
+                            _finalize_active_session_manually()
+
+                        reset_frame_cache()
                         global_telemetry_cache["current_live_telemetry"] = startup_baseline.copy()
                         global_telemetry_cache["trajectory"] = []
                         if session_id:
                             global_telemetry_cache[session_id] = startup_baseline.copy()
-                        print(f"[EOS] Video stream finished cleanly at frame {frame_idx}. Simulation stopped.")
+                        print(f"[EOS] Video stream finished cleanly at frame {frame_idx}. Simulation stopped and resources reset.")
                         break
                     
                     success = ret
@@ -2342,8 +2413,8 @@ def _build_html_report(session_id, session_data, telemetry_rows, output_path):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARES Safety Report — {session_id.upper()}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <script src="/static/js/tailwind.js"></script>
+    <link href="/static/css/fonts_inter_orbitron.css" rel="stylesheet">
     <style>
         body {{ font-family: 'Inter', sans-serif; background: #0a0e1a; color: #e2e8f0; }}
         .font-hud {{ font-family: 'Orbitron', monospace; }}
@@ -3350,25 +3421,19 @@ def stop_simulation():
     """
     global active_video_writer_normal, active_video_writer_thermal, active_video_writer_noir, active_video_writer_fused
     
+    # Do not finalize while holding sim_lock. Finalization releases OpenCV writers
+    # under video_buffer_lock, and holding both locks in different orders is what
+    # caused endless loading after a completed/previous simulation.
     with sim_lock:
         sim_config["is_simulating"] = False
+        sim_config["launch_pending"] = False
         sim_config["mission_aborted"] = True
-        # If a session is active and logging, manually finalize it
-        if sim_config.get("session_logging_active") and sim_config.get("active_session_id"):
-            _finalize_active_session_manually()
-        else:
-            # Fallback safe release of video writers if logging was off
-            for w_name, w in [("normal", active_video_writer_normal), ("thermal", active_video_writer_thermal), ("noir", active_video_writer_noir), ("fused", active_video_writer_fused)]:
-                if w is not None:
-                    try:
-                        w.release()
-                    except Exception:
-                        pass
-            active_video_writer_normal = None
-            active_video_writer_thermal = None
-            active_video_writer_noir = None
-            active_video_writer_fused = None
+        should_finalize_session = bool(sim_config.get("session_logging_active") and sim_config.get("active_session_id"))
 
+    if should_finalize_session:
+        _finalize_active_session_manually()
+    else:
+        close_all_video_resources()
 
     # Update dynamic telemetry status to reflect Stopped/Idle state immediately
     with sim_lock:
@@ -3382,6 +3447,8 @@ def stop_simulation():
          if session_id:
              global_telemetry_cache[session_id] = stop_tel.copy()
 
+    reset_frame_cache()
+    close_all_video_resources()
     print("[Central Command] Simulation emergency stop triggered manually.")
     log_security_event(current_user.username, "STOP_SIMULATION", "SUCCESS", "Simulation successfully stopped and mission aborted.")
     return jsonify({"status": "stopped"})
