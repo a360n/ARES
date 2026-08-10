@@ -273,12 +273,12 @@ class UserRole:
     def __init__(self, name, permissions):
         self.name = name
         self.permissions = permissions
-        
+
     def __getattr__(self, name):
         if name in self.permissions:
             return bool(self.permissions[name])
         raise AttributeError(f"'UserRole' object has no attribute '{name}'")
-        
+
     def __str__(self):
         return self.name
 
@@ -367,11 +367,11 @@ def init_database():
     """Creates the SQLite database and tables if they do not exist, and seeds dynamic roles and hashed user credentials."""
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    
+
     # Enable WAL mode and foreign key constraints
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA foreign_keys=ON")
-    
+
     # Check if the users table uses the legacy static role schema, and drop it if legacy
     try:
         cursor.execute("PRAGMA table_info(users)")
@@ -433,7 +433,7 @@ def init_database():
             FOREIGN KEY (role_id) REFERENCES roles(id)
         )
     ''')
-    
+
     # Check if empty and seed standard roles
     cursor.execute("SELECT COUNT(*) FROM roles")
     if cursor.fetchone()[0] == 0:
@@ -460,7 +460,7 @@ def init_database():
         cursor.executemany("INSERT INTO users (username, password_hash, role_id) VALUES (?, ?, ?)", default_users)
         conn.commit()
         print("[Database] Hashed user credentials successfully seeded with dynamic roles.")
-        
+
     # Root admin invariant check in DB: ensure 'admin' username strictly points to role_id=1
     cursor.execute("SELECT role_id FROM users WHERE username = 'admin'")
     admin_row = cursor.fetchone()
@@ -468,7 +468,7 @@ def init_database():
         print("[Database Guard Warning] Invariant violated! Correcting admin role alignment...")
         cursor.execute("UPDATE users SET role_id = 1 WHERE username = 'admin'")
         conn.commit()
-        
+
     conn.commit()
     conn.close()
     print("[Database] SQLite initialized at:", DB_PATH)
@@ -543,7 +543,7 @@ yolo_error_msg = ""
 
 try:
     from ultralytics import YOLO
-    
+
     # 1. Load Standard yolov8n.pt model specifically for Person detection
     try:
         YOLO_PERSON_MODEL = YOLO("yolov8n.pt")
@@ -552,10 +552,10 @@ try:
     except Exception as e:
         yolo_error_msg += f"Person Model: {str(e)}; "
         print(f"[AI Inference WARNING] Standard YOLOv8 failed to load: {e}")
-        
+
     # 2. Load Specialized YOLO Fire/Smoke model
     FIRE_WEIGHTS_PATH = "yolov8n_fire.pt"
-    
+
     # Try downloading public verified fire weights if not present locally
     if not os.path.exists(FIRE_WEIGHTS_PATH):
         print("[AI Inference] YOLO Fire weights not found locally. Attempting verified URL downloads...")
@@ -577,7 +577,7 @@ try:
                     break
             except Exception as dl_err:
                 print(f"[AI Inference WARNING] Download failed from {url}: {dl_err}")
-                
+
     # Now try to load the model
     try:
         if os.path.exists(FIRE_WEIGHTS_PATH):
@@ -605,19 +605,19 @@ def get_baseline_telemetry(second=0.0):
     """Generates dynamic, oscillating baseline sensor readings."""
     # LiDAR ranges oscillating realistically
     lidar_val = 185.0 + 55.0 * np.cos(second * 0.45)
-    
+
     # Baseline environment
     temp_val = 22.4 + 0.15 * np.sin(second * 0.12)
     hum_val = 47.8 + 0.3 * np.cos(second * 0.06)
-    
+
     # Gas array baselines
     mq9_val = 7.5 + 0.2 * np.sin(second * 0.7)
     mq135_val = 21.0 + 0.5 * np.cos(second * 0.35)
     mics_val = 0.112 + 0.005 * np.sin(second * 0.55)
-    
+
     # Flame clean
     flame_array = [0, 0, 0, 0, 0]
-    
+
     # Orbiting grid position
     pos_x = 200.0 + 120.0 * np.cos(second * 0.22)
     pos_y = 200.0 + 120.0 * np.sin(second * 0.22)
@@ -660,7 +660,7 @@ def get_baseline_telemetry(second=0.0):
 def compute_telemetry(second):
     """Calculates active state by compounding custom timeline triggers over baseline."""
     tel = get_baseline_telemetry(second)
-    
+
     # Extract the active keyframe that applies to the current second
     active_kf = None
     with sim_lock:
@@ -677,21 +677,21 @@ def compute_telemetry(second):
             tel["sensors"]["gas"]["mq9"] = round(gas_val, 2)
             tel["sensors"]["gas"]["mq135"] = round(gas_val * 1.88, 2)
             tel["sensors"]["gas"]["mics6814"] = round(gas_val / 72.0, 3)
-            
+
         if "gas_mq9" in active_kf and active_kf["gas_mq9"] is not None:
             tel["sensors"]["gas"]["mq9"] = round(float(active_kf["gas_mq9"]), 2)
-            
+
         if "gas_mq135" in active_kf and active_kf["gas_mq135"] is not None:
             tel["sensors"]["gas"]["mq135"] = round(float(active_kf["gas_mq135"]), 2)
-            
+
         if "mics6814" in active_kf and active_kf["mics6814"] is not None:
             tel["sensors"]["gas"]["mics6814"] = round(float(active_kf["mics6814"]), 3)
-            
+
         # 2. Apply flame alarms
         if "flame_alert" in active_kf:
             is_flame = bool(active_kf["flame_alert"])
             tel["sensors"]["flame"] = [1, 1, 1, 1, 1] if is_flame else [0, 0, 0, 0, 0]
-            
+
         # 3. Apply temperature and humidity drift
         if "temperature" in active_kf and active_kf["temperature"] is not None:
             temp_val = float(active_kf["temperature"])
@@ -713,11 +713,11 @@ def compute_telemetry(second):
     mics6814 = tel["sensors"]["gas"]["mics6814"]
     temp_val = tel["sensors"]["bme688"]["temperature"]
     lidar_val = tel["sensors"]["lidar"]
-    
+
     # 1. Base State Flags
     is_fire_event = flame_state or (temp_val > 55.0 and gas_mq9 > 150.0)
     is_toxic_event = (gas_mq135 > 150.0 or mics6814 > 200.0)
-    
+
     # 2. Decision Tree Inference Flow (Severity High-to-Low)
     if (is_fire_event or is_toxic_event) and (lidar_val < 80.0):
         # LEVEL 4 (CRITICAL FLASHOVER)
@@ -739,7 +739,7 @@ def compute_telemetry(second):
         hazard_grade = 1
         hazard_status = "NORMAL"
         hazard_summary = "Systems Nominal // Multi-Spectral Patrol Secure"
-        
+
     tel["status"]["hazard_grade"] = hazard_grade
     tel["status"]["hazard_status"] = hazard_status
     tel["status"]["hazard_summary"] = hazard_summary
@@ -799,24 +799,24 @@ def api_login():
     """Verifies credentials, issues session cookies, and records the forensic event."""
     username = request.form.get('username')
     password = request.form.get('password')
-    
+
     if not username or not password:
         return jsonify({"error": "Missing username or password"}), 400
-        
+
     try:
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         cursor.execute("SELECT username, password_hash FROM users WHERE username = ?", (username,))
         row = cursor.fetchone()
         conn.close()
-        
+
         if row and check_password_hash(row[1], password):
             user = load_user(row[0])
             if user:
                 login_user(user)
                 log_security_event(username, "USER_LOGIN", "SUCCESS", f"Authenticated successfully with role: {user.role_name}")
                 return jsonify({"status": "authenticated", "redirect": "/"})
-            
+
         log_security_event(username if username else "UNKNOWN", "USER_LOGIN", "FAILURE", "Invalid credentials submitted")
         return jsonify({"error": "Invalid username or password"}), 401
     except Exception as e:
@@ -851,6 +851,12 @@ def dashboard():
     """Renders the operations monitor dashboard that streams video and telemetry."""
     return render_template('dashboard.html', active_session_id=sim_config.get("active_session_id") or "")
 
+@app.route('/hardware-control')
+@login_required
+@permission_required('manual_robot_control')
+def hardware_control():
+    """Renders the ARES Hardware Camera Control joystick interface."""
+    return render_template('hardware_control.html')
 
 # --- API Control Interfaces ---
 
@@ -861,7 +867,7 @@ def simulation_pipeline_loop(saved_path, filename, formatted_timeline, username)
     and updates global sim_config. Runs asynchronously to prevent Flask worker starvation.
     """
     global sim_config, active_video_writer_normal, active_video_writer_thermal, active_video_writer_noir, active_video_writer_fused
-    
+
     # 1. Verify the thread lock video_buffer_lock status before launch (diagnostic only)
     _lock_probe = video_buffer_lock.acquire(blocking=False)
     if _lock_probe:
@@ -874,13 +880,13 @@ def simulation_pipeline_loop(saved_path, filename, formatted_timeline, username)
         global _latest_frame_data
         current_time = time.time()
         last_update = _latest_frame_data.get("timestamp", 0.0)
-        
+
         _lock_probe = video_buffer_lock.acquire(blocking=False)
         if _lock_probe:
             video_buffer_lock.release()
         elif current_time - last_update > 5.0:
             print("[Watchdog] Warning: video_buffer_lock held for >5s without frame update. Owner thread should release soon.")
-        
+
         # Re-arm if still simulating
         with sim_lock:
             still_sim = sim_config.get("is_simulating", False)
@@ -989,13 +995,13 @@ def launch_simulation():
     Saves file, compiles timelines, and sets system state to simulating.
     """
     global sim_config
-    
+
     if 'video' not in request.files:
         return jsonify({"error": "Missing video file payload"}), 400
-        
+
     file = request.files['video']
     timeline_str = request.form.get('timeline', '[]')
-    
+
     if file.filename == '':
         return jsonify({"error": "No file selected"}), 400
 
@@ -1087,10 +1093,10 @@ def set_vision_mode():
     global sim_config
     if not request.is_json:
         return jsonify({"error": "JSON payload required"}), 400
-        
+
     data = request.get_json()
     mode = data.get("mode", "RGB").upper()
-    
+
     if mode not in ["RGB", "THERMAL", "INFRARED", "FUSION"]:
         return jsonify({"error": "Invalid camera channel override mode"}), 400
 
@@ -1133,18 +1139,18 @@ def telemetry_stream():
             active_user = current_user.username if (current_user and current_user.is_authenticated) else "Anonymous_Node"
         except Exception:
             active_user = "Anonymous_Node"
-            
+
         print(f"[SSE Stream] Client connected: {active_user} tapped into global multicast")
         heartbeat_counter = 0
         try:
             while True:
                 time.sleep(0.05)  # Yield execution cycles smoothly, prevent thread saturation and stabilize frame delivery
-                
+
                 with sim_lock:
                     is_simulating = sim_config.get("is_simulating", False)
                     launch_pending = sim_config.get("launch_pending", False)
                     mission_aborted = sim_config.get("mission_aborted", False)
-                
+
                 if launch_pending:
                     pending_payload = startup_baseline.copy()
                     pending_payload["status"] = pending_payload.get("status", {}).copy()
@@ -1180,16 +1186,16 @@ def telemetry_stream():
                 if heartbeat_counter >= 10:
                     yield ": ping heartbeat\n\n"
                     heartbeat_counter = 0
-                
+
                 # Fetch directly from the global cache
                 cached_data = global_telemetry_cache.get("current_live_telemetry")
                 if not cached_data:
                     with sim_lock:
                         cached_data = sim_config.get("current_live_telemetry", {}).copy()
-                
+
                 if not cached_data:
                     cached_data = startup_baseline.copy()
-                    
+
                 payload = json.dumps(cached_data)
                 yield f"data: {payload}\n\n"
         except GeneratorExit:
@@ -1213,18 +1219,18 @@ def apply_thermal_fusion(rgb_frame, thermal_frame):
     # Spatial Registration: Use identity homography to warp thermal_frame
     H = np.array([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]], dtype=np.float32)
     warped_thermal = cv2.warpPerspective(thermal_frame, H, (rgb_frame.shape[1], rgb_frame.shape[0]))
-    
+
     # Calculate BGR mean luminance (gray conversion)
     gray = cv2.cvtColor(rgb_frame, cv2.COLOR_BGR2GRAY)
     mean_luminance = np.mean(gray)
-    
+
     # Adaptive Blending: beta = 0.70 if luminance < 60 (smoke/darkness), else 0.30
     if mean_luminance < 60:
         beta = 0.70
     else:
         beta = 0.30
     alpha = 1.0 - beta
-    
+
     # Blend frames
     fused = cv2.addWeighted(rgb_frame, alpha, warped_thermal, beta, 0.0)
     return fused
@@ -1237,22 +1243,22 @@ def apply_spectral_mutator(frame, mode):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         thermal = cv2.applyColorMap(gray, cv2.COLORMAP_JET)
         return thermal
-        
+
     elif mode == "INFRARED":
         # Green NoIR Night Vision: equalise contrast, boost brightness, map green matrices
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         enhanced = cv2.equalizeHist(gray)
-        
+
         # Multiply contrast scale slightly to emulate gain
         gain_enhanced = cv2.convertScaleAbs(enhanced, alpha=1.1, beta=15)
-        
+
         # Create a glowing neon green BGR matrix
         green_tint = np.zeros_like(frame)
         green_tint[:, :, 1] = gain_enhanced                      # Bright green channels
         green_tint[:, :, 0] = cv2.multiply(gain_enhanced, 0.12)  # Low blue bleed
         green_tint[:, :, 2] = cv2.multiply(gain_enhanced, 0.08)  # Low red bleed
         return green_tint
-        
+
     return frame  # RGB: return raw frame unchanged
 
 
@@ -1274,7 +1280,7 @@ def draw_hud_overlays(target_frame, combined_boxes, inference_status, ai_latency
             cv2.rectangle(target_frame, (120, 140), (280, 320), (0, 0, pulse), 2)
             cv2.putText(target_frame, "EMULATOR TARGET: FIRE HAZARD LOCK [98.5%]", (120, 132),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 1, cv2.LINE_AA)
-        
+
         if gas_mq9 > 150.0:
             pulse = int(150 + 60 * np.sin(time.time() * 5))
             cv2.rectangle(target_frame, (350, 80), (530, 240), (0, pulse, 255), 2)
@@ -1319,35 +1325,35 @@ def draw_hud_overlays(target_frame, combined_boxes, inference_status, ai_latency
     cv2.line(target_frame, (625, 465), (625, 465 - c_len), hud_color, t)
 
     # Dynamic HUD overlay panel
-    cv2.putText(target_frame, f"ARES MULTI-SPECTRAL FEED: {tel['status']['video_filename'].upper()}", (25, 38), 
+    cv2.putText(target_frame, f"ARES MULTI-SPECTRAL FEED: {tel['status']['video_filename'].upper()}", (25, 38),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 255), 1, cv2.LINE_AA)
-    
+
     time_label = f"TIMECODE: {int(playback_sec)//60:02d}:{int(playback_sec)%60:02d} / {int(tel['status']['duration'])//60:02d}:{int(tel['status']['duration'])%60:02d}"
-    cv2.putText(target_frame, time_label, (25, 58), 
+    cv2.putText(target_frame, time_label, (25, 58),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.42, (200, 200, 200), 1, cv2.LINE_AA)
-    
+
     coord_label = f"VIRTUAL GRID COORDS: X={tel['status']['position']['x']:.1f} Y={tel['status']['position']['y']:.1f}"
-    cv2.putText(target_frame, coord_label, (25, 78), 
+    cv2.putText(target_frame, coord_label, (25, 78),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.42, (200, 200, 200), 1, cv2.LINE_AA)
 
     # Operational parameters top right
-    cv2.putText(target_frame, f"BATTERY: 87.2% [12.4V]", (440, 38), 
+    cv2.putText(target_frame, f"BATTERY: 87.2% [12.4V]", (440, 38),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 255, 0), 1, cv2.LINE_AA)
-    cv2.putText(target_frame, f"AI: {inference_status} ({ai_latency:.1f}ms)", (440, 58), 
+    cv2.putText(target_frame, f"AI: {inference_status} ({ai_latency:.1f}ms)", (440, 58),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 255, 120), 1, cv2.LINE_AA)
-    cv2.putText(target_frame, f"SPECTRUM: {vision_mode_label}", (440, 78), 
+    cv2.putText(target_frame, f"SPECTRUM: {vision_mode_label}", (440, 78),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.42, (0, 180, 255), 1, cv2.LINE_AA)
 
     # Glowing master flashing hazard box
     if flame_state:
         pulse = int(127 + 128 * np.sin(time.time() * 10))
         cv2.rectangle(target_frame, (10, 10), (630, 470), (0, 0, pulse), 2)
-        cv2.putText(target_frame, "!!! HAZARD ALERT: SIMULATED FLAME !!!", (160, 445), 
+        cv2.putText(target_frame, "!!! HAZARD ALERT: SIMULATED FLAME !!!", (160, 445),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 255), 2, cv2.LINE_AA)
     elif gas_mq9 > 150:
         pulse = int(127 + 128 * np.sin(time.time() * 6))
         cv2.rectangle(target_frame, (10, 10), (630, 470), (0, pulse, 255), 2)
-        cv2.putText(target_frame, "!!! HAZARD ALERT: SIMULATED GAS LEAK !!!", (150, 445), 
+        cv2.putText(target_frame, "!!! HAZARD ALERT: SIMULATED GAS LEAK !!!", (150, 445),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 140, 255), 2, cv2.LINE_AA)
 
 
@@ -1382,7 +1388,7 @@ def _generate_video_frames_impl(username=None):
     iteration_count = 0
     last_loop_duration = 0.0
     playback_start_time = time.time()
-    
+
     while True:
         frame = None
         cap = None
@@ -1394,7 +1400,7 @@ def _generate_video_frames_impl(username=None):
             v_path = sim_config["video_path"]
             is_sim = sim_config["is_simulating"]
             launch_pending = sim_config.get("launch_pending", False)
-        
+
         # 1. Open walkthrough recording
         if is_sim and v_path and os.path.exists(v_path):
             with video_buffer_lock:
@@ -1408,9 +1414,9 @@ def _generate_video_frames_impl(username=None):
                     _active_captures.append(cap)
                     playback_start_time = time.time() - sim_config.get("current_second", 0.0)
                     last_loop_duration = 0.0
-                
+
         frame_idx = 0
-        
+
         while True:
             # Check if simulation has been manually stopped
             with sim_lock:
@@ -1446,34 +1452,34 @@ def _generate_video_frames_impl(username=None):
             if fps_target <= 0:
                 fps_target = 30.0
             tick_threshold = (1.0 / fps_target) * 0.8
-            
+
             cached_jpeg = None
             with video_buffer_lock:
                 time_since_last = current_time - _latest_frame_data["timestamp"]
                 if _latest_frame_data["jpeg_bytes"] is not None and time_since_last < tick_threshold:
                     cached_jpeg = _latest_frame_data["jpeg_bytes"]
-            
+
             if cached_jpeg is not None:
                 yield (b'--frame\r\n'
                        b'Content-Type: image/jpeg\r\n\r\n' + cached_jpeg + b'\r\n')
                 time.sleep(0.01)
                 continue
- 
+
             lock_acquired = False
             ret = False
             jpeg_bytes = None
             start_proc_time = time.time()
-            
+
             try:
                 video_buffer_lock.acquire()
                 lock_acquired = True
-                
+
                 # Double-check inside lock
                 current_time = time.time()
                 time_since_last = current_time - _latest_frame_data["timestamp"]
                 if _latest_frame_data["jpeg_bytes"] is not None and time_since_last < tick_threshold:
                     cached_jpeg = _latest_frame_data["jpeg_bytes"]
-                
+
                 if cached_jpeg is not None:
                     if lock_acquired:
                         try:
@@ -1487,7 +1493,7 @@ def _generate_video_frames_impl(username=None):
                     continue
 
                 success = False
-            
+
                 if video_active and cap is not None:
                     ret, frame = cap.read()
                     # --- Deterministic End-of-Stream (EOS) Cleanup ---
@@ -1533,7 +1539,7 @@ def _generate_video_frames_impl(username=None):
                             global_telemetry_cache[session_id] = startup_baseline.copy()
                         print(f"[EOS] Video stream finished cleanly at frame {frame_idx}. Simulation stopped and resources reset.")
                         break
-                    
+
                     success = ret
                     if success and frame is not None:
                         # 2. Synchronized Timeline Reset: playback_sec will naturally be 0.0 when frame_idx is reset to 0
@@ -1544,13 +1550,13 @@ def _generate_video_frames_impl(username=None):
                     success = True
                     playback_sec = (default_frame_idx / default_fps) % 180.0
                     default_frame_idx += 1
-                    
+
                     frame = np.zeros((480, 640, 3), dtype=np.uint8)
                     for x in range(0, 640, 40):
                         cv2.line(frame, (x, 0), (x, 480), (22, 28, 22), 1)
                     for y in range(0, 480, 40):
                         cv2.line(frame, (0, y), (640, y), (22, 28, 22), 1)
-                    
+
                     radar_angle = int(playback_sec * 85) % 360
                     radar_rad = np.radians(radar_angle)
                     center = (320, 240)
@@ -1559,7 +1565,7 @@ def _generate_video_frames_impl(username=None):
                     sweep_x = int(center[0] + 180 * np.cos(radar_rad))
                     sweep_y = int(center[1] + 180 * np.sin(radar_rad))
                     cv2.line(frame, center, (sweep_x, sweep_y), (0, 180, 0), 2)
-                    
+
                     noise = np.random.normal(0, 3.5, frame.shape).astype(np.uint8)
                     frame = cv2.add(frame, noise)
 
@@ -1643,7 +1649,7 @@ def _generate_video_frames_impl(username=None):
                         results = YOLO_PERSON_MODEL(frame, verbose=False)
                         ai_latency += (time.time() - inf_start) * 1000.0
                         models_ran.append("PERSON")
-                        
+
                         for r in results:
                             boxes = r.boxes
                             for box in boxes:
@@ -1653,14 +1659,14 @@ def _generate_video_frames_impl(username=None):
                                     x1, y1, x2, y2 = box.xyxy[0]
                                     x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
                                     conf = float(box.conf[0])
-                                    
+
                                     # 1. Aspect Ratio Rule
                                     w = x2 - x1
                                     h = y2 - y1
-                                    
+
                                     # 2. Unconscious Logic: width >= 1.3 * height
                                     is_unconscious = (h > 0) and ((w / h) >= 1.3)
-                                    
+
                                     # 3. Tactical Visuals
                                     if is_unconscious:
                                         color = (180, 0, 255)  # Highly visible neon-purple (BGR)
@@ -1668,7 +1674,7 @@ def _generate_video_frames_impl(username=None):
                                     else:
                                         color = (0, 255, 0)    # Neon-green (BGR)
                                         label = f"RESCUER/HUMAN [{conf:.2f}]"
-                                    
+
                                     combined_boxes.append({
                                         "box": (x1, y1, x2, y2),
                                         "conf": conf,
@@ -1686,7 +1692,7 @@ def _generate_video_frames_impl(username=None):
                         results = YOLO_FIRE_MODEL(frame, verbose=False)
                         ai_latency += (time.time() - inf_start) * 1000.0
                         models_ran.append("FIRE")
-                        
+
                         for r in results:
                             boxes = r.boxes
                             for box in boxes:
@@ -1702,7 +1708,7 @@ def _generate_video_frames_impl(username=None):
                                     else:
                                         color = (0, 255, 255) # Amber/Yellow for Smoke
                                         label = f"SMOKE {conf:.2f}"
-                                    
+
                                     combined_boxes.append({
                                         "box": (x1, y1, x2, y2),
                                         "conf": conf,
@@ -1716,31 +1722,31 @@ def _generate_video_frames_impl(username=None):
                     # ENFORCE HSV COLOR-THRESHOLDING FALLBACK FILTER FOR FIRE
                     # Process the frame using HSV masking to detect bright orange/red contours
                     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-                    
+
                     # 1. Tighten the HSV Range to isolate strictly luminous fire colors
                     # Hue: 0-18 (luminous red-orange-yellow), Saturation: >= 160 (highly saturated), Value: >= 210 (very bright)
                     lower_orange_red = np.array([0, 160, 210])
                     upper_orange_red = np.array([18, 255, 255])
-                    
+
                     # Wrap-around red range: Hue: 165-180, Saturation: >= 160, Value: >= 210
                     lower_wrap_red = np.array([165, 160, 210])
                     upper_wrap_red = np.array([180, 255, 255])
-                    
+
                     mask1 = cv2.inRange(hsv, lower_orange_red, upper_orange_red)
                     mask2 = cv2.inRange(hsv, lower_wrap_red, upper_wrap_red)
                     mask = cv2.bitwise_or(mask1, mask2)
-                    
+
                     # 3. Morphological Dilation / closing to bridge disjointed fire spots
                     # First run open kernel to remove tiny static noise pixels
                     kernel_open = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
                     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel_open)
-                    
+
                     # Next run a large closing kernel to bridge nearby spots into unified boxes
                     kernel_close = cv2.getStructuringElement(cv2.MORPH_RECT, (21, 21))
                     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel_close)
-                    
+
                     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-                    
+
                     # 2. Enforce strict area threshold (Ignore detected blocks smaller than 1000 pixels)
                     raw_fire_boxes = []
                     for c in contours:
@@ -1748,7 +1754,7 @@ def _generate_video_frames_impl(username=None):
                         if area >= 1000:
                             x, y, w, h = cv2.boundingRect(c)
                             raw_fire_boxes.append([x, y, x + w, y + h, area, 1])  # [x1, y1, x2, y2, area, merge_count]
-                    
+
                     # 4. Merge overlapping coordinates into a single tactical box labeled "FIRE SOURCE"
                     changed = True
                     while changed:
@@ -1763,7 +1769,7 @@ def _generate_video_frames_impl(username=None):
                                     continue
                                 x1_a, y1_a, x2_a, y2_a, area_a, count_a = raw_fire_boxes[i]
                                 x1_b, y1_b, x2_b, y2_b, area_b, count_b = raw_fire_boxes[j]
-                                
+
                                 # Overlap check
                                 if not (x2_a < x1_b or x2_b < x1_a or y2_a < y1_b or y2_b < y1_a):
                                     raw_fire_boxes[i] = [
@@ -1778,14 +1784,14 @@ def _generate_video_frames_impl(username=None):
                                     changed = True
                         if changed:
                             raw_fire_boxes = [raw_fire_boxes[idx] for idx in range(n) if idx not in to_remove]
-                    
+
                     detected_count = len(raw_fire_boxes)
-                    
+
                     # Append detected and merged fire boxes to combined output
                     for item in raw_fire_boxes:
                         x1, y1, x2, y2, area, merge_count = item
                         conf = min(0.99, 0.70 + (area / 15000.0))
-                        
+
                         # Choose label based on overlap status to satisfy both layout contexts cleanly
                         label = "FIRE SOURCE" if merge_count > 1 else "AI INTERACTION: FIRE HOTSPOT"
                         combined_boxes.append({
@@ -1795,7 +1801,7 @@ def _generate_video_frames_impl(username=None):
                             "color": (0, 0, 255),  # High-contrast bright tactical red
                             "label": label
                         })
-                    
+
                     # Fail-safe timeline-driven emulation backup if OpenCV HSV masking yielded zero matches
                     # (e.g. in thermal/infrared spectrums where BGR channels are shifted and normal red is lost)
                     if flame_state and detected_count == 0:
@@ -1808,7 +1814,7 @@ def _generate_video_frames_impl(username=None):
                             "label": "AI INTERACTION: FIRE HOTSPOT",
                             "is_emulated": True
                         })
-                    
+
                     # Smoke cloud target tracking
                     if gas_mq9 > 150.0:
                         pulse = int(150 + 60 * np.sin(time.time() * 5))
@@ -1848,7 +1854,7 @@ def _generate_video_frames_impl(username=None):
                         cv2.rectangle(frame, (120, 140), (280, 320), (0, 0, pulse), 2)
                         cv2.putText(frame, "EMULATOR TARGET: FIRE HAZARD LOCK [98.5%]", (120, 132),
                                     cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 1, cv2.LINE_AA)
-                    
+
                     if gas_mq9 > 150.0:
                         pulse = int(150 + 60 * np.sin(time.time() * 5))
                         cv2.rectangle(frame, (350, 80), (530, 240), (0, pulse, 255), 2)
@@ -1882,11 +1888,11 @@ def _generate_video_frames_impl(username=None):
 
                 # Create standard unannotated thermal frame to crop thermal intensities safely
                 thermal_base = apply_spectral_mutator(frame_base.copy(), "THERMAL")
-                
+
                 # Warp the thermal frame to register coordinates perfectly (Identity Homography)
                 H = np.array([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]], dtype=np.float32)
                 warped_thermal_base = cv2.warpPerspective(thermal_base, H, (frame_base.shape[1], frame_base.shape[0]))
-                
+
                 # AI Cross-Verification Latch over all 'person' detections
                 is_thermal_lock_active = False
                 for item in combined_boxes:
@@ -1896,19 +1902,19 @@ def _generate_video_frames_impl(username=None):
                         w_box = x2 - x1
                         h_box = y2 - y1
                         is_unconscious = (h_box > 0) and ((w_box / h_box) >= 1.3)
-                        
+
                         # Safe crop
                         img_h, img_w = frame_base.shape[:2]
                         cx1, cy1 = max(0, x1), max(0, y1)
                         cx2, cy2 = min(img_w, x2), min(img_h, y2)
-                        
+
                         if cx2 > cx1 and cy2 > cy1:
                             thermal_crop = warped_thermal_base[cy1:cy2, cx1:cx2]
                             mean_r = np.mean(thermal_crop[:, :, 2]) # Red channel is index 2 in BGR
                             temp_celsius = 34.0 + 5.5 * (mean_r / 255.0)
                         else:
                             temp_celsius = 0.0
-                        
+
                         # Validate: 35.0 <= temp_celsius <= 38.0
                         if 35.0 <= temp_celsius <= 38.0:
                             item["label"] = f"CONFIRMED_LIFE_SIGN // {'UNCONSCIOUS' if is_unconscious else 'HUMAN'} [{item['conf']:.2f}]"
@@ -1986,7 +1992,7 @@ def _generate_video_frames_impl(username=None):
 
                 # Write processed frames concurrently to the active OpenCV VideoWriters
                 global active_video_writer_normal, active_video_writer_thermal, active_video_writer_noir, active_video_writer_fused
-                
+
                 target_size = (640, 480)
                 writers_and_frames = [
                     (active_video_writer_normal, rec_normal, "normal RGB"),
@@ -1994,7 +2000,7 @@ def _generate_video_frames_impl(username=None):
                     (active_video_writer_noir, rec_noir, "low-light NoIR"),
                     (active_video_writer_fused, rec_fused, "pixel-level fused")
                 ]
-                
+
                 for writer, variant_frame, name in writers_and_frames:
                     if writer is not None:
                         try:
@@ -2007,7 +2013,7 @@ def _generate_video_frames_impl(username=None):
 
                 # Encode live frame BGR buffer to JPEG
                 ret, jpeg = cv2.imencode('.jpg', frame_live)
-                
+
                 # --- Update cache & Release lock ---
                 if ret:
                     jpeg_bytes = jpeg.tobytes()
@@ -2066,7 +2072,7 @@ def _generate_video_frames_impl(username=None):
             mask1 = None
             mask2 = None
             combined_boxes = None
-            
+
             # Periodically invoke garbage collector every 30 frames
             if (frame_idx > 0 and frame_idx % 30 == 0) or (default_frame_idx > 0 and default_frame_idx % 30 == 0):
                 import gc
@@ -2232,10 +2238,10 @@ def _finalize_session_on_rewind():
     os.makedirs(new_session_dir, exist_ok=True)
 
     fps = sim_config.get("fps", 30.0)
-    
+
     # Standard configuration target dimensions
     target_size = (640, 480)
-    
+
     active_video_writer_normal = create_video_writer(os.path.join(new_session_dir, "cam_normal.mp4"), fps, target_size[0], target_size[1])
     active_video_writer_thermal = create_video_writer(os.path.join(new_session_dir, "cam_thermal.mp4"), fps, target_size[0], target_size[1])
     active_video_writer_noir = create_video_writer(os.path.join(new_session_dir, "cam_noir.mp4"), fps, target_size[0], target_size[1])
@@ -2292,7 +2298,7 @@ def _generate_reports_deferred(session_id):
 def _build_html_report(session_id, session_data, telemetry_rows, output_path):
     """Generates a self-contained Tailwind-styled HTML safety audit report."""
     import json
-    
+
     start_time = session_data.get("start_time", "N/A")
     end_time = session_data.get("end_time", "N/A")
     duration_sec = session_data.get("duration_seconds", 0.0)
@@ -2328,7 +2334,7 @@ def _build_html_report(session_id, session_data, telemetry_rows, output_path):
             elapsed = i * 0.5  # Fallback spacing 500ms
 
         row_dict["elapsed_seconds"] = round(elapsed, 2)
-        
+
         # Calculate derived orbital grid coordinates
         pos_x = 200.0 + 120.0 * np.cos(elapsed * 0.22)
         pos_y = 200.0 + 120.0 * np.sin(elapsed * 0.22)
@@ -2342,7 +2348,7 @@ def _build_html_report(session_id, session_data, telemetry_rows, output_path):
 
         temp = row_dict.get("temperature", 0.0) or 0.0
         row_dict["humidity"] = round(max(5.0, 48.0 - (temp - 22.4) * 0.75), 2)
-        
+
         parsed_telemetry.append(row_dict)
 
     mission_telemetry_json = json.dumps(parsed_telemetry)
@@ -3069,15 +3075,15 @@ def admin_create_role():
     if current_user.username != 'admin':
         log_security_event(current_user.username, "ACCESS_DENIED:POST /api/admin/roles/create", "FAILURE", "Non-admin attempted to create system role.")
         return abort(403)
-        
+
     if not request.is_json:
         return jsonify({"error": "JSON payload required"}), 400
-        
+
     data = request.get_json()
     name = data.get("name", "").strip().lower()
     if not name:
         return jsonify({"error": "Role name is required"}), 400
-        
+
     # Standard 7 permissions
     delete_logs = 1 if bool(data.get("delete_logs")) else 0
     export_reports = 1 if bool(data.get("export_reports")) else 0
@@ -3086,18 +3092,18 @@ def admin_create_role():
     power_toggle_robot = 1 if bool(data.get("power_toggle_robot")) else 0
     toggle_navigation_mode = 1 if bool(data.get("toggle_navigation_mode")) else 0
     manual_robot_control = 1 if bool(data.get("manual_robot_control")) else 0
-    
+
     # 1. Pre-validation checks: Check if role already exists
     existing = db_read("SELECT id FROM roles WHERE name = ?", (name,))
     if existing:
         return jsonify({"error": f"Role '{name}' already exists"}), 400
-        
+
     # 2. Enqueue creation query
     db_enqueue("""
         INSERT INTO roles (name, delete_logs, export_reports, run_simulations, view_live_telemetry, power_toggle_robot, toggle_navigation_mode, manual_robot_control)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     """, (name, delete_logs, export_reports, run_simulations, view_live_telemetry, power_toggle_robot, toggle_navigation_mode, manual_robot_control))
-    
+
     log_security_event(current_user.username, f"CREATE_ROLE:{name}", "SUCCESS", f"Custom role created with permissions: delete_logs={delete_logs}, export_reports={export_reports}, run_simulations={run_simulations}, view_live_telemetry={view_live_telemetry}, power_toggle_robot={power_toggle_robot}, toggle_navigation_mode={toggle_navigation_mode}, manual_robot_control={manual_robot_control}")
     return jsonify({"status": "role_created", "role_name": name})
 
@@ -3109,42 +3115,42 @@ def admin_create_user():
     if current_user.username != 'admin':
         log_security_event(current_user.username, "ACCESS_DENIED:POST /api/admin/users/create", "FAILURE", "Non-admin attempted to create system user.")
         return abort(403)
-        
+
     if not request.is_json:
         return jsonify({"error": "JSON payload required"}), 400
-        
+
     data = request.get_json()
     username = data.get("username", "").strip()
     password = data.get("password", "")
     role_id = data.get("role_id")
-    
+
     if not username or not password or role_id is None:
         return jsonify({"error": "Username, password, and role_id are required"}), 400
-        
+
     try:
         role_id = int(role_id)
     except ValueError:
         return jsonify({"error": "role_id must be an integer"}), 400
-        
+
     # Enforce Root Administrator Invariant Guard:
     # No user can be assigned or elevated to the root admin role (id=1), and username 'admin' uniquely owns it.
     if role_id == 1:
         log_security_event(current_user.username, "VIOLATION:CREATE_USER_ROOT_ADMIN", "FAILURE", f"Attempted to assign new user '{username}' to root admin role (id=1).")
         return jsonify({"error": "Assigning new users to the root administrator role (id=1) is strictly forbidden"}), 403
-        
+
     # Check if target role exists
     role_exists = db_read("SELECT id, name FROM roles WHERE id = ?", (role_id,))
     if not role_exists:
         return jsonify({"error": f"Role ID {role_id} does not exist"}), 400
-        
+
     # Check if username already exists
     existing = db_read("SELECT username FROM users WHERE username = ?", (username,))
     if existing:
         return jsonify({"error": f"Username '{username}' already exists"}), 400
-        
+
     password_hash = generate_password_hash(password, method='pbkdf2:sha256')
     db_enqueue("INSERT INTO users (username, password_hash, role_id) VALUES (?, ?, ?)", (username, password_hash, role_id))
-    
+
     role_name = role_exists[0]["name"]
     log_security_event(current_user.username, f"CREATE_USER:{username}", "SUCCESS", f"New user '{username}' spawned and assigned to role '{role_name}' (id={role_id}).")
     return jsonify({"status": "user_created", "username": username, "role_name": role_name})
@@ -3157,45 +3163,45 @@ def admin_modify_rank():
     if current_user.username != 'admin':
         log_security_event(current_user.username, "ACCESS_DENIED:PUT /api/admin/users/modify_rank", "FAILURE", "Non-admin attempted to modify user rank.")
         return abort(403)
-        
+
     if not request.is_json:
         return jsonify({"error": "JSON payload required"}), 400
-        
+
     data = request.get_json()
     username = data.get("username", "").strip()
     role_id = data.get("role_id")
-    
+
     if not username or role_id is None:
         return jsonify({"error": "Username and role_id are required"}), 400
-        
+
     try:
         role_id = int(role_id)
     except ValueError:
         return jsonify({"error": "role_id must be an integer"}), 400
-        
+
     # Root administrator invariant guard checks:
     # 1. Nobody else can be elevated to role_id=1
     if role_id == 1 and username != 'admin':
         log_security_event(current_user.username, "VIOLATION:MODIFY_RANK_ROOT_ADMIN", "FAILURE", f"Attempted to elevate user '{username}' to root admin role (id=1).")
         return jsonify({"error": "Elevating users to the root administrator role (id=1) is strictly forbidden"}), 403
-        
+
     # 2. Admin cannot be reassigned away from role_id=1
     if username == 'admin':
         log_security_event(current_user.username, "VIOLATION:MODIFY_RANK_ROOT_ADMIN_DOWNGRADE", "FAILURE", f"Attempted to change role of root user 'admin' to role_id={role_id}.")
         return jsonify({"error": "Root user 'admin' must uniquely belong to the root admin role (id=1) and cannot be modified"}), 400
-        
+
     # Check if target role exists
     role_exists = db_read("SELECT id, name FROM roles WHERE id = ?", (role_id,))
     if not role_exists:
         return jsonify({"error": f"Role ID {role_id} does not exist"}), 400
-        
+
     # Check if user exists
     user_exists = db_read("SELECT username FROM users WHERE username = ?", (username,))
     if not user_exists:
         return jsonify({"error": f"User '{username}' not found"}), 404
-        
+
     db_enqueue("UPDATE users SET role_id = ? WHERE username = ?", (role_id, username))
-    
+
     role_name = role_exists[0]["name"]
     log_security_event(current_user.username, f"MODIFY_USER_RANK:{username}", "SUCCESS", f"User '{username}' role updated to '{role_name}' (id={role_id}).")
     return jsonify({"status": "rank_modified", "username": username, "role_name": role_name})
@@ -3215,7 +3221,7 @@ def toggle_power():
     status = data.get("status", "ONLINE").upper()
     if status not in ["ONLINE", "OFFLINE"]:
         return jsonify({"error": "Invalid engine status"}), 400
-        
+
     with sim_lock:
         sim_config["engine_power_status"] = status
         # Propagate to current live telemetry
@@ -3228,7 +3234,7 @@ def toggle_power():
             session_id = sim_config.get("active_session_id")
             if session_id:
                 global_telemetry_cache[session_id] = telemetry_copy
-                
+
     log_security_event(current_user.username, f"TOGGLE_ENGINE_POWER:{status}", "SUCCESS", f"UGV robot power status toggled to {status}.")
     return jsonify({"status": "power_updated", "engine_power_status": status})
 
@@ -3245,7 +3251,7 @@ def toggle_navigation():
     status = data.get("status", "AUTOPILOT").upper()
     if status not in ["AUTOPILOT", "MANUAL"]:
         return jsonify({"error": "Invalid navigation status"}), 400
-        
+
     with sim_lock:
         sim_config["navigation_override_status"] = status
         # Propagate to current live telemetry
@@ -3256,7 +3262,7 @@ def toggle_navigation():
             session_id = sim_config.get("active_session_id")
             if session_id:
                 global_telemetry_cache[session_id] = telemetry_copy
-            
+
     log_security_event(current_user.username, f"TOGGLE_NAVIGATION:{status}", "SUCCESS", f"UGV navigation mode overridden to {status}.")
     return jsonify({"status": "navigation_updated", "navigation_override_status": status})
 
@@ -3273,11 +3279,11 @@ def manual_control():
     command = data.get("command", "STANDBY").upper()
     x = data.get("x")
     y = data.get("y")
-    
+
     with sim_lock:
         if sim_config["engine_power_status"] == "OFFLINE":
             return jsonify({"error": "Cannot command robot: UGV engine is OFFLINE"}), 400
-            
+
         if sim_config["navigation_override_status"] != "MANUAL":
             return jsonify({"error": "Cannot control manually: Autopilot is active"}), 400
 
@@ -3286,7 +3292,7 @@ def manual_control():
             sim_config["manual_x"] = float(x)
         if y is not None:
             sim_config["manual_y"] = float(y)
-            
+
         # Update live telemetry coordinates immediately
         if "current_live_telemetry" in sim_config and "status" in sim_config["current_live_telemetry"]:
             sim_config["current_live_telemetry"]["status"]["last_manual_command"] = command
@@ -3299,10 +3305,10 @@ def manual_control():
             session_id = sim_config.get("active_session_id")
             if session_id:
                 global_telemetry_cache[session_id] = telemetry_copy
-                
+
     log_security_event(current_user.username, f"MANUAL_ROBOT_COMMAND:{command}", "SUCCESS", f"Manual joystick control update sent: command={command}, x={x}, y={y}")
     return jsonify({
-        "status": "manual_control_success", 
+        "status": "manual_control_success",
         "last_manual_command": command,
         "manual_x": sim_config["manual_x"],
         "manual_y": sim_config["manual_y"]
@@ -3400,7 +3406,7 @@ def stop_simulation():
     and finalizes any active mission session logs into compiled reports.
     """
     global active_video_writer_normal, active_video_writer_thermal, active_video_writer_noir, active_video_writer_fused
-    
+
     # Do not finalize while holding sim_lock. Finalization releases OpenCV writers
     # under video_buffer_lock, and holding both locks in different orders is what
     # caused endless loading after a completed/previous simulation.
@@ -3443,11 +3449,11 @@ def delete_session(session_id):
     and removes the corresponding static report files from disk entirely.
     """
     import shutil
-    
+
     # 1. Enqueue SQLite deletion queries
     db_enqueue('DELETE FROM telemetry_logs WHERE session_id = ?', (session_id,))
     db_enqueue('DELETE FROM sessions WHERE session_id = ?', (session_id,))
-    
+
     # 2. Synchronously remove folder on disk to free up space
     session_dir = os.path.join(REPORTS_DIR, session_id)
     if os.path.exists(session_dir):
@@ -3456,7 +3462,7 @@ def delete_session(session_id):
             print(f"[Cleanup] Purged session folder on disk: {session_dir}")
         except Exception as e:
             print(f"[Cleanup ERROR] Failed to delete session folder {session_dir}: {e}")
-            
+
     print(f"[Central Command] Deleted session: {session_id}")
     log_security_event(current_user.username, f"DELETE_SESSION:{session_id}", "SUCCESS", "Telemetry logs and reports permanently purged from disk.")
     return jsonify({"status": "deleted", "session_id": session_id})
@@ -3471,11 +3477,11 @@ def clear_all_sessions():
     and completely purges all session directories under static/reports/ on disk.
     """
     import shutil
-    
+
     # 1. Enqueue SQLite clear queries
     db_enqueue('DELETE FROM telemetry_logs')
     db_enqueue('DELETE FROM sessions')
-    
+
     # 2. Purge all subdirectories in static/reports/
     for item in os.listdir(REPORTS_DIR):
         item_path = os.path.join(REPORTS_DIR, item)
@@ -3490,7 +3496,7 @@ def clear_all_sessions():
                 os.remove(item_path)
             except Exception:
                 pass
-                
+
     print("[Central Command] Purged database sessions history and cleared all report directories.")
     log_security_event(current_user.username, "WIPE_ALL_LOGS", "SUCCESS", "Database history entirely deleted and static report directories cleared.")
     return jsonify({"status": "cleared"})
@@ -3499,10 +3505,10 @@ def clear_all_sessions():
 if __name__ == '__main__':
     import os
     import sys
-    
+
     cert_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'certs')
     os.makedirs(cert_dir, exist_ok=True)
-    
+
     cert_path = os.path.join(cert_dir, 'ares.pem')
     key_path = os.path.join(cert_dir, 'ares.key')
 
@@ -3541,4 +3547,4 @@ if __name__ == '__main__':
 
     ssl_context = (cert_path, key_path)
     print("[Server Init] Starting ARES Multi-Spectral Studio at https://127.0.0.1:5001 (Forced HTTPS)")
-    app.run(host='127.0.0.1', port=5001, debug=False, threaded=True, ssl_context=ssl_context)
+    app.run(host='0.0.0.0', port=5001, debug=False, threaded=True, ssl_context=ssl_context)
