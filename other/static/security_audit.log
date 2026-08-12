@@ -1,0 +1,576 @@
+[2026-06-06T19:33:33.791832+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-06T19:33:37.784195+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-06T19:35:17.791882+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-06T19:35:21.785270+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-06T19:35:29.128072+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-06T19:35:29.342268+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-06T19:35:32.620837+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-06T19:35:35.902341+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-06T19:35:39.124276+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-06T19:35:42.292154+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:02.199343+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T00:07:03.205783+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:06.841382+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:10.045665+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:10.422018+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:MANUAL | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to MANUAL.
+[2026-06-07T00:07:10.836337+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:AUTOPILOT | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to AUTOPILOT.
+[2026-06-07T00:07:11.463525+00:00] USER=admin | ACTION=TOGGLE_ENGINE_POWER:OFFLINE | STATUS=SUCCESS | DETAILS=UGV robot power status toggled to OFFLINE.
+[2026-06-07T00:07:11.992925+00:00] USER=admin | ACTION=TOGGLE_ENGINE_POWER:ONLINE | STATUS=SUCCESS | DETAILS=UGV robot power status toggled to ONLINE.
+[2026-06-07T00:07:13.267183+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:16.536886+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:19.760063+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:22.952636+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:26.134926+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:29.359815+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:32.602745+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:35.788587+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:39.046931+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:42.398202+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:44.168431+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T00:07:44.404338+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:45.694797+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:47.691493+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:49.014460+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:52.277478+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:07:55.475353+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:08:35.357573+00:00] USER=admin | ACTION=MODIFY_USER_RANK:new_1 | STATUS=SUCCESS | DETAILS=User 'new_1' role updated to 'new_4' (id=9).
+[2026-06-07T00:09:56.389497+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:00.383919+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:04.381281+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:08.380597+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:12.391403+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:16.384709+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:20.380176+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:24.378172+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:28.385413+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:32.392606+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:36.385855+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:40.385408+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:44.380476+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:48.374467+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:10:51.502512+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:27.079577+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T00:12:27.390004+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:30.611181+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:33.790787+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:41.189639+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:44.382127+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:47.558349+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:48.876884+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:MANUAL | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to MANUAL.
+[2026-06-07T00:12:49.532036+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:AUTOPILOT | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to AUTOPILOT.
+[2026-06-07T00:12:50.248566+00:00] USER=admin | ACTION=TOGGLE_ENGINE_POWER:OFFLINE | STATUS=SUCCESS | DETAILS=UGV robot power status toggled to OFFLINE.
+[2026-06-07T00:12:50.847461+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:51.029385+00:00] USER=admin | ACTION=TOGGLE_ENGINE_POWER:ONLINE | STATUS=SUCCESS | DETAILS=UGV robot power status toggled to ONLINE.
+[2026-06-07T00:12:52.178393+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:MANUAL | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to MANUAL.
+[2026-06-07T00:12:53.101804+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:AUTOPILOT | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to AUTOPILOT.
+[2026-06-07T00:12:54.076567+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:55.630220+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:MANUAL | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to MANUAL.
+[2026-06-07T00:12:56.975432+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:UP | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=UP, x=200, y=185
+[2026-06-07T00:12:57.273236+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:12:58.944088+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:UP | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=UP, x=200, y=185
+[2026-06-07T00:12:59.443036+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:RIGHT | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=RIGHT, x=215, y=200
+[2026-06-07T00:12:59.539571+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:LEFT | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=LEFT, x=185, y=200
+[2026-06-07T00:13:00.367874+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:STOP | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=STOP, x=200, y=200
+[2026-06-07T00:13:00.475706+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:13:01.497842+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:STOP | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=STOP, x=200, y=200
+[2026-06-07T00:13:02.630636+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:STOP | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=STOP, x=200, y=200
+[2026-06-07T00:13:03.465655+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:DOWN | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=DOWN, x=200, y=215
+[2026-06-07T00:13:03.676281+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:13:03.974050+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:DOWN | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=DOWN, x=200, y=215
+[2026-06-07T00:13:06.850631+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:13:10.063321+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:13:13.243474+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:13:16.449732+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:13:19.651434+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:13:22.992504+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:13:23.524678+00:00] USER=admin | ACTION=USER_LOGOUT | STATUS=SUCCESS | DETAILS=User session explicitly terminated.
+[2026-06-07T00:27:18.955266+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T00:27:19.216286+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:27:22.545496+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:27:50.471834+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T00:27:54.417984+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:12.083528+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T02:40:13.078714+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:16.318662+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:19.517664+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:22.740406+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:31.311963+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:44.410426+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:47.649077+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:50.934818+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:54.200814+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:40:57.500363+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:00.722724+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:03.381907+00:00] USER=admin | ACTION=CLEAR_ALL_LOGS | STATUS=SUCCESS | DETAILS=All sessions and telemetry records deleted.
+[2026-06-07T02:41:03.932716+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:07.199950+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:08.809793+00:00] USER=admin | ACTION=CLEAR_ALL_LOGS | STATUS=SUCCESS | DETAILS=All sessions and telemetry records deleted.
+[2026-06-07T02:41:10.419852+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:13.745915+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:16.960232+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:20.203501+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:21.307949+00:00] USER=admin | ACTION=USER_LOGOUT | STATUS=SUCCESS | DETAILS=User session explicitly terminated.
+[2026-06-07T02:41:41.600947+00:00] USER=new_6 | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: new_6
+[2026-06-07T02:41:42.104070+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:45.290158+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:48.511046+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:48.698825+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T02:41:49.187922+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:51.801998+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:52.450569+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:55.225311+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:41:58.728903+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:42:01.985862+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T02:42:13.716501+00:00] USER=new_6 | ACTION=USER_LOGOUT | STATUS=SUCCESS | DETAILS=User session explicitly terminated.
+[2026-06-07T03:01:39.208976+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:01:43.223537+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:01:47.186550+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:01:51.186566+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:01:55.200925+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:01:59.191471+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:03.193306+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:07.202927+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:11.193463+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:15.222917+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:19.191495+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:23.194434+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:27.194953+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:31.198950+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:35.193880+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:39.194713+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:43.186195+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:47.190085+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:51.192801+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:55.194833+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:02:59.191366+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:03.200880+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:07.192083+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:11.186021+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:15.194957+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:19.228980+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:23.195957+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:27.202929+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:31.190906+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:35.192145+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:39.205275+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:43.193206+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:47.190357+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:51.193048+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:55.187776+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:03:59.191856+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:03.196415+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:07.198320+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:11.192196+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:15.200889+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:19.194776+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:23.192532+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:27.196847+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:31.196029+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:35.192433+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:39.193821+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:43.196162+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:47.196805+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:51.191242+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:55.190458+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:04:59.190029+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:03.197699+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:07.197642+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:11.193178+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:15.192444+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:19.194613+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:23.282486+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:27.285098+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:31.303015+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:39.285170+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:45.658000+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T03:05:45.917072+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:49.197999+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:52.377625+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:55.537397+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:05:58.758440+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:02.037821+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:05.198881+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:08.370991+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:11.636050+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:14.892470+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:18.162741+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:21.335276+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:24.507531+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:27.731746+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:06:30.973409+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:05.276677+00:00] USER=new_6 | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: new_6
+[2026-06-07T03:07:06.401785+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:09.612862+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:12.389955+00:00] USER=new_6 | ACTION=USER_LOGOUT | STATUS=SUCCESS | DETAILS=User session explicitly terminated.
+[2026-06-07T03:07:23.404962+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T03:07:23.988294+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:27.203956+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:30.422347+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:33.674112+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:37.025167+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:40.320382+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:43.544436+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:45.185279+00:00] USER=admin | ACTION=USER_LOGOUT | STATUS=SUCCESS | DETAILS=User session explicitly terminated.
+[2026-06-07T03:07:54.588395+00:00] USER=new_6 | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: new_6
+[2026-06-07T03:07:55.027213+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:07:58.284424+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:01.539244+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:04.882199+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:08.130231+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:11.345776+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:14.573123+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:17.891583+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:21.130229+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:24.362989+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:27.660823+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:30.908475+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:08:34.311184+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:23:16.170514+00:00] USER=admin | ACTION=CREATE_ROLE:mm | STATUS=SUCCESS | DETAILS=Custom role created with permissions: delete_logs=0, export_reports=0, run_simulations=0, view_live_telemetry=1, power_toggle_robot=0, toggle_navigation_mode=0, manual_robot_control=0
+[2026-06-07T03:32:23.425153+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T03:32:23.799993+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:27.078658+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:30.290656+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:33.515611+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:36.750838+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:39.968817+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:43.143635+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:46.402637+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:49.610714+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:52.800317+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:56.002946+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:32:59.245858+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:33:02.392045+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:33:30.366116+00:00] USER=admin | ACTION=CREATE_ROLE:ww | STATUS=SUCCESS | DETAILS=Custom role created with permissions: delete_logs=0, export_reports=0, run_simulations=0, view_live_telemetry=1, power_toggle_robot=0, toggle_navigation_mode=0, manual_robot_control=0
+[2026-06-07T03:33:52.713355+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:33:54.458818+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:MANUAL | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to MANUAL.
+[2026-06-07T03:33:55.272649+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:AUTOPILOT | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to AUTOPILOT.
+[2026-06-07T03:33:55.955285+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:33:56.029139+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:MANUAL | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to MANUAL.
+[2026-06-07T03:33:58.185197+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:AUTOPILOT | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to AUTOPILOT.
+[2026-06-07T03:33:59.223322+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:02.473055+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:02.682621+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:MANUAL | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to MANUAL.
+[2026-06-07T03:34:03.319260+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:AUTOPILOT | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to AUTOPILOT.
+[2026-06-07T03:34:05.638543+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:08.869397+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:12.104563+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:15.280719+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:18.444413+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:21.684021+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:24.862429+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:28.085165+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:34:31.249895+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T03:49:17.360655+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T04:05:33.341486+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T04:05:33.606118+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:05:36.855349+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:05:40.057636+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:05:42.606080+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:MANUAL | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to MANUAL.
+[2026-06-07T04:05:43.282420+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:05:43.582467+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:UP | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=UP, x=200, y=185
+[2026-06-07T04:05:44.142045+00:00] USER=admin | ACTION=MANUAL_ROBOT_COMMAND:RIGHT | STATUS=SUCCESS | DETAILS=Manual joystick control update sent: command=RIGHT, x=215, y=200
+[2026-06-07T04:05:45.057594+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:AUTOPILOT | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to AUTOPILOT.
+[2026-06-07T04:05:46.504896+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:05:49.676039+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:05:53.008119+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:05:56.270333+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:05:59.443291+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:06:02.661598+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:06:05.828389+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T04:06:09.024156+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:08.997116+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T06:47:09.225457+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:12.585181+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:15.753812+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:16.525001+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:MANUAL | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to MANUAL.
+[2026-06-07T06:47:17.505915+00:00] USER=admin | ACTION=TOGGLE_NAVIGATION:AUTOPILOT | STATUS=SUCCESS | DETAILS=UGV navigation mode overridden to AUTOPILOT.
+[2026-06-07T06:47:19.036872+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:22.308133+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:25.574781+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:28.818928+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:32.094182+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:42.892087+00:00] USER=admin | ACTION=USER_LOGOUT | STATUS=SUCCESS | DETAILS=User session explicitly terminated.
+[2026-06-07T06:47:47.545303+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T06:47:47.907015+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:51.112698+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:55.348686+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:47:59.302849+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:03.255680+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:07.252829+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:11.246727+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:15.366227+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:19.332775+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:23.323126+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:27.290670+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:31.254520+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:35.326355+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:39.329415+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:43.303526+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:47.334125+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:51.348498+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:55.265293+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:48:59.291309+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:03.307416+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:07.331460+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:11.287530+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:15.249721+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:19.290536+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:23.256015+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:27.257023+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:31.262713+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:35.297243+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:39.246913+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:43.347278+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:47.359792+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:51.257857+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:55.252666+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:49:59.332317+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:03.359153+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:07.288618+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:11.285424+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:15.329749+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:19.333345+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:23.299391+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:27.335538+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:31.303382+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:35.261493+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:39.314936+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:40.636560+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T06:50:43.245975+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:47.338383+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:50:51.357707+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:03.242334+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:07.239955+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:11.241030+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:13.890933+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T06:51:15.239946+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:19.244169+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:23.245172+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:27.254065+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:31.241212+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:35.245509+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:39.244904+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:43.234713+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:47.240949+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:51.238519+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:55.240803+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:51:59.239387+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:03.233815+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:07.239050+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:11.242176+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:15.242655+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:22.968791+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:29.648777+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T06:52:29.884465+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:33.209964+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:36.389704+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:39.610052+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:42.558977+00:00] USER=admin | ACTION=USER_LOGOUT | STATUS=SUCCESS | DETAILS=User session explicitly terminated.
+[2026-06-07T06:52:47.786581+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T06:52:48.055139+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:51.217920+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:54.477137+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:52:58.260205+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:02.308485+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:06.332973+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:10.288818+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:14.328809+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:18.348682+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:22.302626+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:26.314427+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:30.274271+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:34.290653+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:38.357504+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:42.340266+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:46.252922+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:50.300709+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:54.340362+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:53:58.316617+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:02.334596+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:05.514353+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:08.759936+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:11.977293+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:15.169355+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:18.352859+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:21.563851+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:24.850315+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:28.093572+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:31.283991+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:34.522617+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:37.736825+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:40.901744+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:44.087979+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:47.292454+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:51.280319+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:55.294347+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:54:58.548732+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:02.315838+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:05.538313+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:08.716907+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:11.940553+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:15.180435+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:18.420663+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:22.312996+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:26.297230+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:29.481146+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:32.752442+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:36.341063+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:40.309566+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:43.564779+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:46.776903+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:50.017858+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:53.227642+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:56.444755+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:55:59.633569+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:56:02.810221+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:17.438124+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T06:59:17.627287+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:20.983289+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:24.142735+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:27.341799+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:30.516016+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:33.728936+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:36.970846+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:40.198575+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:43.379162+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:46.607018+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:49.776326+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:52.999437+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:56.206634+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T06:59:59.412950+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:03.273831+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:07.459236+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:11.352501+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:15.338918+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:19.246416+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:23.302300+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:27.351392+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:31.272187+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:34.570693+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:38.308409+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:42.366303+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:46.270738+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:49.509524+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:53.345561+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:00:57.345176+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:01.252042+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:05.274685+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:09.349107+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:13.312435+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:17.269971+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:21.272695+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:25.307856+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:29.273462+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:33.282293+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:37.300855+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:41.279488+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:45.328047+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:49.293309+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:53.288174+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:01:57.259725+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:01.248534+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:05.296644+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:09.312981+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:13.290691+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:17.338409+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:21.248844+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:25.297353+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:29.323851+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:33.285142+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:37.291303+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:41.333052+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:45.359333+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:49.277585+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:53.288983+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:02:57.355782+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:01.284598+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:05.322411+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:09.324671+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:13.279067+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:17.248716+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:21.252493+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:25.258113+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:29.337848+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:33.316727+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:37.328716+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:41.312677+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:45.347269+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:49.333626+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:53.312110+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:03:57.322708+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:01.372580+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:05.254911+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:09.271922+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:13.308963+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:17.330449+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:21.305978+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:25.282277+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:29.288743+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:33.250067+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:36.413341+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:51.770073+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-07T07:04:52.193324+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:55.390346+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:04:58.645337+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:01.811340+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:05.063684+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:08.267648+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:11.474265+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:14.647327+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:17.864504+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:21.084313+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:24.334706+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:27.531346+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:30.759560+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:33.908701+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:37.121696+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:40.386731+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-07T07:05:43.589746+00:00] USER=SYSTEM | ACTION=TELEMETRY_STREAM_TERMINATED | STATUS=SUCCESS | DETAILS=Telemetry stream safely disconnected for Anonymous_Node due to simulation stop.
+[2026-06-08T12:09:11.435462+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:09:11.567925+00:00] USER=operator | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:09:11.700175+00:00] USER=operator2 | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:09:11.831412+00:00] USER=operator3 | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:09:11.961805+00:00] USER=auditor | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:21.287991+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:21.537123+00:00] USER=operator | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:21.788505+00:00] USER=operator2 | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:22.034295+00:00] USER=operator3 | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:22.286482+00:00] USER=auditor | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:56.022901+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:56.279649+00:00] USER=operator | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:56.532650+00:00] USER=operator2 | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:56.779126+00:00] USER=operator3 | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:10:57.030585+00:00] USER=auditor | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:11:37.245129+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:11:37.496733+00:00] USER=operator | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:11:37.748184+00:00] USER=operator2 | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:11:37.994678+00:00] USER=operator3 | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:11:38.247653+00:00] USER=auditor | ACTION=USER_LOGIN | STATUS=FAILURE | DETAILS=Invalid credentials submitted
+[2026-06-08T12:12:09.267334+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-08T12:12:09.519416+00:00] USER=operator | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: operator
+[2026-06-08T12:12:09.769507+00:00] USER=operator2 | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: operator
+[2026-06-08T12:12:10.019296+00:00] USER=operator3 | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: operator
+[2026-06-08T12:12:10.270304+00:00] USER=auditor | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: auditor
+[2026-06-08T12:12:10.295175+00:00] USER=admin | ACTION=WEBSOCKET_CONNECT | STATUS=SUCCESS | DETAILS=User connected on Seat 1 (SID: 7_Cei1y8oswFKEoJAAAB).
+[2026-06-08T12:12:10.831849+00:00] USER=operator | ACTION=WEBSOCKET_CONNECT | STATUS=SUCCESS | DETAILS=User connected on Seat 2 (SID: DtkRoxCbq6H9mZPuAAAD).
+[2026-06-08T12:12:11.366136+00:00] USER=operator2 | ACTION=WEBSOCKET_CONNECT | STATUS=SUCCESS | DETAILS=User connected on Seat 3 (SID: hbxl90N2z147OgtzAAAF).
+[2026-06-08T12:12:11.897934+00:00] USER=operator3 | ACTION=WEBSOCKET_CONNECT | STATUS=SUCCESS | DETAILS=User connected on Seat 4 (SID: td3FKKw4F96StbCXAAAH).
+[2026-06-08T12:12:13.011248+00:00] USER=admin | ACTION=WEBSOCKET_DISCONNECT | STATUS=SUCCESS | DETAILS=User disconnected from seat (SID: 7_Cei1y8oswFKEoJAAAB).
+[2026-06-08T12:12:13.033885+00:00] USER=operator | ACTION=WEBSOCKET_DISCONNECT | STATUS=SUCCESS | DETAILS=User disconnected from seat (SID: DtkRoxCbq6H9mZPuAAAD).
+[2026-06-08T12:12:13.056558+00:00] USER=operator2 | ACTION=WEBSOCKET_DISCONNECT | STATUS=SUCCESS | DETAILS=User disconnected from seat (SID: hbxl90N2z147OgtzAAAF).
+[2026-06-08T12:12:13.073218+00:00] USER=operator3 | ACTION=WEBSOCKET_DISCONNECT | STATUS=SUCCESS | DETAILS=User disconnected from seat (SID: td3FKKw4F96StbCXAAAH).
+[2026-06-08T12:12:49.658746+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-08T12:12:49.909212+00:00] USER=operator | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: operator
+[2026-06-08T12:12:50.156183+00:00] USER=operator2 | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: operator
+[2026-06-08T12:12:50.461599+00:00] USER=operator3 | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: operator
+[2026-06-08T12:12:50.707887+00:00] USER=auditor | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: auditor
+[2026-06-08T12:12:50.733406+00:00] USER=admin | ACTION=WEBSOCKET_CONNECT | STATUS=SUCCESS | DETAILS=User connected on Seat 1 (SID: IPGQ7crwUzKF_mQLAAAB).
+[2026-06-08T12:12:51.264860+00:00] USER=operator | ACTION=WEBSOCKET_CONNECT | STATUS=SUCCESS | DETAILS=User connected on Seat 2 (SID: lPXgM97EmdFEmaSLAAAD).
+[2026-06-08T12:12:51.801581+00:00] USER=operator2 | ACTION=WEBSOCKET_CONNECT | STATUS=SUCCESS | DETAILS=User connected on Seat 3 (SID: PVtenkdaoXCDPvO4AAAF).
+[2026-06-08T12:12:52.351206+00:00] USER=operator3 | ACTION=WEBSOCKET_CONNECT | STATUS=SUCCESS | DETAILS=User connected on Seat 4 (SID: 1fXyDBYkMdyLIPEUAAAH).
+[2026-06-08T12:12:53.973538+00:00] USER=operator | ACTION=WEBSOCKET_DISCONNECT | STATUS=SUCCESS | DETAILS=User disconnected from seat (SID: lPXgM97EmdFEmaSLAAAD).
+[2026-06-08T12:12:55.012140+00:00] USER=admin | ACTION=WEBSOCKET_DISCONNECT | STATUS=SUCCESS | DETAILS=User disconnected from seat (SID: IPGQ7crwUzKF_mQLAAAB).
+[2026-06-08T12:12:55.028748+00:00] USER=operator2 | ACTION=WEBSOCKET_DISCONNECT | STATUS=SUCCESS | DETAILS=User disconnected from seat (SID: PVtenkdaoXCDPvO4AAAF).
+[2026-06-08T12:12:55.046072+00:00] USER=operator3 | ACTION=WEBSOCKET_DISCONNECT | STATUS=SUCCESS | DETAILS=User disconnected from seat (SID: 1fXyDBYkMdyLIPEUAAAH).
+[2026-06-08T17:09:05.201955+00:00] USER=admin | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: admin
+[2026-06-08T17:10:18.377006+00:00] USER=new_4 | ACTION=USER_LOGIN | STATUS=SUCCESS | DETAILS=Authenticated successfully with role: new_4

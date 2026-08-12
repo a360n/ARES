@@ -205,7 +205,7 @@ class UGVSimulator:
 
             time.sleep(0.5)
 
-def start_simulator(backend_url="https://127.0.0.1:5001/api/telemetry"):
+def start_simulator(backend_url="https://0.0.0.0:5001/api/telemetry"):
     sim = UGVSimulator(backend_url)
     sim.run()
 

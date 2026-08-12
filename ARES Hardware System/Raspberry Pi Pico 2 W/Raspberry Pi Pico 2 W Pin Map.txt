@@ -1,0 +1,141 @@
+Name of the slot in Pico
+	wire and its current color
+	Coming from (piece name and end)
+	GP 0
+	🟧 Orange wire
+	TheRXDESP32-CAM camera(Note: The RX camera goes to the Pico TX)
+	GP 1
+	🟪 Purple wire
+	The14ESP32-CAM camera(Note: Camera 14 goes to the Pico RX)
+	GND
+	⬛ Black wire
+	the GND shared with cameraESP32-CAM 
+	GP 2
+	🟩 Green wire
+	Left operator - ENA (برمجياً: سرعة الأمامية اليسرى للروبوت بالشاصي الجديد)
+	GP 3
+	🟪 Purple wire
+	Left operator - IN1 (برمجياً: اتجاه الأمامية اليسرى 1)
+	GP 4
+	🟦 Blue wire
+	Left operator - IN2 (برمجياً: اتجاه الأمامية اليسرى 2)
+	GP 5
+	🟨 Yellow wire
+	Left operator - IN3 (برمجياً: اتجاه الخلفية اليسرى 1)
+	GND
+	➖ Leave it empty
+	
+
+	GP 6
+	🟧 Orange wire
+	Left operator - IN4 (برمجياً: اتجاه الخلفية اليسرى 2)
+	GP 7
+	🟫 Brown wire
+	Left operator - ENB (برمجياً: سرعة الخلفية اليسرى)
+	GP 8
+	🏷️ Wire mark (2)
+	Ultrasonic distance sensor - tipEcho (After exiting the voltage divider)
+	GP 9
+	⬜ White wire
+	Wheel encoderright background
+	GND
+	⬛ Black wire
+	the GND shared withGPS NEO-8M
+	GP 10
+	⬜ White wire
+	Wheel encoderright front
+	GP 11
+	🟫 Brown wire
+	Right operator - ENB (برمجياً: سرعة الأمامية اليمنى للروبوت بالشاصي الجديد)
+	GP 12
+	🟧 Orange wire
+	Right operator - IN4 (برمجياً: اتجاه الأمامية اليمنى 2)
+	GP 13
+	🟨 Yellow wire
+	Right operator - IN3 (برمجياً: اتجاه الأمامية اليمنى 1)
+	GND
+	➖ Leave it empty
+	
+
+	GP 14
+	⬜ White wire
+	Wheel encoderleft front
+	GP 15
+	⬜ White wire
+	Wheel encoderleft background
+	
+
+Name of the slot in Pico
+	wire and its current color
+	Coming from (piece name and end)
+	VBUS
+	➖ Leave it empty
+	
+
+	VSYS
+	🟥 Red wire (22AWG)
+	Organizer ExitOUT +(Continuous Pico feeding)
+	GND
+	⬛ Black wire (22AWG)
+	Organizer ExitOUT -(The common ground for the robot as a whole)
+	3V3_EN
+	➖ Leave it empty
+	
+
+	3V3
+	➖ Leave it empty
+	
+
+	ADC_VREF
+	➖ Leave it empty
+	
+
+	GP 28_A2
+	🏷️ Wire mark (4)
+	gas sensorMQ-135(Analog output)AGO)
+	AGND
+	➖ Leave it empty
+	
+
+	GP 27_A1
+	🏷️ Wire marking (1)
+	gas sensorMQ-9(Analog output)TO THE)
+	GP 26_A0
+	⬜ Single white wire
+	Midpoint of battery voltage divider(Reading 2.9V)
+	RUN
+	➖ Leave it empty
+	
+
+	GP 22
+	🏷️ Wire mark (3)
+	Temperature and humidity sensorDHT22 
+	GND
+	➖ Leave it empty
+	
+
+	GP 21
+	🏷️ Wire mark (6)
+	For TX in GPS NEO-8M
+	GP 20
+	
+
+	Ultrasonic distance sensor - tipTrig directly
+	GP 19
+	
+
+	
+
+	GP 18
+	🟩 Green wire
+	Right operator - ENA (برمجياً: سرعة الخلفية اليمنى للروبوت بالشاصي الجديد)
+	GND
+	➖ Leave it empty
+	
+
+	GP 17
+	🟪 Purple wire
+	Right operator - IN1 (برمجياً: اتجاه الخلفية اليمنى 1)
+	GP 16
+	🟦 Blue wire
+	Right operator - IN2 (برمجياً: اتجاه الخلفية اليمنى 2)

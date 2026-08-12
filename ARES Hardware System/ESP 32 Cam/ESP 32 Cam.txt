@@ -1,0 +1,84 @@
+==============================================================================
+                    📌 ESP32-CAM Pinout Map & Wiring Guide
+==============================================================================
+Folder Path: ESP 32 Cam
+File Name: ESP 32 Cam.txt
+Project: ARES UGV Robot Surveillance & Motion Control System
+Last Updated: 2026-06-25
+==============================================================================
+
+This file explains the physical wiring connections of the robot's eye (ESP32-CAM) to the power distribution board, the robot's main controller (Raspberry Pi Pico 2 W), and the camera pan/tilt steering servos.
+
+------------------------------------------------------------------------------
+                         📸 ESP32-CAM Physical Pin Layout
+------------------------------------------------------------------------------
+                          +-------------------+
+                          |     [ ANTENNA ]   |
+                          |  [ ANTENNA AREA ] |
+                    5V  --| [1]           [1] |-- 5V (ExitOUT + regulator input)
+                    5V  --| [2]           [2] |-- 5V
+                   GND  --| [3]   ESP32   [3] |-- GND (Regulator / Robot Common GND)
+           (Pan) GP13  --| [4]    CAM    [4] |-- GPIO 12
+    (Pico RXD) GP14  --| [5]           [5] |-- GPIO 13 (Horizontal Pan Servo)
+          (Tilt) GP15  --| [6]           [6] |-- GPIO 14 (Connected to Pico GP1 RXD)
+               GPIO 33  --| [7]  [LEFT]   [7] |-- GPIO 15 (Vertical Tilt Servo)
+                GPIO 2  --| [8]  [SIDE]   [8] |-- GPIO 33 (Internal Red LED on back)
+         Pico GND  --| [9]           [9] |-- GPIO 2
+                          |                   |
+                          |      [RIGHT]      |
+                  GND  --| [10]  [SIDE]  [10] |-- GND
+                  GND  --| [11]          [11] |-- GND
+                  TXD  --| [12]          [12] |-- U0TXD (Programming & Debug Serial)
+(Pico TXD) RXD  --| [13]          [13] |-- U0RXD (Connected to Pico GP0 TXD)
+                   5V  --| [14]          [14] |-- 5V
+                  GND  --| [15]          [15] |-- GND
+               GPIO 0  --| [16]          [16] |-- GPIO 0 (Flash Upload Mode selection)
+              GPIO 16  --| [17]          [17] |-- GPIO 16 (PSRAM / Rx)
+                 3V3  --| [18]          [18] |-- 3V3
+                 3V3  --| [19]          [19] |-- 3V3
+                          +-------------------+
+                          |    [ USB PORT ]   |
+                          +-------------------+
+
+------------------------------------------------------------------------------
+                ⚡ Pin Descriptions & Programmatic Functions
+------------------------------------------------------------------------------
+
+1. Camera Right Side:
+=====================
+* [GND / GND]: Reference grounds for development/debugging.
+* [TXD] (U0TXD): Primary serial transmit pin for programming and logging.
+* [RXD] (U0RXD): Standard serial receive pin for programming.
+  <- Connection: Wired to pin GP0 (TXD) on the Raspberry Pi Pico 2 W to receive drive commands and control queries.
+* [5V]: 5V power input/output.
+* [GND]: Ground.
+* [GPIO 0]: Flash boot pin (short to GND to enter programming upload mode).
+* [GPIO 16]: Shared PSRAM memory pin or general logic RX.
+* [3V3 / 3V3]: 3.3V power output pins.
+
+2. Camera Left Side:
+====================
+* [GND] (First pin): Reference ground for logic signals.
+  <- Connection: Connected directly to a GND pin on the Raspberry Pi Pico 2 W to establish a common logic reference.
+* [GPIO 2]: General Purpose Digital I/O 2.
+* [GPIO 33]: Wired internally to the red status LED on the back of the board.
+* [GPIO 15]: Vertical tilt servo controller output.
+  <- Connection: Wired to the vertical Tilt Servo (vertical rotation bounded programmatically between 0° and 90°).
+* [GPIO 14]: Software TXD pin configured for serial data output to the Pico.
+  <- Connection: Wired to pin GP1 (RXD) on the Raspberry Pi Pico 2 W to transmit telemetry and environment data.
+* [GPIO 13]: Horizontal pan servo controller output.
+  <- Connection: Wired to the horizontal Pan Servo (horizontal rotation bounded programmatically between 0° and 180°).
+* [GPIO 12]: General Purpose Digital I/O 12.
+* [GND] (Eighth pin): Board ground.
+  <- Connection: Connected to the common ground (GND) of the robot drivetrain to prevent loops.
+* [5V]: 5V power output pin.
+* [5V] (Last pin): Main 5V power supply input.
+  <- Connection: Wired directly to the robot's main power distribution organizer output (ExitOUT +) from the regulator board to ensure a steady, high-current supply for Wi-Fi and servo operations.
+
+==============================================================================
+                💡 Engineering Note on Pico ↔ Camera UART Communication
+==============================================================================
+* Camera TX (GPIO 14) --------------> Pico RX (GP1 RXD)
+* Camera RX (RXD / GPIO 3) <--------- Pico TX (GP0 TXD)
+* Common Ground (GND) connection is mandatory between the ESP32-CAM and Pico 2 W to secure high-speed, noise-free serial transmission at 115200 Baud rate.
+==============================================================================

@@ -1,0 +1,21 @@
+{
+  "settings_version": "0.0.6",
+  "datasets_dir": "/Users/alial-khazali/Documents/ARES/datasets",
+  "weights_dir": "/Users/alial-khazali/Documents/ARES/weights",
+  "runs_dir": "/Users/alial-khazali/Documents/ARES/runs",
+  "uuid": "8eb6ecfd8d7ba44155b78610058d99cce53be88fd809fddfd16291c685cf2805",
+  "sync": false,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": false,
+  "comet": false,
+  "dvc": false,
+  "hub": false,
+  "mlflow": false,
+  "neptune": false,
+  "raytune": false,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": false,
+  "openvino_msg": false
+}

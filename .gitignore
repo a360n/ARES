@@ -1,9 +1,17 @@
 static/certs/
 cert.pem
 key.pem
+*.db
 *.db-shm
 *.db-wal
 __pycache__/
 *.pyc
+.DS_Store
+*.DS_Store
+venv/
+.venv/
+scratch/
 uploads/*.mov
 uploads/*.mp4
+reports/*.pdf
+reports/*.mp4

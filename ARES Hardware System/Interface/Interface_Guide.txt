@@ -1,0 +1,160 @@
+=================================================================================
+             ARES SYSTEM OPERATIONS HUB - INTERFACE TECHNICAL MANUAL
+      Technical Operation, Data Flow, and Connection Guide for ARES Dashboard
+=================================================================================
+
+Comprehensive manual describing interface mechanics, telemetry routing, features,
+network topology, deployment instructions, and local troubleshooting.
+
+---------------------------------------------------------------------------------
+1. Dashboard Overview
+---------------------------------------------------------------------------------
+The ARES Operations Hub is a tactical, interactive digital command center designed
+to monitor and drive the intelligent rescue unmanned ground vehicle (UGV) in real time.
+To prevent latency bottlenecks and guarantee absolute stability in remote, isolated 
+field environments, the interface is optimized to run 100% offline without any 
+external internet dependencies.
+
+---------------------------------------------------------------------------------
+2. Key Features
+---------------------------------------------------------------------------------
+- Live Video Feed (Live Feed Stream): Renders the real-time camera stream from port 81 
+  in high quality, with a hardware-level 180-degree image rotation to correct physically 
+  upside-down camera mounting.
+- Real-Time Telemetry: Receives and displays dynamic environmental, chemical gas, 
+  and drivetrain sensor metrics at a rapid refresh rate of 500ms.
+- Multi-Device Control Modes:
+  * Computer Mode: Direct drive UGV steering using keyboard WASD controls and servo 
+    pan/tilt adjustment using arrow keys.
+  * Mobile Mode (Touch Screen):
+    - Ergonomic D-Pad layout optimized with WCAG-compliant 52px touch targets to 
+      prevent mis-taps during rugged field transit.
+    - Dual Analog Joysticks for fluid proportional drive and camera tracking control.
+- Smooth Pan/Tilt Camera Servos: Smooth servo panning using a mathematical low-pass 
+  approximation filter (Lerp) to damp mechanical vibration.
+- In-Browser Stream Recorder: Captures the live stream canvas directly on the client 
+  side and exports it locally as an MP4 video file to archive operations.
+- Direct Safety Triggers: Immediate Emergency Stop (Spacebar / stop button) and rapid 
+  servo return-to-center functionality.
+
+---------------------------------------------------------------------------------
+3. Network Topology & Hardware Interconnectivity
+---------------------------------------------------------------------------------
+The ARES ecosystem consists of three major components communicating through wired serial 
+and wireless local protocols:
+
+                    +------------------------------------+
+                    |        MacBook / iOS Client        |
+                    |   (Hosts Dashboard / Controller)   |
+                    +------------------------------------+
+                                      ^
+                                      |
+                           Wi-Fi (AP Connection)
+                           SSID: ARES-CAMERA
+                                      |
+                                      v
+                    +------------------------------------+
+                    |             ESP32-CAM              |
+                    | (Local Access Point + Web Server)  |
+                    +------------------------------------+
+                                      ^
+                                      |
+                             UART (Hardware Serial)
+                             TX (GP14) <-> RX (GP12)
+                             RX (GP13) <-> TX (GP11)
+                                      |
+                                      v
+                    +------------------------------------+
+                    |       Raspberry Pi Pico 2 W        |
+                    | (Drivetrain & Sensor Control Hub)  |
+                    +------------------------------------+
+
+- MacBook / iOS Client: Runs a local python-based http server to serve the dashboard files 
+  (HTML, CSS, JS) and connects wirelessly to the robot's local access point.
+- ESP32-CAM: Acts as the local Access Point (AP Host), granting IP addresses to clients. 
+  It hosts the HTTP Web Server to process dashboard control requests at http://192.168.4.1.
+- Raspberry Pi Pico 2 W: Acts as the main physical microcontroller. It is wired to the 
+  ESP32-CAM via hardware serial (UART) pins to receive drive commands, parse GPS data, 
+  read onboard sensors, and control H-bridge wheel outputs.
+
+---------------------------------------------------------------------------------
+4. Data Flow & Telemetry Routing
+---------------------------------------------------------------------------------
+To prevent network congestion, ARES isolates control inputs and telemetry tracking into 
+separate asynchronous data paths:
+
+A. Control Routing Path (Control Flow):
+   1. The operator triggers a direction input (e.g., pressing W) on the client dashboard.
+   2. JavaScript executes a non-blocking asynchronous HTTP GET request to the ESP32:
+      URL: http://192.168.4.1/move?dir=w
+   3. The ESP32 Web Server intercepts the route and writes the command byte ('w') 
+      instantly to the hardware Serial UART.
+   4. The Pico 2 W captures the latest incoming byte, processes it, and ramps up duty 
+      cycles (Soft-Start acceleration curve) to the wheel H-bridges.
+
+B. Camera Pan/Tilt Axis Routing (Servo Flow):
+   1. When sliders, joysticks, or arrow keys are adjusted, the dashboard pushes:
+      URL: http://192.168.4.1/servo?pan=[ANGLE]&tilt=[ANGLE]
+   2. The ESP32 Web Server intercepts this route and controls the servos directly 
+      using native LEDC hardware PWM channels (GPIO 13 for Pan / GPIO 15 for Tilt) 
+      without overloading the Pico 2 W.
+
+C. Environmental & Gas Telemetry Path (Telemetry Flow):
+   1. The Pico 2 W continually samples onboard sensors (DHT temperature/humidity, 
+      MQ-9 Carbon Monoxide gas, MQ-135 Air Quality gas, Ultrasonic distance, GPS coordinates).
+   2. The Pico formats this packet as a single comma-separated text string and transmits 
+      it across the hardware Serial link to the ESP32.
+   3. The ESP32 reads the serial buffer under a mutex thread lock to ensure payload integrity.
+   4. The client dashboard fetches this payload every 500ms:
+      URL: http://192.168.4.1/telemetry
+   5. The ESP32 serves the cached data as a clean JSON payload, which the JavaScript 
+      parses to update UI gauges, values, and coordinates.
+
+---------------------------------------------------------------------------------
+5. Field Deployment & Operation Instructions
+---------------------------------------------------------------------------------
+
+Step 1: Power On the Robot
+- Power the UGV. Verify that the ESP32-CAM and Pico 2 W boot successfully and that 
+  the camera servos run their initial calibration sweep (auto-centering to 90°/75°).
+
+Step 2: Connect to the Access Point
+- Open your client device (MacBook or iPhone) Wi-Fi settings.
+- Select the Access Point SSID: ARES-CAMERA.
+- Enter the default WPA2 password: ARES2026.
+- The client device will automatically be assigned an IP address (typically 192.168.4.2).
+
+Step 3: Boot the Local Dashboard Server
+- To load modular HTML, CSS, and JS components without encountering browser security blocks 
+  (CORS Policies), you must host the files using a lightweight local web server.
+- On your MacBook, open Terminal and execute the following:
+  cd "/Users/alial-khazali/Documents/Arduino/CameraWebServer/Interface"
+  python3 -m http.server 8080
+- If port 8080 is blocked by another process, execute on an alternate port:
+  python3 -m http.server 8081
+
+Step 4: Launch the Dashboard
+- On your MacBook, navigate to:
+  http://localhost:8080/Test_interface.html
+- On your iPhone (connected to the robot's local AP), navigate to:
+  http://192.168.4.2:8080/Test_interface.html
+
+---------------------------------------------------------------------------------
+6. Troubleshooting & Diagnostics
+---------------------------------------------------------------------------------
+
+- Issue: Browser throws a "404 - File Not Found" error.
+  Cause: Attempting to access the legacy "index.html" URI after it was renamed.
+  Resolution: Verify that you are accessing the updated filename: Test_interface.html.
+
+- Issue: Dashboard freezes or takes minutes to load on mobile devices.
+  Cause: The phone is searching for online CDNs or Google Fonts while connected to the 
+         offline robot AP, causing a browser timeout.
+  Resolution: External Google Fonts imports have been disabled. System font fallbacks 
+              are active in CSS. Ensure you are running the latest codebase files.
+
+- Issue: Python server fails with "Address already in use" error.
+  Cause: Another process or active background server is occupying port 8080.
+  Resolution: Either kill the process using port 8080, or launch on an alternative port 
+              (e.g., `python3 -m http.server 8081`).
+=================================================================================

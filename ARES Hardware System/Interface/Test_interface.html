@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARES Advanced Control & Telemetry Dashboard</title>
+    
+    <!-- Google Fonts (Commented out to ensure 100% offline functionality when connected to Robot AP) -->
+    <!--
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    -->
+    
+    <link rel="stylesheet" href="Test_interface.css">
+</head>
+
+<body>
+    <!-- Hidden canvas for capturing and recording camera stream -->
+    <canvas id="hiddenCanvas" width="640" height="480" style="display: none;"></canvas>
+
+    <div class="container">
+        <header>
+            <h1>INTELLIGENT WIRELESS RESCUE SYSTEM — <span class="brand-ares">ARES</span> <span class="brand-hub">OPERATIONS HUB</span></h1>
+            <p>Interactive Central Control & Real-time Telemetry Dashboard (MacBook ↔ ESP32 CAM ↔ Pico 2 W)</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- Left: Video Stream -->
+            <div class="video-panel">
+                <div class="panel-header">
+                    <span class="panel-title">🎥 ROBOT LIVE VIDEO FEED</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span id="cam-status-label" style="font-size: 0.8rem; color: var(--text-muted);">WAITING FOR SIGNAL</span>
+                        <span id="cam-status-dot" class="status-dot"></span>
+                    </div>
+                </div>
+                <div class="stream-container">
+                    <img src="" class="stream-img" alt="Connecting to live stream channel..." crossorigin="anonymous" id="robotStream">
+                </div>
+            </div>
+
+            <!-- Right: Telemetry and Controls -->
+            <div class="side-panel">
+                <!-- Control Mode Settings -->
+                <div class="card" style="border-color: rgba(168, 85, 247, 0.3);">
+                    <span class="card-title" style="color: #c084fc;">🎮 CONTROL MODE SETTINGS</span>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <button id="deviceComputerBtn" class="btn btn-primary" style="flex: 1; background: var(--primary); border-color: var(--primary); color: #080c18;">
+                            💻 COMPUTER (KEYBOARD)
+                        </button>
+                        <button id="deviceMobileBtn" class="btn" style="flex: 1;">
+                            📱 MOBILE (TOUCH)
+                        </button>
+                    </div>
+                    <div id="mobileControlTypeRow" style="display: none; flex-direction: column; gap: 5px; margin-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 10px;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">Select Touch Control Interface:</span>
+                        <div style="display: flex; gap: 10px;">
+                            <button id="ctrlDpadBtn" class="btn btn-primary" style="flex: 1; font-size: 0.8rem; background: var(--primary); border-color: var(--primary); color: #080c18;">
+                                🕹️ D-PAD BUTTONS
+                            </button>
+                            <button id="ctrlJoystickBtn" class="btn" style="flex: 1; font-size: 0.8rem;">
+                                🕹️ ANALOG JOYSTICK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Environmental & Gas Sensors -->
+                <div class="card">
+                    <span class="card-title">📡 ENVIRONMENTAL & GAS TELEMETRY ARRAY</span>
+                    <div class="grid-2col">
+                        <div class="telemetry-card success">
+                            <span class="telemetry-label">Temperature</span>
+                            <span class="telemetry-value" id="val-temp">-- °C</span>
+                        </div>
+                        <div class="telemetry-card success">
+                            <span class="telemetry-label">Humidity</span>
+                            <span class="telemetry-value" id="val-hum">-- %</span>
+                        </div>
+                        <div class="telemetry-card warning">
+                            <span class="telemetry-label">MQ-9 Gas (CO / LPG)</span>
+                            <span class="telemetry-value" id="val-mq9">-- ppm</span>
+                        </div>
+                        <div class="telemetry-card warning">
+                            <span class="telemetry-label">MQ-135 Gas (Air Quality)</span>
+                            <span class="telemetry-value" id="val-mq135">-- ppm</span>
+                        </div>
+                        <div class="telemetry-card danger" style="grid-column: span 2;">
+                            <span class="telemetry-label">Obstacle Distance (Ultrasonic)</span>
+                            <span class="telemetry-value" id="val-ultra">-- cm</span>
+                        </div>
+                        <div class="telemetry-card" style="grid-column: span 2;">
+                            <span class="telemetry-label">Real-time GPS Location</span>
+                            <span class="telemetry-value" id="val-gps" style="font-size: 0.95rem; color: var(--primary);">Searching for satellites...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tactical LED Flashlight -->
+                <div class="card" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <span class="card-title" style="color: var(--warning);">💡 TACTICAL FRONT LED FLASHLIGHT</span>
+                    <div class="control-row">
+                        <button id="toggleLightBtn" class="btn">
+                            Toggle Emergency Light (OFF)
+                        </button>
+                        <div class="slider-container">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.85rem;">
+                                <span style="color: var(--text-muted);">Brightness Level:</span>
+                                <span id="light-val" style="color: var(--warning); font-weight: bold;">0</span>
+                            </div>
+                            <input type="range" id="lightSlider" min="0" max="255" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camera Pan/Tilt Servos -->
+                <div class="card" style="border-color: rgba(99, 102, 241, 0.3);">
+                    <span class="card-title" style="color: var(--primary);">🎥 CAMERA PAN/TILT SERVOS</span>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <!-- Horizontal Pan -->
+                        <div class="slider-container" style="width: 100%;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.85rem;">
+                                <span style="color: var(--text-muted);">Horizontal Axis (Pan):</span>
+                                <span id="pan-val" style="color: var(--primary); font-weight: bold;">90°</span>
+                            </div>
+                            <input type="range" id="panSlider" min="0" max="180" value="90">
+                        </div>
+
+                        <!-- Vertical Tilt -->
+                        <div class="slider-container" style="width: 100%;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.85rem;">
+                                <span style="color: var(--text-muted);">Vertical Axis (Tilt):</span>
+                                <span id="tilt-val" style="color: var(--primary); font-weight: bold;">30°</span>
+                            </div>
+                            <input type="range" id="tiltSlider" min="0" max="90" value="30">
+                        </div>
+
+                        <!-- Center Button -->
+                        <button id="centerServoBtn" class="btn" style="background: rgba(99, 102, 241, 0.2); border-color: var(--primary); color: #fff;">
+                            🔄 Center Camera (90° / 30°)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video Stream Recording -->
+                <div class="card" style="border-color: rgba(244, 63, 94, 0.3);">
+                    <span class="card-title" style="color: var(--danger);">🎥 STREAM RECORDING & ARCHIVING</span>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <button id="startRecordBtn" class="btn btn-danger" style="flex: 1;">
+                            🔴 Record Video
+                        </button>
+                        <button id="stopRecordBtn" class="btn" style="flex: 1;" disabled>
+                            ⏹️ Stop & Save
+                        </button>
+                    </div>
+                    <div id="recordStatus" style="text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+                        Status: Ready to Record
+                    </div>
+                </div>
+
+                <!-- Movement & Direct Drive Status -->
+                <div class="card" id="computerKeyboardCard">
+                    <span class="card-title">🕹️ MOVEMENT & DIRECT DRIVE STATUS</span>
+                    <div class="keyboard-visualizer">
+                        <div></div>
+                        <div id="key-w" class="key-btn">W</div>
+                        <div></div>
+                        <div id="key-a" class="key-btn">A</div>
+                        <div id="key-s" class="key-btn">S</div>
+                        <div id="key-d" class="key-btn">D</div>
+                    </div>
+                    <div id="key-space" class="space-btn">Space (Emergency Stop)</div>
+                    <div class="cmd-status">Robot Motion Status: <span id="current-cmd">STANDBY / STOP</span></div>
+                </div>
+
+                <!-- Mobile Interfaces -->
+                <div id="mobileControlsContainer" style="display: none; flex-direction: column; gap: 15px;">
+                    <!-- 1. D-Pad Buttons -->
+                    <div id="dpadInterface" style="display: none; flex-direction: column; gap: 20px;">
+                        <!-- Robot D-Pad -->
+                        <div class="card" style="border-color: rgba(99, 102, 241, 0.3); text-align: center;">
+                            <span class="card-title" style="color: var(--primary);">🕹️ ROBOT MOVEMENT CONTROLS</span>
+                            <div class="dpad-container">
+                                <button class="dpad-btn up" id="dpad-robot-up">▲</button>
+                                <button class="dpad-btn left" id="dpad-robot-left">◀</button>
+                                <button class="dpad-btn right" id="dpad-robot-right">▶</button>
+                                <button class="dpad-btn down" id="dpad-robot-down">▼</button>
+                                <div class="dpad-center" id="dpad-robot-stop">⏹️</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Camera D-Pad -->
+                        <div class="card" style="border-color: rgba(245, 158, 11, 0.3); text-align: center;">
+                            <span class="card-title" style="color: var(--warning);">🎥 CAMERA PAN/TILT CONTROLS</span>
+                            <div class="dpad-container">
+                                <button class="dpad-btn up" id="dpad-cam-up">▲</button>
+                                <button class="dpad-btn left" id="dpad-cam-left">◀</button>
+                                <button class="dpad-btn right" id="dpad-cam-right">▶</button>
+                                <button class="dpad-btn down" id="dpad-cam-down">▼</button>
+                                <div class="dpad-center" id="dpad-cam-center">🔄</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Analog Joysticks -->
+                    <div id="joystickInterface" style="display: none; justify-content: space-around; align-items: center; gap: 10px; margin-top: 10px;">
+                        <!-- Drive Joystick -->
+                        <div class="card" style="border-color: rgba(99, 102, 241, 0.3); flex: 1; display: flex; flex-direction: column; align-items: center; padding: 15px 10px;">
+                            <span class="card-title" style="color: var(--primary); font-size: 0.85rem; margin-bottom: 10px;">🕹️ DRIVE CONTROLS</span>
+                            <div class="joystick-base" id="joy-robot-base">
+                                <div class="joystick-knob" id="joy-robot-knob"></div>
+                            </div>
+                        </div>
+
+                        <!-- Camera Joystick -->
+                        <div class="card" style="border-color: rgba(245, 158, 11, 0.3); flex: 1; display: flex; flex-direction: column; align-items: center; padding: 15px 10px;">
+                            <span class="card-title" style="color: var(--warning); font-size: 0.85rem; margin-bottom: 10px;">🎥 CAMERA CONTROLS</span>
+                            <div class="joystick-base" id="joy-cam-base" style="border-color: rgba(245, 158, 11, 0.25);">
+                                <div class="joystick-knob" id="joy-cam-knob" style="background: linear-gradient(135deg, var(--warning), #ea580c); box-shadow: 0 0 15px var(--warning-glow);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Test_interface.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="dark bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-slate-950">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARES | Planned Route Management</title>
+    <script src="/static/js/tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#05070c',
+                            card: 'rgba(10, 15, 30, 0.75)',
+                            border: 'rgba(16, 185, 129, 0.15)',
+                            accent: '#10b981',
+                            alert: '#f43f5e',
+                            warn: '#f59e0b',
+                            blue: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Orbitron', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="/static/css/fonts_inter_orbitron.css" rel="stylesheet">
+    <style>
+        .glass-panel {
+            background: rgba(8, 12, 24, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glow-green {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+    </style>
+</head>
+
+<body
+    class="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center p-6 relative overflow-x-hidden font-sans">
+
+    <!-- Background grid elements -->
+    <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.06),transparent_50%)] pointer-events-none">
+    </div>
+
+    <header class="w-full max-w-5xl flex justify-between items-center mb-8 pb-4 border-b border-white/5 select-none">
+        <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]"></span>
+            <div>
+                <h1 class="font-hud font-black text-lg tracking-widest text-slate-100">ARES TACTICAL CONTROL STUDIO</h1>
+                <p class="text-[9px] font-hud tracking-widest text-slate-400">UGV PLANNED PATH BUILDER v2.5</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="cancelActiveRoute()"
+                class="px-4 py-2 bg-rose-950/80 border border-rose-500/50 hover:border-rose-500 text-xs font-hud tracking-wider rounded text-rose-300 hover:text-rose-100 transition shadow-[0_0_12px_rgba(244,63,94,0.3)] animate-pulse font-bold">
+                🛑 CANCEL ROUTE (إلغاء وإيقاف المسار)
+            </button>
+            <a href="/dashboard"
+                class="px-4 py-2 bg-slate-900 border border-white/10 hover:border-emerald-500/30 text-xs font-hud tracking-wider rounded text-slate-350 hover:text-emerald-400 transition shadow-[0_0_10px_rgba(0,0,0,0.5)]">
+                ← BACK TO DASHBOARD
+            </a>
+        </div>
+    </header>
+
+    <main class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Left: Create Planned Route -->
+        <section class="glass-panel rounded-lg p-6 flex flex-col gap-5 border border-emerald-500/10 glow-green">
+            <h2
+                class="font-hud font-bold text-sm tracking-wider text-emerald-400 uppercase border-b border-white/5 pb-2">
+                Create New Route</h2>
+
+            <div class="flex flex-col gap-1.5">
+                <label class="text-[10px] font-hud text-slate-400 uppercase tracking-widest">Route Name</label>
+                <input type="text" id="route-name" placeholder="e.g. Sector-4 Search Grid"
+                    class="bg-slate-950 border border-white/10 rounded px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-emerald-500/50 font-mono">
+            </div>
+
+            <div class="bg-emerald-500/5 border border-emerald-500/20 rounded p-2.5 text-[10px] font-mono text-emerald-400 flex items-center justify-between">
+                <span>⏱️ RATE: 1 Meter = 1 Second</span>
+                <span>🔄 TURNS: 0.5 Seconds</span>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <div class="flex justify-between items-center border-b border-white/5 pb-1">
+                    <span class="text-[10px] font-hud text-slate-400 uppercase tracking-widest">Route Steps</span>
+                    <button onclick="addRouteStep()"
+                        class="text-[9px] font-hud bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/30 px-2 py-1 rounded transition">+
+                        Add Step</button>
+                </div>
+
+                <div id="steps-container" class="flex flex-col gap-2 max-h-[250px] overflow-y-auto pr-1">
+                    <!-- Dynamic steps inserted here -->
+                </div>
+            </div>
+
+            <button onclick="saveRoute()"
+                class="w-full mt-2 py-2.5 bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border border-emerald-500/30 font-hud text-xs tracking-wider rounded font-bold shadow-[0_0_12px_rgba(16,185,129,0.15)] transition-all uppercase">
+                Save Planned Path
+            </button>
+        </section>
+
+        <!-- Right: Saved Routes List -->
+        <section class="glass-panel rounded-lg p-6 flex flex-col gap-5 border border-white/5">
+            <h2
+                class="font-hud font-bold text-sm tracking-wider text-slate-350 dark:text-slate-300 uppercase border-b border-white/5 pb-2">
+                Saved Patrol Routes</h2>
+
+            <div id="saved-routes-list" class="flex flex-col gap-3 max-h-[420px] overflow-y-auto pr-1">
+                <div class="text-center py-8 text-xs text-slate-500 font-mono">Loading saved routes from system
+                    database...</div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Init dynamic builder with one default step
+        document.addEventListener('DOMContentLoaded', () => {
+            addRouteStep();
+            loadSavedRoutes();
+        });
+
+        function addRouteStep() {
+            const container = document.getElementById('steps-container');
+            const stepIndex = container.children.length + 1;
+
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'flex items-center gap-2 bg-slate-900/50 p-2.5 rounded border border-white/5 font-mono text-xs';
+            stepDiv.innerHTML = `
+                <span class="text-slate-500 text-[10px] min-w-[20px] font-hud">#${stepIndex}</span>
+                <select class="step-direction bg-slate-950 border border-white/10 rounded px-2 py-1 text-slate-200 focus:outline-none focus:border-emerald-500/40 text-[11px] min-w-[110px]">
+                    <option value="FORWARD">FORWARD </option>
+                    <option value="BACKWARD">BACKWARD </option>
+                    <option value="LEFT">TURN LEFT </option>
+                    <option value="RIGHT">TURN RIGHT </option>
+                </select>
+                <input type="number" class="step-val bg-slate-950 border border-white/10 rounded px-2 py-1 text-slate-200 focus:outline-none focus:border-emerald-500/40 w-20 text-center" value="5" min="1">
+                <span class="text-[10px] text-slate-400 font-hud uppercase min-w-[55px]" id="unit-lbl-${stepIndex}">m (5s)</span>
+                <button onclick="removeStep(this)" class="text-rose-400 hover:text-rose-300 px-1 ml-auto font-hud">✕</button>
+            `;
+
+            container.appendChild(stepDiv);
+
+            const selectEl = stepDiv.querySelector('.step-direction');
+            const valInput = stepDiv.querySelector('.step-val');
+            const unitLabel = stepDiv.querySelector(`#unit-lbl-${stepIndex}`);
+
+            const updateUnitLabel = () => {
+                const dir = selectEl.value;
+                const dist = parseFloat(valInput.value) || 0;
+                if (dir === 'LEFT' || dir === 'RIGHT') {
+                    unitLabel.textContent = '0.5s turn';
+                } else {
+                    unitLabel.textContent = `m (${dist}s)`;
+                }
+            };
+
+            selectEl.addEventListener('change', updateUnitLabel);
+            valInput.addEventListener('input', updateUnitLabel);
+        }
+
+        function removeStep(btn) {
+            const container = document.getElementById('steps-container');
+            if (container.children.length > 1) {
+                btn.parentElement.remove();
+                // Re-index labels
+                Array.from(container.children).forEach((child, index) => {
+                    child.querySelector('.text-slate-500').textContent = `#${index + 1}`;
+                });
+            }
+        }
+
+        async function saveRoute() {
+            const name = document.getElementById('route-name').value.trim();
+            if (!name) {
+                alert('Please enter a route name.');
+                return;
+            }
+
+            const stepDivs = document.querySelectorAll('#steps-container > div');
+            const steps = [];
+
+            stepDivs.forEach(div => {
+                const direction = div.querySelector('.step-direction').value;
+                const distance = parseFloat(div.querySelector('.step-val').value) || 0;
+                steps.push({ direction, distance });
+            });
+
+            try {
+                const response = await fetch('/api/ugv/routes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, steps })
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || 'Failed to save route');
+
+                // Clear input
+                document.getElementById('route-name').value = '';
+                document.getElementById('steps-container').innerHTML = '';
+                addRouteStep();
+
+                // Refresh list
+                loadSavedRoutes();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function loadSavedRoutes() {
+            const container = document.getElementById('saved-routes-list');
+            try {
+                const response = await fetch('/api/ugv/routes');
+                const routes = await response.json();
+                if (!response.ok) throw new Error(routes.error || 'Failed to load routes');
+
+                if (routes.length === 0) {
+                    container.innerHTML = `<div class="text-center py-8 text-xs text-slate-500 font-mono">No custom routes found. Design and save one on the left panel!</div>`;
+                    return;
+                }
+
+                container.innerHTML = routes.map(route => `
+                    <div class="bg-slate-900/50 p-4 border border-white/5 rounded flex flex-col gap-3 font-mono text-xs">
+                        <div class="flex justify-between items-center border-b border-white/5 pb-1.5">
+                            <span class="text-slate-200 font-bold font-hud uppercase tracking-wider">${route.name}</span>
+                            <span class="text-[9px] text-slate-500">${new Date(route.created_at).toLocaleString()}</span>
+                        </div>
+                        <div class="text-[10px] text-slate-400 flex flex-wrap gap-1.5 max-h-[50px] overflow-y-auto pr-1">
+                            ${route.steps.map((s, idx) => `
+                                <span class="bg-slate-950 px-2 py-0.5 rounded border border-white/5">${idx + 1}. ${s.direction} ${s.direction === 'LEFT' || s.direction === 'RIGHT' ? '(0.5s turn)' : `${s.distance}m (${s.distance}s)`}</span>
+                            `).join('')}
+                        </div>
+                        <div class="flex gap-3 justify-end border-t border-white/5 pt-2.5 mt-1 select-none">
+                            <button onclick="deleteRoute(${route.id})" class="px-2.5 py-1.5 bg-rose-950/40 text-rose-400 hover:bg-rose-950/80 border border-rose-500/20 hover:border-rose-500/50 font-hud text-[10px] tracking-wider rounded font-bold transition">
+                                DELETE
+                            </button>
+                            <button onclick="launchRoute(${route.id})" class="px-5 py-1.5 bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border border-emerald-500/30 font-hud text-[10px] tracking-wider rounded font-bold shadow-[0_0_8px_rgba(16,185,129,0.1)] hover:shadow-[0_0_12px_rgba(16,185,129,0.2)] transition">
+                                Launch (انطلاق)
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                container.innerHTML = `<div class="text-center py-8 text-xs text-rose-400 font-mono">Error: ${err.message}</div>`;
+            }
+        }
+
+        async function launchRoute(routeId) {
+            try {
+                const response = await fetch('/api/ugv/routes/launch', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ route_id: routeId })
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || 'Launch failed');
+
+                // Redirect back to dashboard to monitor path execution
+                window.location.href = '/dashboard?mode=realtime';
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function deleteRoute(routeId) {
+            if (!confirm('Are you sure you want to delete this route?')) return;
+            try {
+                const response = await fetch(`/api/ugv/routes/${routeId}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || 'Delete failed');
+                loadSavedRoutes();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function cancelActiveRoute() {
+            try {
+                const response = await fetch('/api/ugv/routes/cancel', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || 'Cancel failed');
+                alert('Route cancelled and UGV stopped successfully! (تم إلغاء المسار وإيقاف الروبوت بنجاح)');
+                loadSavedRoutes();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

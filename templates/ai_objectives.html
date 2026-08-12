@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="dark bg-slate-950 text-slate-100 selection:bg-indigo-500 selection:text-slate-950">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARES | AI Objectives Controller</title>
+    <script src="/static/js/tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#05070c',
+                            card: 'rgba(10, 15, 30, 0.75)',
+                            border: 'rgba(99, 102, 241, 0.15)',
+                            accent: '#6366f1',
+                            alert: '#f43f5e',
+                            warn: '#f59e0b',
+                            blue: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        hud: ['Orbitron', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="/static/css/fonts_inter_orbitron.css" rel="stylesheet">
+    <style>
+        .glass-panel {
+            background: rgba(8, 12, 24, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glow-indigo {
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .objective-card {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        .objective-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(99, 102, 241, 0.03);
+        }
+
+        .objective-card.selected {
+            border-color: rgba(99, 102, 241, 0.6) !important;
+            background: rgba(99, 102, 241, 0.1) !important;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
+        }
+    </style>
+</head>
+
+<body
+    class="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center p-6 relative overflow-x-hidden font-sans">
+
+    <!-- Background grid elements -->
+    <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.06),transparent_50%)] pointer-events-none">
+    </div>
+
+    <header class="w-full max-w-4xl flex justify-between items-center mb-8 pb-4 border-b border-white/5 select-none">
+        <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse shadow-[0_0_8px_#6366f1]"></span>
+            <div>
+                <h1 class="font-hud font-black text-lg tracking-widest text-slate-100">ARES TACTICAL CONTROL STUDIO</h1>
+                <p class="text-[9px] font-hud tracking-widest text-slate-400">AI AUTONOMOUS OBJECTIVES CONTROLLER v2.5
+                </p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="cancelAISearch()"
+                class="px-4 py-2 bg-rose-950/80 border border-rose-500/50 hover:border-rose-500 text-xs font-hud tracking-wider rounded text-rose-300 hover:text-rose-100 transition shadow-[0_0_12px_rgba(244,63,94,0.3)] animate-pulse font-bold">
+                🛑 CANCEL SEARCH (إيقاف وإلغاء البحث)
+            </button>
+            <a href="/dashboard"
+                class="px-4 py-2 bg-slate-900 border border-white/10 hover:border-indigo-500/30 text-xs font-hud tracking-wider rounded text-slate-350 hover:text-indigo-400 transition shadow-[0_0_10px_rgba(0,0,0,0.5)]">
+                ← BACK TO DASHBOARD
+            </a>
+        </div>
+    </header>
+
+    <main class="w-full max-w-4xl flex flex-col gap-6">
+
+        <div class="glass-panel rounded-lg p-6 flex flex-col gap-5 border border-indigo-500/10 glow-indigo">
+            <div class="border-b border-white/5 pb-2">
+                <h2 class="font-hud font-bold text-sm tracking-wider text-indigo-400 uppercase">Select AI Mission
+                    Objective</h2>
+                <p class="text-[10px] text-slate-500 font-mono mt-0.5">The UGV will autonomously drive forward 2m, scan camera left/right, avoid obstacles (< 25cm), and stop upon AI target detection.</p>
+            </div>
+
+            <!-- Objectives Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                <div onclick="selectObjective('FIND_HUMAN')" id="card-FIND_HUMAN"
+                    class="objective-card bg-slate-900/40 p-4 rounded border border-white/5 flex flex-col gap-1.5">
+                    <span class="font-hud font-bold text-xs text-slate-200"> Search Human </span>
+                    <p class="text-[10px] text-slate-400 font-mono leading-relaxed">Runs YOLOv8 model scanning to locate
+                        human structures and victims in the sector.</p>
+                </div>
+
+                <div onclick="selectObjective('FIND_FIRE')" id="card-FIND_FIRE"
+                    class="objective-card bg-slate-900/40 p-4 rounded border border-white/5 flex flex-col gap-1.5">
+                    <span class="font-hud font-bold text-xs text-slate-200"> Search Fire/Smoke </span>
+                    <p class="text-[10px] text-slate-400 font-mono leading-relaxed">Leverages specialized computer
+                        vision classifier weights to seek out flame anomalies.</p>
+                </div>
+
+                <div onclick="selectObjective('FIND_GAS')" id="card-FIND_GAS"
+                    class="objective-card bg-slate-900/40 p-4 rounded border border-white/5 flex flex-col gap-1.5">
+                    <span class="font-hud font-bold text-xs text-slate-200"> Search Toxic Gas </span>
+                    <p class="text-[10px] text-slate-400 font-mono leading-relaxed">Monitors MQ-9 and MQ-135 sensors
+                        until toxic gas presence or LPG leak is localized.</p>
+                </div>
+
+                <div onclick="selectObjective('FIND_TEMP')" id="card-FIND_TEMP"
+                    class="objective-card bg-slate-900/40 p-4 rounded border border-white/5 flex flex-col gap-1.5">
+                    <span class="font-hud font-bold text-xs text-slate-200"> Search High Temp </span>
+                    <p class="text-[10px] text-slate-400 font-mono leading-relaxed">Performs sweeps mapping DHT22
+                        readings until temperature threshold crosses 50°C.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3 mt-3">
+                <button onclick="launchObjective()"
+                    class="flex-1 py-3 bg-indigo-500/20 text-indigo-400 hover:bg-indigo-500/30 border border-indigo-500/30 font-hud text-xs tracking-wider rounded font-bold shadow-[0_0_12px_rgba(99,102,241,0.15)] hover:shadow-[0_0_18px_rgba(99,102,241,0.25)] transition-all uppercase">
+                    Launch AI Search
+                </button>
+                <button onclick="cancelAISearch()"
+                    class="px-6 py-3 bg-rose-950/80 text-rose-300 hover:bg-rose-900 border border-rose-500/50 font-hud text-xs tracking-wider rounded font-bold transition-all uppercase">
+                    🛑 CANCEL SEARCH
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        let selectedObjective = null;
+
+        function selectObjective(objective) {
+            // Remove previous selections
+            const cards = document.querySelectorAll('.objective-card');
+            cards.forEach(c => c.classList.remove('selected'));
+
+            // Set new selection
+            selectedObjective = objective;
+            const selectedCard = document.getElementById(`card-${objective}`);
+            if (selectedCard) {
+                selectedCard.classList.add('selected');
+            }
+        }
+
+        async function launchObjective() {
+            if (!selectedObjective) {
+                alert('Please select an AI objective first.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/ugv/ai/launch', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ objective: selectedObjective })
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || 'Launch failed');
+
+                // Redirect back to dashboard to observe UGV seek targets
+                window.location.href = '/dashboard?mode=realtime';
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function cancelAISearch() {
+            try {
+                const response = await fetch('/api/ugv/ai/cancel', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || 'Cancel failed');
+                alert('AI Search cancelled and UGV stopped successfully! (تم إلغاء البحث وإيقاف الروبوت بنجاح)');
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

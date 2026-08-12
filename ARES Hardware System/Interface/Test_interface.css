@@ -1,0 +1,485 @@
+:root {
+    --bg-color: #080c18;
+    --panel-bg: rgba(8, 12, 24, 0.85);
+    --border-color: rgba(56, 189, 248, 0.15);
+    --border-focus: rgba(16, 185, 129, 0.45);
+    --primary: #10b981; /* Emerald Green (Normal scanning state) */
+    --primary-glow: rgba(16, 185, 129, 0.35);
+    --success: #10b981;
+    --success-glow: rgba(16, 185, 129, 0.25);
+    --warning: #f59e0b; /* Amber */
+    --warning-glow: rgba(245, 158, 11, 0.35);
+    --danger: #f43f5e; /* Rose / Red */
+    --danger-glow: rgba(244, 63, 94, 0.45);
+    --crimson: #ef4448;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+* {
+    box-sizing: border-box;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    background: radial-gradient(circle at top, #0f172a 0%, var(--bg-color) 100%);
+    color: var(--text-main);
+    font-family: 'Inter', 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ARES Brand Typography & Headers */
+.brand-ares {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(248, 250, 252, 0.2);
+}
+
+.brand-hub {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 300;
+    color: #10b981; /* Emerald Green Accent */
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 1px;
+    text-shadow: 0 0 40px rgba(16, 185, 129, 0.15);
+}
+
+header p {
+    color: var(--text-muted);
+    margin: 10px 0 0 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.container {
+    max-width: 1450px;
+    margin: 0 auto;
+}
+
+/* Main Grid Layout */
+.main-layout {
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr;
+    gap: 24px;
+}
+
+@media (max-width: 1280px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Glassmorphism Tactical Panels */
+.video-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.video-panel:hover {
+    border-color: var(--border-focus);
+    box-shadow: 0 20px 50px rgba(16, 185, 129, 0.08);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 12px;
+}
+
+.panel-title {
+    font-family: 'Orbitron', 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--danger);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--danger);
+    display: inline-block;
+}
+
+.status-dot.active {
+    background-color: var(--success);
+    box-shadow: 0 0 10px var(--success);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
+.stream-container {
+    width: 100%;
+    position: relative;
+    background: #020205;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stream-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Side Layout & Card Components */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
+}
+
+.card:hover {
+    border-color: rgba(56, 189, 248, 0.35);
+}
+
+.card-title {
+    font-family: 'Orbitron', 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* Telemetry Grid Sizing & SCANNABILITY Hardening */
+.grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.telemetry-card {
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.telemetry-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--primary);
+}
+
+.telemetry-card.warning::before { background: var(--warning); }
+.telemetry-card.danger::before { background: var(--danger); }
+.telemetry-card.success::before { background: var(--success); }
+
+/* Minimum 12px font size limit for scannability from distance */
+.telemetry-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.telemetry-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    font-family: 'Orbitron', 'Rajdhani', Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+/* Control Rows & Button Sizing */
+.control-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn {
+    width: 100%;
+    background: linear-gradient(135deg, #131d31 0%, #090e18 100%);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Orbitron', 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+    color: #080c18;
+}
+
+.btn-active {
+    background: var(--warning) !important;
+    border-color: var(--warning) !important;
+    color: #080c18 !important;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+.btn-danger {
+    background: rgba(244, 63, 94, 0.12) !important;
+    border: 1px solid var(--danger) !important;
+    color: var(--danger) !important;
+}
+
+.btn-danger:hover {
+    background: var(--danger) !important;
+    color: #fff !important;
+    box-shadow: 0 0 15px var(--danger-glow);
+}
+
+.slider-container {
+    width: 100%;
+    margin-top: 10px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #111827;
+    border-radius: 3px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* Keyboard HUD Visualizer */
+.keyboard-visualizer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 170px;
+    margin: 15px auto;
+}
+
+.key-btn {
+    background: #0b0f19;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    font-weight: 700;
+    font-family: 'Orbitron', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.key-btn.active {
+    background: var(--primary);
+    color: #080c18;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+    transform: scale(0.95);
+}
+
+.space-btn {
+    width: 100%;
+    max-width: 170px;
+    margin: 0 auto;
+    background: #0b0f19;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'Orbitron', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+}
+
+.space-btn.active {
+    background: var(--danger);
+    color: white;
+    border-color: var(--danger);
+    box-shadow: 0 0 15px var(--danger-glow);
+}
+
+.cmd-status {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.cmd-status span {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Touch Control Hardening: Large D-Pad targets and proper spacing (WCAG 48px+ standard) */
+.dpad-container {
+    position: relative;
+    width: 180px; /* Upgraded from 140px to house larger buttons safely */
+    height: 180px;
+    margin: 15px auto;
+}
+
+.dpad-btn {
+    position: absolute;
+    width: 52px; /* Upgraded from 44px for safe rugged vehicular handling */
+    height: 52px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: white;
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    touch-action: none;
+    transition: all 0.1s ease;
+}
+
+.dpad-btn:active {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 12px var(--primary-glow);
+    transform: scale(0.92);
+}
+
+/* Grid coordinate offsets for 52px buttons inside 180px container (64px offset) */
+.dpad-btn.up { top: 0; left: 64px; }
+.dpad-btn.down { bottom: 0; left: 64px; }
+.dpad-btn.left { top: 64px; left: 0; }
+.dpad-btn.right { top: 64px; right: 0; }
+
+.dpad-center {
+    position: absolute;
+    top: 64px;
+    left: 64px;
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+    touch-action: none;
+}
+
+/* Custom Cam D-Pad Active Color mapping (Amber/Orange Warning state) */
+#dpadInterface div:nth-child(2) .dpad-btn:active {
+    background: var(--warning);
+    border-color: var(--warning);
+    box-shadow: 0 0 12px var(--warning-glow);
+}
+
+/* Analog Joystick components */
+.joystick-base {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+    touch-action: none;
+}
+
+.joystick-knob {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary), #4f46e5);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--primary-glow);
+    cursor: pointer;
+    touch-action: none;
+}

@@ -1,0 +1,188 @@
+=================================================================================
+          ARES UGV SYSTEM MANUAL - SURVEILLANCE & RESCUE ROBOT ICS
+                     كامل التفاصيل الهندسية والربط الفني للنظام
+=================================================================================
+Project: Autonomous Rescue & Emergency System (ARES)
+Target: Unmanned Ground Vehicle (UGV) Surrounding Components & Logic
+Location: Root Directory (/Users/alial-khazali/Documents/Arduino/CameraWebServer/)
+Document Name: ARES_System_Manual.txt
+Date: 2026-06-25
+=================================================================================
+
+This technical manual serves as the primary system architectural documentation for the
+ARES UGV Robot. It explains each physical component, the internal electrical power and
+logic connections, external control/telemetry pathways, and data flows.
+
+---------------------------------------------------------------------------------
+1. HARDWARE COMPONENT DIRECTORY
+---------------------------------------------------------------------------------
+
+The ARES robot incorporates 28 key hardware components categorized as follows:
+
+[ A. DRIVETRAIN & DYNAMICS ]
+1. First Mecanum Engine  : Front Right wheel. DC motor driving omnidirectional wheel.
+2. Second Mecanum Engine : Rear Right wheel. DC motor driving omnidirectional wheel.
+3. Third Mecanum Engine  : Front Left wheel. DC motor driving omnidirectional wheel.
+4. Fourth Mecanum Engine : Rear Left wheel. DC motor driving omnidirectional wheel.
+   * Mecanum wheels allow omnidirectional sliding, lateral steering, and rotation.
+5. Speed Measuring Encoder Pulse Output 1st : Embedded Hall-Effect wheel encoder (Front Right).
+6. Speed Measuring Encoder Pulse Output 2nd : Embedded Hall-Effect wheel encoder (Rear Right).
+7. Speed Measuring Encoder Pulse Output 3rd : Embedded Hall-Effect wheel encoder (Front Left).
+8. Speed Measuring Encoder Pulse Output 4th : Embedded Hall-Effect wheel encoder (Rear Left).
+   * Encoders emit square-wave pulses to Pico 2 W digital input pins for odometry.
+
+[ B. POWER DISTRIBUTION & BATTERY REGULATION ]
+9. 18650 Battery Holder ABS Case (3-Slot): Houses three 3.7V rechargeable Li-ion batteries.
+10. 3S 25A Li-ion 18650 Battery BMS Protection Board: Monitors cell voltages, prevents
+    overcharge, overdischarge, short-circuits, and balances cells up to 25A maximum load.
+11. Rocker Switch Big: Master switch connecting the BMS output (+) to the main power rail.
+12. Female DC Power Jack Supply Socket (5.5x2.1mm): Charging port connected directly to 
+    BMS battery terminals.
+13. L298N Motor Driver 1st: H-Bridge driving Front Left & Rear Left wheels.
+14. L298N Motor Driver 2nd: H-Bridge driving Front Right & Rear Right wheels.
+15. DC-DC Step Down Power Module LM2596S With Display: Steps down 11.1V-12.6V battery pack 
+    voltage to a stable 5.0V logic supply with integrated input/output voltage display.
+
+[ C. CENTRAL CONTROLLERS & LOGIC ]
+16. Raspberry Pi Pico 2 W: The primary microcontroller. Runs MicroPython (main.py) to manage
+    motor PWM frequency/duty cycles, read encoders, parse GPS, compile sensors, and transmit 
+    telemetry serial packets.
+17. 1CH Relay Module 5V: Safe isolated switch used for high-current payloads.
+18. First Voltage Divider : Resistor network scaling battery pack voltage (12V) to 3.3V for ADC0.
+19. Second Voltage Divider: Resistor network scaling analog sensors outputs (5V) to 3.3V.
+20. Third Voltage Divider : Resistor network scaling additional auxiliary analog telemetry.
+21. IIC I2C Logic Level Converter Module: Bridges 5.0V logic components (Sensors / ESP32-CAM) 
+    with the 3.3V CMOS logic pins of the Raspberry Pi Pico 2 W.
+22. ESP32-CAM: Co-processor. Hosts the local Access Point (AP), HTTP web server, video 
+    streaming server (port 81), and handles direct PWM outputs for camera tilt/pan.
+
+[ D. SENSORS & TACTICAL TELEMETRY ]
+23. Ultrasonic HC-SR04 Sensor: Measures obstacle distance using high frequency sound waves.
+24. Gas Sensor MQ-9: High sensitivity CO (Carbon Monoxide), LPG, and combustible gas sensor.
+25. Gas Sensor MQ-135: General air quality sensor (smoke, benzene, alcohol, NH3).
+26. Two Servo Motors MG996: Heavy-duty metal gear servos for Pan (0-180°) and Tilt (0-90°).
+27. DHT22 Digital Temperature/Humidity Sensor: Tactical weather telemetry.
+28. GPS NEO-8M: Captures precise latitude/longitude coordinate strings via NMEA sentences.
+
+---------------------------------------------------------------------------------
+2. ELECTRICAL POWER SYSTEM SCHEMATIC
+---------------------------------------------------------------------------------
+
+The robot splits power distribution between High-Power Actuators (12V) and Logic (5V/3.3V):
+
+  +------------------+     +-------------------+
+  | 3x 18650 Cells   |===> |   3S Li-ion BMS   |
+  | (Battery Holder) |     |  Protection Board |
+  +------------------+     +-------------------+
+                                 ||
+                                 ||
+                          [Rocker Switch]
+                                 ||
+            ================= MAIN POWER RAIL (11.1V - 12.6V) =================
+            ||                                               ||
+            v                                                v
+  +--------------------+                           +--------------------+
+  |  L298N Driver #1   |                           |  LM2596S Step-Down |
+  | (Left Motors 12V)  |                           |  Module (Display)  |
+  |                    |                           +--------------------+
+  |  L298N Driver #2   |                                     ||
+  | (Right Motors 12V) |                                     v
+  +--------------------+                            5V LOGIC POWER RAIL
+                                                 (Pico 2 W, ESP32-CAM,
+                                                  Servos, 5V Sensors, Relay)
+
+- DC Charging: The Female DC Jack (5.5x2.1mm) is wired to the BMS charging inputs.
+- Voltage Dividers: The Pico 2 W cannot read voltages >3.3V. Three Voltage Dividers scale 
+  down the 12V main power rail and 5V sensor outputs to a safe 0-3.3V scale for the Pico 
+  analog ADC inputs to monitor battery life.
+
+---------------------------------------------------------------------------------
+3. LOGIC & DATA COMMUNICATION ARCHITECTURE
+---------------------------------------------------------------------------------
+
+Because the Pico 2 W operates on 3.3V logic and the ESP32-CAM/Sensors operate on 5.0V logic, 
+the Logic Level Converter acts as the translator.
+
+                                  3.3V LOGIC SIDE      5.0V LOGIC SIDE
+                                +---------------------------------------+
+  Pico 2 W GP0 (TXD) ---------> | [LV1] Logic Level Converter [HV1] | -> | ESP32-CAM RXD
+  Pico 2 W GP1 (RXD) <--------- | [LV2] Logic Level Converter [HV2] | <- | ESP32-CAM TXD (GPIO14)
+                                +---------------------------------------+
+
+- Hardware Serial UART: Configured at 115200 Baud rate.
+- Shared Common Ground: The Pico 2 W GND, ESP32-CAM GND, and Drivetrain GND are tied 
+  together at a single reference point. This prevents voltage float and data corruption.
+
+---------------------------------------------------------------------------------
+4. SENSOR CONNECTIONS
+---------------------------------------------------------------------------------
+
+- GPS NEO-8M: Communicates via UART1 (Pico GP4 RX / GP24 TX). Explicitly mapped to 
+  prevent conflicts.
+- DHT22 Temp/Humidity: Digital Pin GP16 with a pull-up resistor.
+- Ultrasonic HC-SR04: Trigger Pin GP15 (Output), Echo Pin GP14 (Input through level shifter).
+- Gas Sensors (MQ-9 & MQ-135): Analog outputs mapped through Voltage Dividers to ADC pins 
+  (GP26, GP27) on the Pico.
+- Encoders: Four digital input channels reading pulse frequencies on interrupt routines.
+- MG996 Servos: Connected directly to ESP32-CAM (GPIO 13 for Pan / GPIO 15 for Tilt) 
+  to run on 5V logic.
+
+---------------------------------------------------------------------------------
+5. END-TO-END DATA FLOW & COMMUNICATIONS
+---------------------------------------------------------------------------------
+
+ARES separates UGV motion controls and telemetry tracking into two asynchronous channels:
+
+                  =============================================
+                  1. CONTROL INPUT FLOW (MacBook/Phone -> Robot)
+                  =============================================
+                          [MacBook / iPhone Browser]
+                                      ||
+                                 (Local Wi-Fi)
+                                      v
+                             [ESP32-CAM Web Server]
+                          (Intercepts HTTP GET /move)
+                                      ||
+                                 (Serial UART)
+                                      v
+                             [Raspberry Pi Pico 2 W]
+                         (Executes Motor PWM Commands)
+                                      ||
+                               (Voltage Outputs)
+                                      v
+                           [L298N Motor Drivers]
+                                      ||
+                                      v
+                            [4x Mecanum Engines]
+
+                  =============================================
+                  2. TELEMETRY FEEDBACK FLOW (Robot -> MacBook)
+                  =============================================
+                   [Sensors: Gas, GPS, Encoders, DHT22, Batt]
+                                      ||
+                                      v
+                            [Raspberry Pi Pico 2 W]
+                         (Formats telemetry CSV string)
+                                      ||
+                            (Serial UART at 115200)
+                                      v
+                             [ESP32-CAM Web Server]
+                         (Safely caches data under Mutex)
+                                      ||
+                                 (Local Wi-Fi)
+                                      v
+                          [MacBook / iPhone Browser]
+                        (Fetches JSON endpoint every 500ms)
+
+---------------------------------------------------------------------------------
+6. SYSTEM STARTUP PROTOCOL
+---------------------------------------------------------------------------------
+
+1. Master Power: Toggle the Rocker Switch ON. The LM2596S display will light up showing 
+   the battery pack voltage, and the Pico 2 W and ESP32-CAM status LEDs will turn ON.
+2. Servo Calibration: The MG996 camera servos will execute a fast calibration sweep and 
+   auto-center to Pan 90° and Tilt 75°.
+3. Wi-Fi Access: The ESP32-CAM initializes a secure Access Point named "ARES-CAMERA" (WPA2).
+4. Local Host: The client computer connects to "ARES-CAMERA", hosts the modular folder 
+   via `python3 -m http.server 8080`, and opens the dashboard: Test_interface.html.
+=================================================================================
