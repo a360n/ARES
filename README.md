@@ -1,115 +1,162 @@
-# ARES: Autonomous Rescue & Emergency System (UGV Edition)
+<div align="center">
 
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg?style=for-the-badge&logo=python)](https://www.python.org/)
-[![Framework: Flask](https://img.shields.io/badge/Framework-Flask_2.3-emerald.svg?style=for-the-badge&logo=flask)](https://flask.palletsprojects.org/)
-[![AI Vision: YOLOv8](https://img.shields.io/badge/AI_Vision-YOLOv8-orange.svg?style=for-the-badge&logo=ultralytics)](https://docs.ultralytics.com/)
-[![Computer Vision: OpenCV](https://img.shields.io/badge/Computer_Vision-OpenCV_4.8-red.svg?style=for-the-badge&logo=opencv)](https://opencv.org/)
-[![Platform: UGV Ground Vehicle](https://img.shields.io/badge/Platform-UGV_Autonomous_Ground_Vehicle-indigo.svg?style=for-the-badge&logo=robot)](https://github.com/a360n/ARES)
-[![Tests: 22 Passed](https://img.shields.io/badge/Tests-22%20Passed%20OK-success.svg?style=for-the-badge)]()
+# ARES — Autonomous Rescue & Emergency System (UGV Ground Vehicle Operations)
 
-**ARES (Autonomous Rescue & Emergency System)** is a state-of-the-art Unmanned Ground Vehicle (UGV) Mission Control & Telemetry Operations Platform engineered for disaster response, victim localization, toxic plume tracking, and hazard monitoring. 
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Framework-Flask_2.3-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.org/)
+[![YOLOv8](https://img.shields.io/badge/AI_Vision-YOLOv8_Person_%26_Fire-orange?style=for-the-badge&logo=ultralytics&logoColor=white)](https://docs.ultralytics.com/)
+[![OpenCV](https://img.shields.io/badge/Computer_Vision-OpenCV_4.8-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)
+[![Hardware](https://img.shields.io/badge/Hardware-Pico_2_W_%26_ESP32--CAM-red?style=for-the-badge&logo=raspberrypi&logoColor=white)](https://www.raspberrypi.com/)
+[![Tests](https://img.shields.io/badge/Tests-22_Passed_OK-success.svg?style=for-the-badge)](tests/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
-Combining real-time multi-spectral video streams, edge AI vision models (YOLOv8), environmental sensor telemetry, keypress-emulated route navigation, and an autonomous AI search engine, ARES provides emergency operators with total situational awareness and autonomous field exploration capabilities.
+<p align="center">
+  A mission-critical Unmanned Ground Vehicle (UGV) telemetry and autonomous exploration platform engineered for <b>disaster response</b>, <b>victim localization</b>, <b>toxic gas tracking</b>, and <b>thermal hazard monitoring</b> via dual edge microcontrollers and real-time computer vision.
+</p>
 
----
-
-## 🚀 Key System Features
-
-### 🤖 1. Autonomous AI Search Engine (`/ai-objectives`)
-- **Fixed Pattern Search Loop**: Drives 1 second forward (`'w'`), scans camera Left (135°) & Right (45°) for 2 seconds each, turns Right 0.5s (`'d'`), pauses 3 seconds to analyze telemetry, and repeats.
-- **Vision Target Lock**: Leverages YOLOv8 Person & Fire detectors. Immediately halts UGV (`'x'`), centers camera (90°, 30°), and alerts operators upon detecting human victims or flame anomalies.
-- **Environmental Threshold Halts**: Triggers target locks on toxic gas plumes (MQ-9 > 30 PPM / MQ-135 > 300 PPM) or high temperature hotspots (DHT22 ≥ 50°C).
-
-### 🗺️ 2. Keypress-Emulated Route Planner (`/planned-routes`)
-- **Metric-to-Time Translation**: Translates metric distance coordinates directly into hardware motor timings (`1 meter = 1 second` linear movement, `0.5 seconds` turns).
-- **Asynchronous Burst-Stop Transmission**: Dispatches motor commands (`'w'`, `'a'`, `'s'`, `'d'`, `'x'`) directly to hardware over WiFi with double-burst stop signals (`'x'`) to prevent runaway motion on packet drop.
-
-### 🎥 3. Multi-Spectral Vision & Live Telemetry Stream (`/dashboard`)
-- **Spectral Overlays**: Supports RGB, Thermal, Infrared, and Multi-Sensor Fusion rendering modes with live HUD overlays.
-- **Real-Time Feed Default**: Automatically opens dashboard in **LIVE HARDWARE FEED** mode upon launching routes or AI search objectives.
-- **Visual Telemetry Map**: 2D coordinate tracker mapping UGV position, heading yaw, and trail breadcrumbs in real time.
-
-### 🛡️ 4. Enterprise Security & Audit Infrastructure
-- **Role-Based Access Control (RBAC)**: Enforces permission boundaries across Administrator, Operator, and Auditor user roles.
-- **Auditing & Logging**: SQLite mission logging database with PDF/HTML mission summary report generators.
+</div>
 
 ---
 
-## 🛠️ System Architecture
+## Table of Contents
+- [Overview](#overview)
+- [System Architecture](#system-architecture)
+- [Core Engineering Features](#core-engineering-features)
+- [Multi-Tier Hardware Topology](#multi-tier-hardware-topology)
+- [Repository Layout](#repository-layout)
+- [Quick Start & Installation Guide](#quick-start--installation-guide)
+- [API Endpoints Reference](#api-endpoints-reference)
+- [Running Automated Unit Tests](#running-automated-unit-tests)
+- [Author & License](#author--license)
 
+---
+
+## Overview
+
+**ARES (Autonomous Rescue & Emergency System)** is a full-stack cyber-physical platform designed for hazardous search-and-rescue operations. In post-disaster environments where human entry poses lethal risks, ARES deploys an autonomous robotic ground vehicle equipped with edge computer vision models (YOLOv8), environmental telemetry arrays (toxic gases, temperature, humidity), and multi-spectral video fusion to locate survivors and map structural threats.
+
+---
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    subgraph MissionControl["ARES Mission Control Server (macOS / Linux Server)"]
+        FlaskCore["Flask Application Core (app.py)"]
+        YOLOEngine["YOLOv8 AI Inference Engine (Person & Fire Detectors)"]
+        TelemetryEngine["Server-Sent Events (SSE) Stream Engine"]
+        RouteEngine["Autonomous Search & Metric Route Planner"]
+        HUDVisualizer["Multi-Spectral Video HUD Overlay (RGB / Thermal / Fusion)"]
+    end
+
+    subgraph CommLink["Wireless Telemetry Link"]
+        WiFiAP["Dedicated WiFi AP (192.168.4.1 / SSE & HTTP REST)"]
+    end
+
+    subgraph VideoNode["Camera & Telemetry Node (ESP32-CAM)"]
+        ESP32Node["ESP32-CAM C++ Firmware
+(/stream, /move, /servo)"]
+        UARTLink["Hardware UART Serial Bridge"]
+    end
+
+    subgraph MotorSensors["Micro-Controller & Sensor Hub (Raspberry Pi Pico 2 W)"]
+        PicoNode["MicroPython Main Loop (RP2040 / RP2350)"]
+        MotorDrivers["Dual H-Bridge Motor Drivers (Left / Right Tracks)"]
+        GasSensors["Toxic Gas Array (MQ-9 CO / MQ-135 Air Quality)"]
+        EnvSensors["DHT22 (Temperature & Humidity) + Ultrasonic Ranger"]
+    end
+
+    FlaskCore <--> WiFiAP
+    WiFiAP <--> ESP32Node
+    ESP32Node <--> UARTLink
+    UARTLink <--> PicoNode
+    PicoNode --> MotorDrivers
+    GasSensors & EnvSensors --> PicoNode
+    YOLOEngine & TelemetryEngine & RouteEngine --> HUDVisualizer
 ```
-                                  +---------------------------------------+
-                                  |     ARES Mission Control Server       |
-                                  |    (Flask / OpenCV / YOLOv8 / SSE)    |
-                                  +-------------------+-------------------+
-                                                      |
-                                             WiFi Access Point
-                                              (192.168.4.1)
-                                                      |
-                                  +-------------------+-------------------+
-                                  |      ESP32-CAM Video & WiFi Link      |
-                                  |     (HTTP /move, /servo, /stream)     |
-                                  +-------------------+-------------------+
-                                                      |
-                                                 UART Serial
-                                                      |
-                                  +-------------------+-------------------+
-                                  |    Raspberry Pi Pico 2 W Controller   |
-                                  |       (Motor Drivers & Sensors)       |
-                                  +---------+-------------------+---------+
-                                            |                   |
-                         +------------------+--+             +--+------------------+
-                         |  Dual Motor Driver  |             | Sensor Array Grid   |
-                         | (Left/Right Wheels) |             | DHT22 / MQ9 / MQ135 |
-                         +---------------------+             | Ultrasonic / GPS    |
-                                                             +---------------------+
-```
 
 ---
 
-## 📂 Modular Repository Layout
+## Core Engineering Features
+
+### 1. Autonomous AI Search Engine (`/ai-objectives`)
+- **Fixed-Pattern Search Loop:** Executes coordinated movement cycles: advances 1 second forward (`'w'`), scans camera Left (135°) & Right (45°) for 2 seconds each, turns Right 0.5s (`'d'`), pauses 3 seconds to gather environmental sensor readings, and repeats.
+- **Vision Target Lock:** Integrates dual YOLOv8 detectors for human victim detection and open flame detection. Immediately dispatches an emergency halt (`'x'`), centers the dual-axis servo camera (90°, 30°), and generates auditory/visual alarms for operators.
+- **Environmental Threshold Halts:** Automatically halts the UGV upon encountering toxic gas concentrations (MQ-9 > 30 PPM / MQ-135 > 300 PPM) or extreme thermal anomalies (DHT22 ≥ 50°C).
+
+### 2. Keypress-Emulated Route Planner (`/planned-routes`)
+- **Metric-to-Time Translation:** Converts operator waypoints into millisecond-accurate motor commands (`1 meter = 1 second` linear movement, `0.5 seconds` 90-degree pivots).
+- **Asynchronous Burst-Stop Protocol:** Dispatches directional signals (`'w'`, `'a'`, `'s'`, `'d'`) paired with redundant burst-stop frames (`'x'`) to ensure the vehicle safely terminates motion in the event of packet loss or signal drops.
+
+### 3. Multi-Spectral Vision & Live Telemetry Stream (`/dashboard`)
+- **Spectral Overlays:** Real-time software rendering across Normal RGB, Thermal Simulation, Infrared NoIR, and Multi-Sensor Fusion modes with heads-up display (HUD) coordinates.
+- **Real-Time Feed Default:** Automatically transitions operator viewport to live hardware camera feeds upon mission launch.
+- **Visual Breadcrumb Tracker:** 2D coordinate tracker mapping real-time UGV trajectory, yaw angles, and waypoint history.
+
+### 4. Enterprise Security & Audit Infrastructure
+- **Role-Based Access Control (RBAC):** Enforces granular permissions across Administrator, Operator, and Field Auditor tiers.
+- **Mission Auditing & Forensic Reports:** SQLite database logging all mission telemetry, anomaly timestamps, and automated PDF/HTML executive report generators.
+
+---
+
+## Multi-Tier Hardware Topology
+
+| Component | Hardware Specification | Role in ARES Architecture |
+| :--- | :--- | :--- |
+| **Video & Camera Node** | ESP32-CAM (OV2640 / 2.4 GHz WiFi) | RTSP/MJPEG Video Streaming & HTTP Command Gateway |
+| **Motor & Sensor Controller** | Raspberry Pi Pico 2 W (RP2350) | Real-time PWM Motor Control, Sensor Polling, UART Relay |
+| **Toxic Gas Array** | MQ-9 & MQ-135 Sensors | Carbon Monoxide (CO), Combustible Gas & Air Quality Monitoring |
+| **Climate & Proximity** | DHT22 & HC-SR04 | Ambient Temperature, Humidity, and Obstacle Avoidance |
+| **Pan/Tilt Servos** | Dual SG90 Micro Servos | 180° Horizontal Pan / 90° Vertical Tilt Camera Gimbal |
+
+---
+
+## Repository Layout
 
 ```
 ARES/
-├── app.py                      # Production Application Entrypoint
-├── config.py                   # Centralized Configuration & Constants
-├── start_ares.sh               # Quick Launch Shell Script (macOS / Linux)
-├── start_ares.command          # One-Click macOS App Launcher
-├── requirements.txt            # Python Dependencies Specification
-├── yolov8n_fire.pt             # Specialized YOLOv8 Fire Classification Model
-├── ares_app/                   # Modular Application Core
-│   ├── database.py             # SQLite Mission Log & User Manager
-│   ├── hardware/               # ESP32-CAM & Pico Hardware Drivers
-│   ├── reports/                # PDF & HTML Report Generator Engine
-│   ├── routes/                 # Blueprint HTTP API & SSE Handlers
-│   ├── security/               # RBAC Auth & Security Audit Logging
-│   ├── telemetry/              # Telemetry Calculation & SSE Stream Engine
-│   ├── ugv/                    # Route Planner & AI Objective Search Threads
-│   ├── utils/                  # Network IP Discovery & SSL Management
-│   └── vision/                 # YOLOv8 Detector & Multi-Spectral Mutators
-├── ARES Hardware System/       # Hardware Micro-Code & Firmware Documentation
-│   ├── ESP 32 Cam/             # ESP32-CAM C++ Firmware Source
-│   ├── Raspberry Pi Pico 2 W/  # MicroPython Pico 2 W Main Loop
-│   └── Interface/              # Legacy Reference Interface & Specifications
-├── templates/                  # Modern Glassmorphism UI Templates
-│   ├── dashboard.html          # Main Operations Hub & Telemetry Canvas
-│   ├── ai_objectives.html      # Autonomous AI Objective Selector
-│   ├── planned_routes.html     # Custom Route Planner UI
-│   ├── hardware_control.html   # Manual Teleoperation Interface
-│   └── admin_settings.html     # System Security & User Management
-└── tests/                      # Automated Unit Test Suite (22 Tests)
+├── app.py                           # Mission Control Production Server Entry
+├── config.py                        # Centralized Configuration & Constants
+├── start_ares.sh                    # Unified Shell Launcher (macOS / Linux)
+├── start_ares.command               # One-Click macOS Desktop App Launcher
+├── requirements.txt                 # Python Dependencies Specification
+├── yolov8n.pt                       # Pre-Trained YOLOv8 Object Detection Weights
+├── yolov8n_fire.pt                  # Specialized YOLOv8 Fire Classification Weights
+├── ares_app/                        # Modular Application Core
+│   ├── database.py                  # SQLite Mission Log & User Manager
+│   ├── hardware/                    # ESP32-CAM & Pico Hardware Drivers
+│   ├── reports/                     # PDF & HTML Report Generator Engine
+│   ├── routes/                      # Blueprint HTTP API & SSE Handlers
+│   ├── security/                    # RBAC Auth & Security Audit Logging
+│   ├── telemetry/                   # Telemetry Calculation & SSE Stream Engine
+│   ├── ugv/                         # Route Planner & AI Objective Search Threads
+│   ├── utils/                       # Network IP Discovery & SSL Management
+│   └── vision/                      # YOLOv8 Detector & Multi-Spectral Mutators
+├── ARES Hardware System/            # Hardware Micro-Code & Firmware Source
+│   ├── ESP 32 Cam/                  # ESP32-CAM C++ Firmware Source
+│   │   └── CameraWebServe/          # Arduino / PlatformIO Camera Server
+│   ├── Raspberry Pi Pico 2 W/       # MicroPython Pico 2 W Hardware Loop
+│   │   └── main.py
+│   └── Interface/                   # Hardware Pin Maps & Technical Manuals
+├── templates/                       # Glassmorphism UI Templates
+│   ├── dashboard.html               # Main Operations Hub & Telemetry Canvas
+│   ├── ai_objectives.html           # Autonomous AI Objective Selector
+│   ├── planned_routes.html          # Custom Route Planner UI
+│   ├── hardware_control.html        # Manual Teleoperation Interface
+│   └── admin_settings.html          # System Security & User Management
+└── tests/                           # Automated Unit Test Suite (22 Tests)
 ```
 
 ---
 
-## ⚡ Quick Start & Installation Guide
+## Quick Start & Installation Guide
 
 ### Prerequisites
-- **Python 3.10+**
-- **Git**
-- **OpenCV & PyTorch Compatible System**
+- Python 3.10 or higher
+- Git
+- OpenCV and PyTorch compatible hardware (Apple Silicon / CUDA / x86_64 CPU)
 
-### 1. Clone & Set Up Virtual Environment
+### 1. Clone & Set Up Environment
 
 ```bash
 # Clone repository
@@ -120,10 +167,7 @@ cd ARES
 python3 -m venv venv
 
 # Activate virtual environment
-# On macOS / Linux:
 source venv/bin/activate
-# On Windows (PowerShell):
-# .\venv\Scripts\Activate.ps1
 
 # Install dependencies
 pip install -r requirements.txt
@@ -131,38 +175,23 @@ pip install -r requirements.txt
 
 ### 2. Launch Mission Control Server
 
-#### On macOS / Linux:
 ```bash
+# On macOS / Linux:
 ./start_ares.sh
-# Or run manually:
-venv/bin/python3 app.py
+
+# Or run directly:
+python3 app.py
 ```
 
-#### On Windows:
-```powershell
-python app.py
-```
-
-Once started, open your browser and navigate to:
-- **Local Control Hub**: `https://127.0.0.1:5001`
-- **Default Credentials**:
-  - **Username**: `admin`
-  - **Password**: `admin123`
+Open your browser and navigate to:
+- **Local Control Hub:** `https://127.0.0.1:5001`
+- **Default Credentials:**
+  - **Username:** `admin`
+  - **Password:** `admin123`
 
 ---
 
-## 🧪 Running Automated Unit Tests
-
-ARES includes a full suite of automated unit tests validating database connectivity, RBAC security, telemetry calculations, vision inference, and UGV route planners.
-
-```bash
-# Run unit test suite
-venv/bin/python3 -m unittest discover tests
-```
-
----
-
-## 📡 API Endpoints Reference
+## API Endpoints Reference
 
 | Category | Endpoint | Method | Description |
 | :--- | :--- | :--- | :--- |
@@ -176,6 +205,25 @@ venv/bin/python3 -m unittest discover tests
 
 ---
 
-## 📄 License & Attribution
+## Running Automated Unit Tests
 
-Designed and developed for **ARES Rescue Operations**. All rights reserved.
+ARES includes a complete unit test suite validating database connectivity, RBAC security, telemetry calculation engines, and vision inference pipelines:
+
+```bash
+python3 -m unittest discover tests
+```
+
+---
+
+## Author
+
+**Ali Nasser (Ali Al-Khazali)**
+- Portfolio: [www.ali-nasser.dev](https://www.ali-nasser.dev)
+- GitHub: [@a360n](https://github.com/a360n)
+- LinkedIn: [Ali Nasser](https://www.linkedin.com/in/ali-nasser-dev/)
+
+---
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
